@@ -1,0 +1,23 @@
+<template name="queueForm">
+  <h3> Need help? </h3>
+  <form >
+    <div class="control-group">
+      <label class="control-label" for="name"> Name </label>
+      <div class="controls">
+        <input name="name" type="text" value="" placeholder="Your name, or perhaps a code name?"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="reason"> What do you need help with? </label>
+      <div class="controls">
+        <textarea name="reason" type="text" value="" placeholder="Include relevant technologies, ex: HTML, CSS, .."></textarea> </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="location"> How can we find you? </label>
+      <div class="controls">
+        <textarea name="location" type="text" value="" placeholder="Describe where you are in the room"></textarea>
+      </div>
+    </div>
+    <input type="submit" id="add-request" value="Add Request"/>
+  </form>
+</template>

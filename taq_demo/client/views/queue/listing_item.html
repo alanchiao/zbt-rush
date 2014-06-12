@@ -1,0 +1,20 @@
+<template name="listingItem">
+  <div class="listing">
+    <div class="left">
+      <p class="listing-name"> {{index}}. {{name}} </p>
+      {{#if isAdmin }}
+        <p class="listing-reason"> Reason: {{reason}} </p>
+        <p class="listing-location"> Location: {{location}} </p>
+      {{/if}}
+    </div>
+    <div class="right">
+      {{#if isAdmin}}
+        {{#if notClaimed}}
+          <input type="button" id="claim-button" value="Claim" />
+        {{else}}
+          <input type="button" id="resolved-button" value="Resolved" />
+        {{/if}}
+      {{/if}}
+    </div> 
+  </div>
+</template>
