@@ -1,0 +1,15 @@
+<template name="activitiesPage">
+    <div class="bordered">
+        {{#if isAdmin }}
+            <!-- Interface for admin/rush chair to assign activities for
+            use. Has list of events from the current day on, sorted by day.
+            -->
+            {{> activitiesAssign }}
+             
+        {{else}}
+            <!-- List of activities assigned to user for the current day.
+            Gives easy access to their assignments for the week -->
+            {{> activitiesList }}
+        {{/if}}
+    </div>
+</template>

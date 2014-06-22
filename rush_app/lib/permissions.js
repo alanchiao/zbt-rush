@@ -1,0 +1,3 @@
+isAdmin = function(){
+    return false;
+}
