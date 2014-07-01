@@ -4,7 +4,7 @@ Router.configure({
 
 Router.map(function(){
 
-  this.route('homePage', {path: '/'});
+  this.route('rick', {path: '/'});
 
 });
 
