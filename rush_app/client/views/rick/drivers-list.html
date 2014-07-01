@@ -1,8 +1,12 @@
 <template name="driversList">
     <p> Drivers </p>
     {{#each drivers}}
-        {{> driver}}
+        {{> driverItem}}
     {{/each}}
 
-    <button id="addDriver">Add Driver </button>
+    <button id="add-driver">Add Driver </button>
+
+    <div id="driver-form">
+        {{> driverForm }}
+    </div>
 </template>

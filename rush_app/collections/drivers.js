@@ -8,7 +8,7 @@ Drivers.allow({
 
 Meteor.methods({
     driver: function(attributes){
-        var driver = _.extend(_.pick(attributes, 'name'),{
+        var driver = _.extend(_.pick(attributes, 'name', 'capacity'),{
            'uid':1,
            'rides': []
         });

@@ -5,3 +5,21 @@
 .right {
     float: right;
 }  
+
+/* Driver list styling */
+/*
+#driver-form {
+    display: none;
+}
+*/
+
+
+.driver {
+    opacity: 1;
+
+}
+
+.driver .driver-content h4{
+    display: inline-block;
+}
+/* Ride queue styling */

@@ -3,3 +3,11 @@ Template.driversList.helpers({
         return Drivers.find();
     }
 });
+
+
+Template.driversList.events({
+    'click #add-driver': function(){
+        e.preventDefault();
+
+    }
+});
