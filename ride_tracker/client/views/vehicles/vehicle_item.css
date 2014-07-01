@@ -1,0 +1,7 @@
+.vehicle {
+	background-color: white;
+	border: thin solid #cccccc;
+	box-shadow: 0px 1px #bbbbbb;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

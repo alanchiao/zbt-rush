@@ -1,0 +1,22 @@
+<template name="vehicleItem">
+	<div class="vehicle col-xs-12">
+    	<div class="row">
+    		<div class="vehicle-info col-xs-3 col-xs-offset-2">
+    			<div class="row">
+	    			<div class="name col-xs-12">{{name}} ({{passengers}}/{{capacity}})</div>
+	    		</div>
+	    		<div class="row">
+	    			<div class="phone col-xs-12">{{phone}}</div>
+	    		</div>
+	    	</div>
+	    	<div class="location col-xs-7">{{location}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="rides col-xs-12">
+		    	{{#each rides}}
+			    	{{> rideItem}}
+			    {{/each}}
+		    </div>
+	    </div>
+	</div>
+</template>

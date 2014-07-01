@@ -1,0 +1,20 @@
+<template name="rideItem">
+	<div class="ride col-xs-12">
+    	<div class="row">
+	    	<div class="time col-xs-2">{{time}}</div>
+	    	<div class="rider-info col-xs-3">
+	    		<div class="row">
+	    			<div class="name col-xs-12">{{name}} ({{passengers}})</div>
+	    		</div>
+	    		<div class="row">
+	    			<div class="phone col-xs-12">{{phone}}</div>
+	    		</div>
+	    	</div>
+	    	<div class="status col-xs-3">{{status}}</div>
+	    	<div class="location-info col-xs-4">{{pickup}} -> {{dropoff}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="comments col-xs-12">{{comments}}</div>
+	    </div>
+	</div>
+</template>
