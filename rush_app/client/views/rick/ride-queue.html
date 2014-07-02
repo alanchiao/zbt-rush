@@ -1,13 +1,7 @@
 <template name="rideQueue">
-    <p> Ride Queue </p>
-    {{#each rides}}
+    <h3> Ride Queue </h3>
+    {{#each unAssignedRides}}
         {{> rideItem}}
     {{/each}}
-
-    <button> Add Ride </button>
-
-    <div id="ride-form">
-        {{> rideForm }}
-    </div>
 
 </template>

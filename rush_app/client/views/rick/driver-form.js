@@ -12,7 +12,7 @@ Template.driverForm.events({
                 return alert(error.reason);
             }
             else{
-                //Make form disappear
+                $('#driver-form').css('display','none');
             }
         });
             

@@ -6,8 +6,8 @@ Template.driversList.helpers({
 
 
 Template.driversList.events({
-    'click #add-driver': function(){
+    'click #add-driver': function(e){
         e.preventDefault();
-
+        $('#driver-form').css('display', 'block');
     }
 });

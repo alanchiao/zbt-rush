@@ -1,9 +1,17 @@
 <template name="rick">
-    <div id="driversList" class="left">
-        {{> driversList }}
+    <div class="comp">
+        <div id="drivers-list">
+            {{> driversList }}
+        </div>
+    </div> 
+    <div class="comp">
+        <div id="ride-queue">
+            {{> rideQueue}}
+        </div>
     </div>
-
-    <div id="rideQueue" class="right">
-        {{> rideQueue}}
+    <div class="comp"> 
+        <div id="ride-form">
+            {{> rideForm }}
+        </div>
     </div>
 </template>

@@ -19,8 +19,11 @@ Meteor.methods({
      },
 
 
-     addRide: function(ride){
-        driver.rides.push(ride);
+     addRide: function(rideId, driverId){
+         var driver = Drivers.find(driverId).fetch()[0];
+         var rides = driver.rides;
+         rides.push(rideId);
+         Drivers.update(driverId, {$set:{"rides":rides}});
      },
 
      removeRide: function(ride){

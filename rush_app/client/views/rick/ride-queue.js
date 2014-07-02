@@ -3,3 +3,4 @@ Template.rideQueue.helpers({
         return Rides.find();
     }
 });
+
