@@ -1,3 +1,4 @@
+//Connects rides and drivers portion of the rick app
 Template.rick.events({
     'click .ride': function(e){
         console.log(e.currentTarget);
