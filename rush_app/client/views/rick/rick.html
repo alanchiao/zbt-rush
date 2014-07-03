@@ -1,17 +1,20 @@
 <template name="rick">
-    <div class="comp">
-        <div id="drivers-list">
-            {{> driversList }}
+    <div id="ride-wrapper" class="generic-wrapper col-md-6">
+        <h2>Rides</h2>
+        <div id="ride-form" class="generic-form row">
+            {{> rideForm }}
         </div>
-    </div> 
-    <div class="comp">
-        <div id="ride-queue">
+        <div id="ride-queue" class="row">
             {{> rideQueue}}
         </div>
     </div>
-    <div class="comp"> 
-        <div id="ride-form">
-            {{> rideForm }}
+    <div id="driver-wrapper" class="generic-wrapper col-md-5 col-md-offset-1">
+        <h2>Drivers</h2>
+        <div id="driver-form" class="generic-form row">
+            {{> driverForm }}
+        </div>
+        <div id="drivers-list" class="row">
+            {{> driversList }}
         </div>
     </div>
 </template>

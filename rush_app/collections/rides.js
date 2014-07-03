@@ -8,8 +8,7 @@ Rides.allow({
 
 Meteor.methods({
     ride: function(attributes){
-        var ride = _.extend(_.pick(attributes, 'rushee', 'location', 'phoneNumber',
-        'numPeople'),{
+        var ride = _.extend(attributes,{
             status: 'unassigned'
         });
 

@@ -1,9 +1,9 @@
 <!-- Layout template for every page -->
 
 <template name="layout">
+  {{>header}}
   <div class="container">
-    {{>header}}
-    <div id="wrapper">
+    <div id="wrapper" class="row">
       {{>yield}}
     </div>
   </div>

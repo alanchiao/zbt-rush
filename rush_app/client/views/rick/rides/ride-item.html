@@ -1,0 +1,21 @@
+<template name="rideItem">
+    <div class="ride col-md-12" data-js="ride">
+        <div style="display:none" name="rideId">{{_id}}</div>
+        <div class="row">
+            <div class="time col-md-2">{{time}}</div>
+            <div class="rider-info col-md-4">
+                <div class="row">
+                    <div class="name col-md-12">{{name}} ({{passengers}})</div>
+                </div>
+                <div class="row">
+                    <div class="phone col-md-12">{{phone}}</div>
+                </div>
+            </div>
+            <div class="status col-md-3">{{status}}</div>
+            <div class="location-info col-md-3">{{pickup}} -> {{dropoff}}</div>
+        </div>
+        <div class="row">
+            <div class="comments col-md-12">{{comments}}</div>
+        </div>
+    </div>
+</template>

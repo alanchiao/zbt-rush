@@ -1,9 +1,11 @@
 Template.rick.events({
     'click .ride': function(e){
+        console.log(e.currentTarget);
         currentRideId = $(e.currentTarget).find('[name=rideId]')[0].innerText;
      },
 
      'click .driver': function(e){
+        console.log(e.currentTarget);
          var selectedDriverId = $(e.currentTarget).find('[name=driverId]')[0].innerText;
          if (currentRideId != null){
 

@@ -8,10 +8,10 @@ Drivers.allow({
 
 Meteor.methods({
     driver: function(attributes){
-        var driver = _.extend(_.pick(attributes, 'name', 'capacity'),{
+        var driver = _.extend(attributes,{
            'uid':1,
            'rides': [],
-           'occupiedSeats': 0
+           'passengers': 0
         });
 
         var driverId = Drivers.insert(driver);
@@ -27,9 +27,9 @@ Meteor.methods({
          var rides = driver.rides;
          rides.push(rideId);
 
-         var occupiedSeats = driver.occupiedSeats + ride.numPeople;
+         var passengers = driver.passengers + ride.passengers;
 
-         Drivers.update(driverId, {$set:{'rides':rides, 'occupiedSeats':occupiedSeats}});
+         Drivers.update(driverId, {$set:{'rides':rides, 'passengers':passengers}});
          Rides.update(rideId, {$set:{'status':'assigned'}});
      },
 

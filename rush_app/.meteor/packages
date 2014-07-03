@@ -6,5 +6,6 @@
 standard-app-packages
 autopublish
 insecure
-bootstrap
 iron-router
+bootstrap-3
+bootstrap
