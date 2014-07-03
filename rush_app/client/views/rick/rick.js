@@ -9,7 +9,7 @@ Template.rick.events({
 
             var driver = Drivers.find(selectedDriverId).fetch()[0];
             console.log(driver);
-            Meteor.call('addRide', currentRideId, selectedDriverId, function(error, id){
+            Meteor.call('assignRide', currentRideId, selectedDriverId, function(error, id){
                 if (error){
                     return alert(error.reason);
                 }
