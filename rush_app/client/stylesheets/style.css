@@ -33,10 +33,49 @@
 
 .input-field {
     width: 100%;
+    max-width: 100%;
 }
 
 .submit-form {
     margin-top: 10px;
     width: 100%;
     height: 100%;
+}
+
+.ride-drawer-handle-wrapper {
+    text-align: center;
+}
+
+.ride-drawer-handle {
+    color: #888888;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ride-drawer-handle:hover {
+    color: #666666;
+    cursor: pointer;
+}
+
+.ride-drawer-target {
+    display: none;
+}
+
+.driver-drawer-handle-wrapper {
+    text-align: center;
+}
+
+.driver-drawer-handle {
+    color: #888888;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.driver-drawer-handle:hover {
+    color: #666666;
+    cursor: pointer;
+}
+
+.driver-drawer-target {
+    display: none;
 }
