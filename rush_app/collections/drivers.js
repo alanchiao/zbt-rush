@@ -27,7 +27,7 @@ Meteor.methods({
          var rides = driver.rides;
          rides.push(rideId);
 
-         var passengers = driver.passengers + ride.passengers;
+         var passengers = parseInt(driver.passengers) + parseInt(ride.passengers);
 
          Drivers.update(driverId, {$set:{'rides':rides, 'passengers':passengers}});
          Rides.update(rideId, {$set:{'status':'assigned'}});
