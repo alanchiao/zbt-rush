@@ -1,16 +1,39 @@
 <template name="rideForm">
     <div class="col-md-12">
         <h3> Add a Ride </h3>
-
-        <form>
-            <input name="name" type="text" value="" placeholder="Name" />
-            <input name="time" type="text" value="" placeholder="Pickup Time" />
-            <input name="phone" type="text" value="" placeholder="Phone Number" />
-            <input name="passengers" type="text" value="" placeholder="Number of People"/>
-            <input name="pickup" type="text" value="" placeholder="Pickup Location" />
-            <input name="dropoff" type="text" value="" placeholder="Dropoff Location" />
-            <textarea name="comments" value="" placeholder="Comments"></textarea>
-            <input type="submit" id="add-ride" value="Queue Ride" />
-        </form>
+        <div class="col-md-12">
+            <form>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input name="name" class="input-field" type="text" value="" placeholder="Name" />
+                    </div>
+                    <div class="col-md-4">
+                        <input name="time" class="input-field" type="text" value="" placeholder="Pickup Time" />
+                    </div>
+                    <div class="col-md-4">
+                        <input name="phone" class="input-field" type="text" value="" placeholder="Phone Number" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">    
+                        <input name="passengers" class="input-field" type="text" value="" placeholder="Number of People"/>
+                    </div>
+                    <div class="col-md-4">    
+                        <input name="pickup" class="input-field" type="text" value="" placeholder="Pickup Location" />
+                    </div>
+                    <div class="col-md-4">    
+                        <input name="dropoff" class="input-field" type="text" value="" placeholder="Dropoff Location" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <textarea name="comments" class="input-field" value="" placeholder="Comments"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="submit" class="submit-form" id="add-ride" value="Queue Ride" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
