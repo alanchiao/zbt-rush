@@ -1,12 +1,28 @@
 <template name="driverForm">
 	<div class="col-md-12">
 	    <h3> Add A Driver </h3>
-	    <form>
-	        <input name="name" type="text" value="" placeholder="Name"/>
-	        <input name="phone" type="text" value="" placeholder="Phone Number" />
-	        <input name="capacity" type="text" value="" placeholder="Number of available seats"/>
-	        <textarea name="comments" value="" placeholder="Comments"></textarea>
-	        <input type="submit" value="Deploy" class="btn btn-primary submit"/>
-	    </form>
+	    <div class="col-md-12">
+		    <form>
+		    	<div class="row">
+			        <div class="col-md-4">
+				        <input class="input-field" name="name" type="text" value="" placeholder="Name"/>
+				    </div>
+			        <div class="col-md-4">
+				        <input class="input-field" name="phone" type="text" value="" placeholder="Phone Number" />
+				    </div>
+			        <div class="col-md-4">
+				        <input class="input-field" name="capacity" type="text" value="" placeholder="Capacity"/>
+				    </div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-md-8">
+		        		<textarea class="input-field" name="comments" value="" placeholder="Comments"></textarea>
+		        	</div>
+		        	<div class="col-md-4">
+			        	<input type="submit" value="Deploy" class="btn btn-primary submit submit-form"/>
+			        </div>
+			    </div>
+		    </form>
+		</div>
 	</div>
 </template>

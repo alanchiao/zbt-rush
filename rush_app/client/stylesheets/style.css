@@ -30,3 +30,13 @@
 }
 
 */
+
+.input-field {
+    width: 100%;
+}
+
+.submit-form {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+}
