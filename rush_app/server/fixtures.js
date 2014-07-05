@@ -19,7 +19,7 @@ if (Rides.find().count() === 0){
         pickup: 'Baker',
         dropoff: 'ZBT',
         status: 'unassigned',
-        comments: 'Silver Surfer'
+        comments: 'Skippah'
     });
 
 
