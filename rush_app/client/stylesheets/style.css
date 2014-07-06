@@ -42,40 +42,21 @@
     height: 100%;
 }
 
-.ride-drawer-handle-wrapper {
+.ride-drawer-handle-wrapper, .driver-drawer-handle-wrapper {
     text-align: center;
 }
 
-.ride-drawer-handle {
+.ride-drawer-handle, .driver-drawer-handle {
     color: #888888;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.ride-drawer-handle:hover {
+.ride-drawer-handle:hover, .driver-drawer-handle:hover {
     color: #666666;
     cursor: pointer;
 }
 
-.ride-drawer-target {
-    display: none;
-}
-
-.driver-drawer-handle-wrapper {
-    text-align: center;
-}
-
-.driver-drawer-handle {
-    color: #888888;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.driver-drawer-handle:hover {
-    color: #666666;
-    cursor: pointer;
-}
-
-.driver-drawer-target {
+.ride-drawer-target, .driver-drawer-target {
     display: none;
 }

@@ -1,15 +1,8 @@
+// these events apply to the ride form only. duplicate code exists in driver-form.js
+
 Template.rideForm.events({
-    'click .ride-drawer-handle': function(e){
-        var target = $('.ride-drawer-target');
-        if(target.is(':hidden')){
-            target.slideDown();
-            $('.ride-drawer-handle').removeClass('glyphicon-chevron-down');
-            $('.ride-drawer-handle').addClass('glyphicon-chevron-up');
-        } else {
-            target.slideUp();
-            $('.ride-drawer-handle').removeClass('glyphicon-chevron-up');
-            $('.ride-drawer-handle').addClass('glyphicon-chevron-down');
-        }
+    'click [data-js=handle]': function(e){
+        utils.toggleDrawer(e.target);
     },
     'submit form': function(e){
         e.preventDefault();

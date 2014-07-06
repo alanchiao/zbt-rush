@@ -25,6 +25,22 @@ utils = function(){
      });
      return json;
   }
+
+  that.toggleDrawer = function(handle){
+    var $target = $(document).find('[data-js=' + $(handle).attr('data-target') + ']');
+    t = $target;
+    var $handle = $(handle);
+    h = $handle;
+    if($target.is(':hidden')){
+        $target.slideDown();
+        $handle.removeClass('glyphicon-chevron-down');
+        $handle.addClass('glyphicon-chevron-up');
+    } else {
+        $target.slideUp();
+        $handle.removeClass('glyphicon-chevron-up');
+        $handle.addClass('glyphicon-chevron-down');
+    }
+  };
   
   //prevent modification of object slots
   Object.freeze(that);
