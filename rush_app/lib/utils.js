@@ -40,9 +40,64 @@ utils = function(){
         $handle.removeClass('glyphicon-chevron-up');
         $handle.addClass('glyphicon-chevron-down');
     }
-  };
+  }
+
+  that.reset = function(){
+    Rides.find().fetch().forEach(function(ride){
+        Rides.remove(ride._id);
+    });
+    Drivers.find().fetch().forEach(function(driver){
+        Drivers.remove(driver._id);
+    });
+    SAMPLE_RIDES.forEach(function(ride){
+        Rides.insert(ride);
+    });
+    SAMPLE_DRIVERS.forEach(function(driver){
+        Drivers.insert(driver);
+    });
+  }
+
+  that.sampleRides = SAMPLE_RIDES;
+  that.sampleDrivers = SAMPLE_DRIVERS;
   
   //prevent modification of object slots
   Object.freeze(that);
   return that;
 }();
+
+var SAMPLE_RIDES = [{
+    name:'Kevin Tian',
+    time: '3:00 PM',
+    passengers: '4',
+    phone: '(510)-378-2423',
+    pickup: 'Next House',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'Mr. Fantastic'
+}, {
+    name: 'Alex Jaffe',
+    passengers: '3',
+    phone: '(535)-343-2312',
+    pickup: 'Maseeh',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'J-j-j-jaffe'
+}, {
+    name: 'Alan Chiao',
+    time: '3:45 PM',
+    passengers: '1',
+    phone: '(617)-332-4345',
+    pickup: 'Baker',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'Skippah'
+}];
+
+var SAMPLE_DRIVERS = [{
+    name: 'Charles',
+    passengers: '0',
+    phone: '(617)-393-4234',
+    capacity: '5',
+    comments: 'ZBestpresidenT',
+    rides: []
+}];

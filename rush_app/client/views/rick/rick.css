@@ -18,7 +18,7 @@
 }
 
 .selected {
-	background-color: yellow;
+	border: thin solid blue;
 }
 
 .ride-drawer-handle-wrapper, .driver-drawer-handle-wrapper {

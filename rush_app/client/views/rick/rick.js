@@ -25,6 +25,10 @@ Template.rick.events({
             }
             selectedRides = [];
         }
+    },
+
+    'click [data-js=reset]': function(e){
+        utils.reset();
     }
 });
 
