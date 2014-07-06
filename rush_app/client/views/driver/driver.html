@@ -1,0 +1,15 @@
+<template name="driver">
+    <div id="rides-list">
+        {{#each assignedRides}}
+        <div class="row">
+            <div class="col-md-10">
+                {{> rideItem }}
+            </div>
+            <div class="col-md-2">
+                {{> rideOptions}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <button id="complete-trip"> Complete Trip </button>
+</template>
