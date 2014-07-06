@@ -5,3 +5,37 @@
 .generic-form {
 	background-color: #eaeaea;
 }
+
+.input-field {
+    width: 100%;
+    max-width: 100%;
+}
+
+.submit-form {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.selected {
+	background-color: yellow;
+}
+
+.ride-drawer-handle-wrapper, .driver-drawer-handle-wrapper {
+    text-align: center;
+}
+
+.ride-drawer-handle, .driver-drawer-handle {
+    color: #888888;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ride-drawer-handle:hover, .driver-drawer-handle:hover {
+    color: #666666;
+    cursor: pointer;
+}
+
+.ride-drawer-target, .driver-drawer-target {
+    display: none;
+}

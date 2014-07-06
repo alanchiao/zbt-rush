@@ -1,13 +1,12 @@
 <template name="driverItem">
-    <div class="driver col-md-12" data-js="driver">
-        <div style="display:none" name="driverId">{{_id}}</div>
-        <div class="row">
-            <div class="rider-info col-md-8">{{name}} ({{calcSpace capacity passengers}}/{{capacity}} spots remaining)
+    <div class="driver col-sm-12" data-js="driver" data-id="{{_id}}">
+        <div>
+            <div class="rider-info col-sm-6">{{name}} ({{calcSpace capacity passengers}}/{{capacity}} full)
             </div>
-            <div class="phone col-md-4">{{phone}}</div>
+            <div class="phone col-sm-6">{{phone}}</div>
         </div>
-        <div class="row">
-            <div class="comments col-md-12">{{comments}}</div>
+        <div>
+            <div class="comments col-sm-12">{{comments}}</div>
         </div>
     </div>
 </template>
