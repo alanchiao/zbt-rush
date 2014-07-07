@@ -1,3 +1,48 @@
+var SAMPLE_RIDES = [{
+    name:'Kevin Tian',
+    time: '3:00 PM',
+    passengers: '4',
+    phone: '(510)-378-2423',
+    pickup: 'Next House',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'Mr. Fantastic'
+}, {
+    name: 'Alex Jaffe',
+    time: '4:45 PM',
+    passengers: '3',
+    phone: '(535)-343-2312',
+    pickup: 'Maseeh',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'J-j-j-jaffe'
+}, {
+    name: 'Alan Chiao',
+    time: '3:45 PM',
+    passengers: '1',
+    phone: '(617)-332-4345',
+    pickup: 'Baker',
+    dropoff: 'ZBT',
+    status: 'unassigned',
+    comments: 'Skippah'
+}];
+
+var SAMPLE_DRIVERS = [{
+    name: 'Charles',
+    passengers: '0',
+    phone: '(617)-393-4234',
+    capacity: '5',
+    comments: 'ZBestpresidenT',
+    rides: []
+}, {
+    name: 'Kyle',
+    passengers: '0',
+    phone: '(234)-567-7890',
+    capacity: '4',
+    comments: 'Pretty cool guy',
+    rides: []
+}];
+
 //Class for random user interface related utility functions
 utils = function(){
   var that = {};
@@ -64,48 +109,3 @@ utils = function(){
   Object.freeze(that);
   return that;
 }();
-
-var SAMPLE_RIDES = [{
-    name:'Kevin Tian',
-    time: '3:00 PM',
-    passengers: '4',
-    phone: '(510)-378-2423',
-    pickup: 'Next House',
-    dropoff: 'ZBT',
-    status: 'unassigned',
-    comments: 'Mr. Fantastic'
-}, {
-    name: 'Alex Jaffe',
-    time: '4:45 PM',
-    passengers: '3',
-    phone: '(535)-343-2312',
-    pickup: 'Maseeh',
-    dropoff: 'ZBT',
-    status: 'unassigned',
-    comments: 'J-j-j-jaffe'
-}, {
-    name: 'Alan Chiao',
-    time: '3:45 PM',
-    passengers: '1',
-    phone: '(617)-332-4345',
-    pickup: 'Baker',
-    dropoff: 'ZBT',
-    status: 'unassigned',
-    comments: 'Skippah'
-}];
-
-var SAMPLE_DRIVERS = [{
-    name: 'Charles',
-    passengers: '0',
-    phone: '(617)-393-4234',
-    capacity: '5',
-    comments: 'ZBestpresidenT',
-    rides: []
-}, {
-    name: 'Kyle',
-    passengers: '0',
-    phone: '(234)-567-7890',
-    capacity: '4',
-    comments: 'Pretty cool guy',
-    rides: []
-}];

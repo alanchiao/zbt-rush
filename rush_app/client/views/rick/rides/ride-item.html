@@ -1,22 +1,14 @@
 <template name="rideItem">
     <div class="ride col-xs-12" data-js="ride" data-id="{{_id}}">
-        <div class="personal-info">
+        <div class="short-info">
             <div class="time col-xs-2">{{time}}</div>
-            <div class="rider-info col-xs-10">
-                <div>
-                    <div class="name col-xs-12">{{name}} ({{passengers}})</div>
-                </div>
-                <div>
-                    <div class="phone col-xs-12">{{phone}}</div>
-                </div>
+            <div class="name col-xs-4">{{name}} ({{passengers}})</div>
+            <div class="location-info col-xs-6">
+                {{pickup}} -> {{dropoff}}
             </div>
         </div>
-        <div class="location-info">
-            <div class="pickup-info col-xs-5">{{pickup}}</div>
-            <div class="col-xs-2"><span class="glyphicon glyphicon-arrow-right"></span></div>
-            <div class="dropoff-info col-xs-5">{{dropoff}}</div>
-        </div>
-        <div>
+        <div class="additional-info">
+            <div class="phone col-xs-12">{{phone}}</div>
             <div class="comments col-xs-12">{{comments}}</div>
         </div>
     </div>
