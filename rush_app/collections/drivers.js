@@ -27,8 +27,6 @@ Meteor.methods({
 
 
      assignRide: function(rideId, driverId){
-        console.log(rideId);
-        console.log(driverId);
          var driver = Drivers.find(driverId).fetch()[0];
          var ride = Rides.find(rideId).fetch()[0];
          

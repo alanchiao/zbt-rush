@@ -76,6 +76,7 @@ var SAMPLE_RIDES = [{
     comments: 'Mr. Fantastic'
 }, {
     name: 'Alex Jaffe',
+    time: '4:45 PM',
     passengers: '3',
     phone: '(535)-343-2312',
     pickup: 'Maseeh',
@@ -99,5 +100,12 @@ var SAMPLE_DRIVERS = [{
     phone: '(617)-393-4234',
     capacity: '5',
     comments: 'ZBestpresidenT',
+    rides: []
+}, {
+    name: 'Kyle',
+    passengers: '0',
+    phone: '(234)-567-7890',
+    capacity: '4',
+    comments: 'Pretty cool guy',
     rides: []
 }];

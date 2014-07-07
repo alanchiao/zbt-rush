@@ -2,28 +2,31 @@
 // TODO: change name -> data-id or something similar
 Template.rick.events({
     'click [data-js=ride]': function(e){
+
         var rideEl = e.currentTarget;
-        if (selectedRides.indexOf(rideEl) == -1){
+        if (!rideEl.dataset.selected){
             selectRide(rideEl);
         }
      },
 
     'click [data-js=driver]': function(e){
         var driverEl = e.currentTarget;
-        if (selectedRides.length == 0 && selectedDrivers.indexOf(driverEl) == -1){
+        var sr = selectedRides();
+        var sd = selectedDrivers();
+        if (sr.length == 0 && !driverEl.dataset.selected){
             selectDriver(driverEl);
         } else {
-            var driverId = driverEl.dataset['id'];
-            var driver = Drivers.find(driverId).fetch()[0];
-            for (var index in selectedRides){
-                var ride = selectedRides[index];
-                Meteor.call('assignRide', ride.dataset['id'], driverId, function(error, id){
+            var driverId = driverEl.dataset.id;
+            var driver = Drivers.findOne(driverId);
+            for (var i=0; i<sr.length; i++){
+                var ride = sr[i];
+                Meteor.call('assignRide', ride.dataset.id, driverId, function(error, id){
                     if (error){
                         return alert(error.reason);
                     }
                 });
             }
-            selectedRides = [];
+            deselectAllRides();
         }
     },
 
@@ -33,13 +36,19 @@ Template.rick.events({
 });
 
 var selectRide = function(rideEl){
-    selectedRides.push(rideEl);
+    rideEl.dataset.selected = true;
     $(rideEl).addClass('selected');
 }
 
 var deselectRide = function(rideEl){
-    selectedRides.pop(rideEl);
+    rideEl.removeAttr('data-selected');
     $(rideEl).removeClass('selected');
+}
+
+var selectedRides = function(){
+    return $('[data-js=ride]').filter(function(index, ride){
+        return ride.dataset.selected;
+    });
 }
 
 var deselectAllRides = function(){
@@ -50,14 +59,17 @@ var deselectAllRides = function(){
 }
 
 var selectDriver = function(driverEl){
-    selectedDrivers.push(driverEl);
+    driverEl.dataset.selected = true;
     $(driverEl).addClass('selected');
 }
 
 var deselectDriver = function(driverEl){
-    selectedDrivers.pop(driverEl);
+    driverEl.removeAttr('data-selected');
     $(driverEl).removeClass('selected');
 }
 
-var selectedRides = [];
-var selectedDrivers = [];
+var selectedDrivers = function(){
+    return $('[data-js=ride]').filter(function(index, ride){
+        return ride.dataset.js;
+    });
+}
