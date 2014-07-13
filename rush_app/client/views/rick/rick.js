@@ -3,8 +3,10 @@
 Template.rick.events({
     'click [data-js=ride]': function(e){
         var rideEl = e.currentTarget;
-        if (!rideEl.dataset.selected){
+        if (!$(rideEl).data('selected')){
             selectRide(rideEl);
+        } else {
+            deselectRide(rideEl);
         }
      },
 
@@ -12,8 +14,12 @@ Template.rick.events({
         var driverEl = e.currentTarget;
         var sr = selectedRides();
         var sd = selectedDrivers();
-        if (sr.length == 0 && !driverEl.dataset.selected){
-            selectDriver(driverEl);
+        if (sr.length == 0){
+            if (!$(driverEl).data('selected')){
+                selectDriver(driverEl);
+            } else {
+                deselectDriver(driverEl);
+            }
         } else {
             var driverId = driverEl.dataset.id;
             var driver = Drivers.findOne(driverId);
@@ -40,18 +46,18 @@ Template.rick.events({
 });
 
 var selectRide = function(rideEl){
-    rideEl.dataset.selected = true;
+    $(rideEl).data('selected', true);
     $(rideEl).addClass('selected');
 }
 
 var deselectRide = function(rideEl){
-    rideEl.removeAttr('data-selected');
+    $(rideEl).removeData('selected');
     $(rideEl).removeClass('selected');
 }
 
 var selectedRides = function(){
     return $('[data-js=ride]').filter(function(index, ride){
-        return ride.dataset.selected;
+        return $(ride).data('selected');
     });
 }
 
@@ -63,17 +69,17 @@ var deselectAllRides = function(){
 }
 
 var selectDriver = function(driverEl){
-    driverEl.dataset.selected = true;
+    $(driverEl).data('selected', true);
     $(driverEl).addClass('selected');
 }
 
 var deselectDriver = function(driverEl){
-    driverEl.removeAttr('data-selected');
+    $(driverEl).removeData('selected');
     $(driverEl).removeClass('selected');
 }
 
 var selectedDrivers = function(){
-    return $('[data-js=ride]').filter(function(index, ride){
-        return ride.dataset.js;
+    return $('[data-js=driver]').filter(function(index, driver){
+        return $(driver).data('selected');
     });
 }
