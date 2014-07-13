@@ -2,7 +2,6 @@
 // TODO: change name -> data-id or something similar
 Template.rick.events({
     'click [data-js=ride]': function(e){
-
         var rideEl = e.currentTarget;
         if (!rideEl.dataset.selected){
             selectRide(rideEl);
@@ -32,7 +31,12 @@ Template.rick.events({
 
     'click [data-js=reset]': function(e){
         utils.reset();
-    }
+    },
+
+    'click [data-js=handle]': function(e){
+        utils.toggleDrawer(e.target);
+        return false;
+    },
 });
 
 var selectRide = function(rideEl){

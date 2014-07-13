@@ -77,11 +77,11 @@ utils = function(){
     var $handle = $(handle);
     h = $handle;
     if($target.is(':hidden')){
-        $target.slideDown();
+        $target.slideDown('fast');
         $handle.removeClass('glyphicon-chevron-down');
         $handle.addClass('glyphicon-chevron-up');
     } else {
-        $target.slideUp();
+        $target.slideUp('fast');
         $handle.removeClass('glyphicon-chevron-up');
         $handle.addClass('glyphicon-chevron-down');
     }
