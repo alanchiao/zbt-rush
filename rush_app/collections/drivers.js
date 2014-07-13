@@ -1,4 +1,5 @@
 Drivers = new Meteor.Collection('drivers');
+CollectionHandler.addCollection('Drivers', Drivers);
 
 Drivers.allow({
     insert: function(){

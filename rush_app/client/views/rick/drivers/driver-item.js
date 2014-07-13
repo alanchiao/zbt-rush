@@ -1,3 +1,6 @@
-Handlebars.registerHelper('calcSpace', function(capacity, passengers){
-    return capacity - passengers;
+Template.driverItem.events({
+    'click [data-js=delete]':CollectionHandler.deleteItem('Drivers'),
+    'click [data-js=edit]': CollectionHandler.editItem('Drivers')
 });
+    
+

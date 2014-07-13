@@ -1,4 +1,5 @@
 Rides = new Meteor.Collection("rides");
+CollectionHandler.addCollection('Rides', Rides);
 
 Rides.allow({
     insert: function(){
