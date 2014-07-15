@@ -61,7 +61,7 @@ utils = function(){
 
   }
   
-  that.formToJson = function(form){
+  that.formToJson = function(form, childCols){
      var json = {};
      $(form).find('.input-field').each(function(){
          var fieldName = $(this).attr('name');

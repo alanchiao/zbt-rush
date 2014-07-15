@@ -1,6 +1,7 @@
 Drivers = new Meteor.Collection('drivers');
 CollectionHandler.addCollection('Drivers', Drivers);
 
+
 Drivers.allow({
     insert: function(){
         return true;
@@ -15,10 +16,11 @@ Drivers.allow({
 
 Meteor.methods({
     driver: function(attributes){
-        var driver = _.extend(attributes,{
+        var driver = _.extend(_.pick(attributes,'name','capacity','comments'),{
            'uid':1,
            'rides': [],
-           'passengers': 0
+           'passengers': 0,
+           'phoneNumber': PhoneNumbers.insert({'number':attributes.phone})
         });
 
         var driverId = Drivers.insert(driver);
@@ -39,7 +41,4 @@ Meteor.methods({
          Drivers.update(driverId, {$set:{'rides':rides, 'passengers':passengers}});
          Rides.update(rideId, {$set:{'status':'assigned'}});
      },
-
-     removeRide: function(ride){
-     }
 });
