@@ -1,5 +1,4 @@
 // these events apply to the driver form only. duplicate code exists in ride-form.js
-
 Template.driverForm.events({
     'submit form': function(e){
         e.preventDefault();

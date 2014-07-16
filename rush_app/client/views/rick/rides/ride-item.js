@@ -5,7 +5,13 @@ Template.rideItem.helpers({
 
 		//TODO
 		return f;
-	}
+	},
+
+    phoneNumber: function(){
+        var phoneId = this.phone;
+        var phone = Phones.findOne(phoneId);
+        return phone['phone'];
+    }
 });
 
 Template.rideItem.events({

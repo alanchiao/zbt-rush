@@ -5,7 +5,6 @@ var SAMPLE_RIDES = [{
     phone: '(510)-378-2423',
     pickup: 'Next House',
     dropoff: 'ZBT',
-    status: 'unassigned',
     comments: 'Mr. Fantastic'
 }, {
     name: 'Alex Jaffe',
@@ -14,7 +13,6 @@ var SAMPLE_RIDES = [{
     phone: '(535)-343-2312',
     pickup: 'Maseeh',
     dropoff: 'ZBT',
-    status: 'unassigned',
     comments: 'J-j-j-jaffe'
 }, {
     name: 'Alan Chiao',
@@ -23,7 +21,6 @@ var SAMPLE_RIDES = [{
     phone: '(617)-332-4345',
     pickup: 'Baker',
     dropoff: 'ZBT',
-    status: 'unassigned',
     comments: 'Skippah'
 }];
 
@@ -95,10 +92,18 @@ utils = function(){
         Drivers.remove(driver._id);
     });
     SAMPLE_RIDES.forEach(function(ride){
-        Rides.insert(ride);
+        Meteor.call('ride', ride, function(error,id){
+            if(error){
+                return alert(error.reason);
+            }
+        });
     });
     SAMPLE_DRIVERS.forEach(function(driver){
-        Drivers.insert(driver);
+        Meteor.call('driver', driver, function(error,id){
+            if(error){
+                return alert(error.reason);
+            }
+        });
     });
   }
 

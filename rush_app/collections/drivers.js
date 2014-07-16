@@ -1,5 +1,5 @@
 Drivers = new Meteor.Collection('drivers');
-CollectionHandler.addCollection('Drivers', Drivers);
+CollectionHandler.addCollection('Drivers', Drivers, {'phone': Phones});
 
 
 Drivers.allow({
@@ -16,11 +16,11 @@ Drivers.allow({
 
 Meteor.methods({
     driver: function(attributes){
-        var driver = _.extend(_.pick(attributes,'name','capacity','comments'),{
+        var driver = _.extend(attributes, {
            'uid':1,
            'rides': [],
            'passengers': 0,
-           'phoneNumber': PhoneNumbers.insert({'number':attributes.phone})
+           'phone': Phones.insert({'phone':attributes.phone})
         });
 
         var driverId = Drivers.insert(driver);

@@ -15,10 +15,11 @@ Rides.allow({
 
 Meteor.methods({
     ride: function(attributes){
+        
         var ride = _.extend(attributes,{
-            status: 'unassigned'
+            'status': 'unassigned',
+            'phone':Phones.insert({'phone':attributes.phone})
         });
-
         var rideId = Rides.insert(ride);
 
         return rideId;
