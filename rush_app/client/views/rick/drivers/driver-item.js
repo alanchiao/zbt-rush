@@ -1,7 +1,6 @@
 
 Template.driverItem.helpers({
     phoneNumber: function(){
-        console.log(this.phone);
         var phoneId = this.phone;
         var phone = Phones.findOne(phoneId);
         return phone['phone'];
