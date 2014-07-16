@@ -1,6 +1,7 @@
 Template.driver.helpers({
     assignedRides: function(){
-        return Rides.find({status: {$in: ["assigned", "pickedUp", "unfound"]}});
+        var rideList = this.rides;
+        return Rides.find({_id: {$in: rideList}}).fetch();
     },
     currDriverId: function(){
         return Driver.findOne().fetch()[0]._id;
