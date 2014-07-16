@@ -16,8 +16,7 @@ Template.rideItem.helpers({
 
 Template.rideItem.events({
     'click [data-js=delete]': function(e){
-        var rideId = $(e.currentTarget).data('target-id');
-    	CollectionHandler.deleteItem('Rides', rideId);
+    	CollectionHandler.deleteItem('Rides', this._id)(e);
     	return false;
     },
     'click [data-js="edit"]': function(e){
@@ -26,8 +25,9 @@ Template.rideItem.events({
     		$(e.currentTarget).removeClass('glyphicon-check');
     		$(e.currentTarget).addClass('glyphicon-edit');
     		$(ride).removeClass('editing');
-	    	var rideId = $(e.currentTarget).data('target-id');
-	    	CollectionHandler.editItem('Rides', rideId);
+            console.log(e);
+	    	CollectionHandler.editItem('Rides', this._id)(e);
+
 	    	$(ride).data('editing', false);
 	    	$(ride).find('.info-field').toArray().forEach(function(field, index){
 	    		field.dataset.input = false;
