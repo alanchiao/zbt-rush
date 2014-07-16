@@ -23,7 +23,7 @@
 }
 
 .selected {
-	border: thin solid blue;
+    background-color: #ffffaa;
 }
 
 /* Form drawer handle */

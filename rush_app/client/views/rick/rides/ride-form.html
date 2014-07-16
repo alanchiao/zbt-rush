@@ -1,36 +1,36 @@
 <template name="rideForm">
     <div class="ride-drawer-target col-md-12" data-js="ride-form">
-        <h3> Add a Ride </h3>
+        <h4> Add a Ride </h4>
         <div class="col-md-12">
             <form>
                 <div class="input-row row">
                     <div class="col-md-4">
-                        <input name="name" class="input-field form-control form-control" type="text" value="" placeholder="Name" />
+                        <input name="name" class="input-field form-control form-control" type="text" value="" placeholder="Name" data-input="true" />
                     </div>
                     <div class="col-md-4">
-                        <input name="time" class="input-field form-control" type="text" value="" placeholder="Pickup Time" />
+                        <input name="time" class="input-field form-control" type="text" value="" placeholder="Pickup Time" data-input="true" />
                     </div>
                     <div class="col-md-4">
-                        <input name="phone" class="input-field form-control" type="text" value="" placeholder="Phone Number" />
+                        <input name="phone" class="input-field form-control" type="text" value="" placeholder="Phone Number" data-input="true" />
                     </div>
                 </div>
                 <div class="input-row row">
                     <div class="col-md-4">    
-                        <input name="passengers" class="input-field form-control" type="text" value="" placeholder="Number of People"/>
+                        <input name="passengers" class="input-field form-control" type="text" value="" placeholder="Number of People" data-input="true"/>
                     </div>
                     <div class="col-md-4">    
-                        <input name="pickup" class="input-field form-control" type="text" value="" placeholder="Pickup Location" />
+                        <input name="pickup" class="input-field form-control" type="text" value="" placeholder="Pickup Location" data-input="true"/>
                     </div>
                     <div class="col-md-4">    
-                        <input name="dropoff" class="input-field form-control" type="text" value="" placeholder="Dropoff Location" />
+                        <input name="dropoff" class="input-field form-control" type="text" value="" placeholder="Dropoff Location" data-input="true"/>
                     </div>
                 </div>
                 <div class="input-row row">
                     <div class="col-md-8">
-                        <textarea name="comments" class="input-field form-control" value="" placeholder="Comments"></textarea>
+                        <textarea name="comments" class="input-field form-control" value="" placeholder="Comments" data-input="true"></textarea>
                     </div>
                     <div class="col-md-4">
-                        <input type="submit" class="submit-form btn btn-block" id="add-ride" value="Queue Ride" />
+                        <input type="submit" class="submit-form btn btn-primary btn-block" id="add-ride" value="Queue Ride" data-input="true"/>
                     </div>
                 </div>
             </form>

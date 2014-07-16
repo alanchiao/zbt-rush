@@ -15,6 +15,34 @@ Template.rideItem.helpers({
 });
 
 Template.rideItem.events({
-    'click [data-js=delete]':CollectionHandler.deleteItem('Rides'),
-    'click [data-js=edit]':CollectionHandler.editItem('Rides')
+    'click [data-js=delete]': function(e){
+        var rideId = $(e.currentTarget).data('target-id');
+    	CollectionHandler.deleteItem('Rides', rideId);
+    	return false;
+    },
+    'click [data-js="edit"]': function(e){
+	    var ride = $('[data-id=' + $(e.currentTarget).attr('data-target-id') + ']')[0];
+    	if($(ride).data('editing')){
+    		$(e.currentTarget).removeClass('glyphicon-check');
+    		$(e.currentTarget).addClass('glyphicon-edit');
+    		$(ride).removeClass('editing');
+	    	var rideId = $(e.currentTarget).data('target-id');
+	    	CollectionHandler.editItem('Rides', rideId);
+	    	$(ride).data('editing', false);
+	    	$(ride).find('.info-field').toArray().forEach(function(field, index){
+	    		field.dataset.input = false;
+	    		field.contentEditable = false;
+	    	});
+    	} else {
+    		$(e.currentTarget).removeClass('glyphicon-edit');
+    		$(e.currentTarget).addClass('glyphicon-check');
+    		$(ride).addClass('editing');
+	    	$(ride).data('editing', true);
+	    	$(ride).find('.info-field').toArray().forEach(function(field, index){
+	    		field.dataset.input = true;
+	    		field.contentEditable = true;
+	    	});
+    	}
+    	return false;
+    }
 });

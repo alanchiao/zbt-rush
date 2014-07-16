@@ -3,7 +3,7 @@
 Template.rick.events({
     'click [data-js=ride]': function(e){
         var rideEl = e.currentTarget;
-        if (!$(rideEl).data('selected')){
+        if (!$(rideEl).data('selected') && !$(rideEl).data('editing')){
             selectRide(rideEl);
         } else {
             deselectRide(rideEl);
@@ -42,7 +42,7 @@ Template.rick.events({
     'click [data-js=handle]': function(e){
         utils.toggleDrawer(e.target);
         return false;
-    },
+    }
 });
 
 var selectRide = function(rideEl){

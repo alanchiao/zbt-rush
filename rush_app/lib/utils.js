@@ -60,9 +60,9 @@ utils = function(){
   
   that.formToJson = function(form, childCols){
      var json = {};
-     $(form).find('.input-field').each(function(){
+     $(form).find('[data-input=true]').each(function(){
          var fieldName = $(this).attr('name');
-         json[fieldName] = $(this).val();
+         json[fieldName] = $(this).val() ? $(this).val() : $(this).text();
          $(this).val('');
      });
      return json;
@@ -70,9 +70,7 @@ utils = function(){
 
   that.toggleDrawer = function(handle){
     var $target = $(document).find('[data-js=' + $(handle).attr('data-target') + ']');
-    t = $target;
     var $handle = $(handle);
-    h = $handle;
     if($target.is(':hidden')){
         $target.slideDown('fast');
         $handle.removeClass('glyphicon-chevron-down');

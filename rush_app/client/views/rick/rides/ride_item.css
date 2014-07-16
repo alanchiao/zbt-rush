@@ -1,12 +1,24 @@
 .ride {
 	background-color: white;
 	border: thin solid #cccccc;
+	cursor: pointer;
 	border-radius: 2px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
+.ride.editing {
+	border: thin dashed #000000;
+}
+
 .short-info {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.additional-info {
+	display: none;
+	border-top: thin solid #dddddd;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -17,16 +29,21 @@
 
 .ride-buttons span {
     color: #888888;
+    padding-left: 5px;
 }
 
 .ride-buttons span:hover {
-    color: #666666;
     cursor: pointer;
-} 
+}
 
-.additional-info {
-	display: none;
-	border-top: thin solid #dddddd;
-	padding-top: 5px;
-	padding-bottom: 5px;
+.expand-button:hover {
+    color: #666666;
+}
+
+.edit-button:hover {
+	color: #99dd99;
+}
+
+.remove-button:hover {
+	color: #dd3333;
 }

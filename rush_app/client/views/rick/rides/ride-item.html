@@ -1,18 +1,26 @@
 <template name="rideItem">
     <div class="ride col-xs-12" data-js="ride" data-id="{{_id}}">
         <div class="short-info row">
-            <div class="time col-xs-2">{{time}}</div>
-            <div class="name col-xs-4">{{name}} ({{passengers}})</div>
-            <div class="location-info col-xs-4">
+            <div name="time" class="info-field time col-xs-2">{{time}}</div>
+            <div class="info-field name col-xs-3">{{name}} ({{passengers}})</div>
+            <div class="info-field location-info col-xs-4">
                 {{pickup}} -> {{dropoff}}
             </div>
-            <div class="ride-buttons col-xs-2 btn-group">
-                <span class="glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info"></span>
+            <div class="ride-buttons col-xs-3 btn-group">
+                <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
+                <span class="edit-button glyphicon glyphicon-edit" data-js="edit" data-target-id="{{_id}}"></span>
+                <span class="remove-button glyphicon glyphicon-remove" data-js="delete" data-target-id="{{_id}}"></span>
             </div>
         </div>
-        <div class="additional-info row" data-js="additional-info">
-            <div class="phone col-xs-12">Contact: {{phoneNumber}}</div>
-            <div class="comments col-xs-12">Comments: {{comments}}</div>
+        <div class="additional-info row" data-js="additional-info-{{_id}}">
+            <div class="col-xs-12">
+                <span class="phone-label">Contact: </span>
+                <span name="phone" class="info-field phone">{{phoneNumber}}</span>
+            </div>
+            <div class="col-xs-12">
+                <span class="comments-label">Comments: </span>
+                <span name="comments" class="info-field comments">{{comments}}</span>
+            </div>
         </div>
     </div>
 </template>
