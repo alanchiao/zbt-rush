@@ -27,16 +27,7 @@ Meteor.methods({
         //TEST: Using only my phone for now. Feel
         //free to change to your own phone.
         if(attributes.phone === '(978)-621-9636'){
-            twilio.sendSms({
-                to:'+19786219636',
-                from:'+15082831128',
-                body: 'https://rush-app.meteor.com/driver/' + driverId
-            }, function(err, responseData){
-                if(!err){
-                    //HURRAH
-                }
-             
-           });
+            Meteor.call('textSomeone', driverId);
         }
 
         return driverId;
