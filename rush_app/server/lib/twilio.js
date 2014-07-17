@@ -5,6 +5,7 @@ twilio = Twilio(accountSID, authToken);
 Meteor.methods({
     //hard coded. feel free to change to your number
     textSomeone: function(driverId){
+        console.log("----------TWILIO--------");
         twilio.sendSms({
             to:'+19786219636',
             from:'+15082831128',
