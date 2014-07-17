@@ -33,8 +33,10 @@ CollectionHandler = function(){
         return function(e){
             var collection = collections[collectionName][0];
             var childColls  = collections[collectionName][1];
-
-            var elAttributes = utils.formToJson(e.target);
+            
+            //Parent Parent hardcode. need specific identifier
+            //to look for.
+            var elAttributes = utils.formToJson(e.target.parentNode.parentNode.parentNode);
             for (var key in childColls){
                 if (key in elAttributes){
                     childColl = childColls[key];

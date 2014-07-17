@@ -25,7 +25,6 @@ Template.rideItem.events({
     		$(e.currentTarget).removeClass('glyphicon-check');
     		$(e.currentTarget).addClass('glyphicon-edit');
     		$(ride).removeClass('editing');
-            console.log(e);
 	    	CollectionHandler.editItem('Rides', this._id)(e);
 
 	    	$(ride).data('editing', false);
