@@ -41,3 +41,17 @@
     color: #666666;
     cursor: pointer;
 }
+
+/* Generic item */
+
+.short-info {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.additional-info {
+    display: none;
+    border-top: thin solid #dddddd;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

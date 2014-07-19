@@ -1,10 +1,16 @@
 <template name="rideItem">
     <div class="ride col-xs-12" data-js="ride" data-id="{{_id}}">
         <div class="short-info row">
-            <div name="time" class="info-field time col-xs-2">{{time}}</div>
-            <div class="info-field name col-xs-3">{{name}} ({{passengers}})</div>
-            <div class="info-field location-info col-xs-4">
-                {{pickup}} -> {{dropoff}}
+            <div name="time" class="time col-xs-3" data-js="editable">{{time}}</div>
+            <div class="col-xs-3">
+                <span name="name" data-js="editable">{{name}}</span>
+                <span> - </span>
+                <span name="passengers" data-js="editable">{{passengers}}</span>
+            </div>
+            <div class="location-info col-xs-3">
+                <span name="pickup" data-js="editable">{{pickup}}</span>
+                <span class="glyphicon glyphicon-arrow-right"></span>
+                <span name="dropoff" data-js="editable">{{dropoff}}</span>
             </div>
             <div class="ride-buttons col-xs-3 btn-group">
                 <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
@@ -16,11 +22,11 @@
         <div class="additional-info row" data-js="additional-info-{{_id}}">
             <div class="col-xs-12">
                 <span class="phone-label">Contact: </span>
-                <span name="phone" class="info-field phone">{{phoneNumber}}</span>
+                <span name="phone" class="phone" data-js="editable">{{phoneNumber}}</span>
             </div>
             <div class="col-xs-12">
                 <span class="comments-label">Comments: </span>
-                <span name="comments" class="info-field comments">{{comments}}</span>
+                <span name="comments" class="comments" data-js="editable">{{comments}}</span>
             </div>
         </div>
     </div>

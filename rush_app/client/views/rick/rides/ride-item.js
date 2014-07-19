@@ -28,7 +28,7 @@ Template.rideItem.events({
 	    	CollectionHandler.editItem('Rides', this._id)(e);
 
 	    	$(ride).data('editing', false);
-	    	$(ride).find('.info-field').toArray().forEach(function(field, index){
+	    	$(ride).find('[data-js="editable"]').toArray().forEach(function(field, index){
 	    		field.dataset.input = false;
 	    		field.contentEditable = false;
 	    	});
@@ -37,7 +37,7 @@ Template.rideItem.events({
     		$(e.currentTarget).addClass('glyphicon-check');
     		$(ride).addClass('editing');
 	    	$(ride).data('editing', true);
-	    	$(ride).find('.info-field').toArray().forEach(function(field, index){
+	    	$(ride).find('[data-js="editable"]').toArray().forEach(function(field, index){
 	    		field.dataset.input = true;
 	    		field.contentEditable = true;
 	    	});

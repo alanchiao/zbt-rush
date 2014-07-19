@@ -40,7 +40,7 @@ Meteor.methods({
          var ride = Rides.find(rideId).fetch()[0];
          
          var rides = driver.rides;
-         rides.push(rideId);
+         rides.push(ride);
 
          var passengers = parseInt(driver.passengers) + parseInt(ride.passengers);
 

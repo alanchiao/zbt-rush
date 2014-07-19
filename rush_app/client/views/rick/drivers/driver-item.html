@@ -1,12 +1,26 @@
 <template name="driverItem">
-    <div class="driver col-sm-12" data-js="driver" data-id="{{_id}}">
-        <div>
-            <div class="rider-info col-sm-6">{{name}} ({{passengers}}/{{capacity}} full)
+    <div class="driver col-xs-12" data-js="driver" data-id="{{_id}}">
+        <div class="short-info row">
+            <div class="rider-info col-xs-5">{{name}} ({{passengers}}/{{capacity}} full)
             </div>
-            <div class="phone col-sm-6">{{phoneNumber}}</div>
+            <div class="phone col-xs-4">{{phoneNumber}}</div>
+            <div class="driver-buttons col-xs-3 btn-group">
+                <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
+                <span class="edit-button glyphicon glyphicon-edit" data-js="edit" data-target-id="{{_id}}"></span>
+                <!-- don't need data-target-id here now? -->
+                <span class="remove-button glyphicon glyphicon-remove" data-js="delete" data-target-id="{{_id}}"></span>
+            </div>
         </div>
-        <div>
-            <div class="comments col-sm-12">{{comments}}</div>
+        <div class="additional-info row" data-js="additional-info-{{_id}}">
+            <div class="col-xs-12">
+                <span class="comments-label">Comments: </span>
+                <span name="comments" class="comments" data-js="editable">{{comments}}</span>
+            </div>      
+            <div class="ride-container col-xs-12" data-js="rides-for-driver-{{_id}}">
+                {{#each rides}}
+                    {{> rideItem}}
+                {{/each}}
+            </div>
         </div>
     </div>
 </template>

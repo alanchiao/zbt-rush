@@ -11,18 +11,6 @@
 	border: thin dashed #000000;
 }
 
-.short-info {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.additional-info {
-	display: none;
-	border-top: thin solid #dddddd;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
 .ride-buttons {
 	text-align: right;
 }
