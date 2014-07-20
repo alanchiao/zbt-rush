@@ -1,11 +1,3 @@
-Template.rideItem.helpers({
-  phoneNumber: function(){
-    var phoneId = this.phone;
-    var phone = Phones.findOne(phoneId);
-    return phone['phone'];
-  }
-});
-
 Template.rideItem.events({
   'click [data-js=ride]': function(e){
     Rides.update(this._id, {$set:{selected: !this.selected}});
