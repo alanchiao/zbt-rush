@@ -27,8 +27,8 @@ Template.driverItem.events({
 
     Drivers.update(this._id, {
       $addToSet: {
-        rides: {
-          $each: selectedRides
+        rideIds: {
+          $each: selectedRides.map(function(selectedRide){return selectedRide._id})
         }
       },
       $inc: {

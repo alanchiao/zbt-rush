@@ -18,7 +18,7 @@ Meteor.methods({
     var driver = _.defaults(_.extend(attributes, {
       capacity: parseInt(attributes.capacity)
     }), {
-      rides: [],
+      rideIds: [],
       passengers: 0,
 
       name: undefined,

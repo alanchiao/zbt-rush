@@ -17,7 +17,7 @@
           <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
           {{#if editing}}
             <button type="submit">
-              <span class="edit-button glyphicon glyphicon-check"></span>
+              <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
             </button>
           {{else}}
             <span class="edit-button glyphicon glyphicon-edit" data-js="edit"></span>
@@ -29,7 +29,7 @@
         <div class="col-xs-12">
           <span class="phone-label" contenteditable="false">Contact: </span>
           <!-- TODO: make phone editable -->
-          <span name="phone" class="phone" contenteditable="false">{{phone}}</span>
+          <span name="phone" data-input="true" class="phone">{{phone}}</span>
         </div>
         <div class="col-xs-12">
           <span class="comments-label" contenteditable="false">Comments: </span>
