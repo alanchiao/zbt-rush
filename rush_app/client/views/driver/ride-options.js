@@ -1,11 +1,11 @@
 Template.rideOptions.events({
-    'click .check':function(e){
+    'click [data-js=pickedup]':function(e){
         e.preventDefault();
         var rideId = this._id;
         Rides.update(rideId, {$set: {status:'pickedUp'}});
     },
 
-    'click .X':function(e){
+    'click [data-js=unfound]':function(e){
         e.preventDefault();
         var rideId = this._id;
         Rides.update(rideId, {$set: {status:'unfound'}});

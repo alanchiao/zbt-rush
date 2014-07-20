@@ -9,7 +9,7 @@ Template.driver.helpers({
 });
 
 Template.driver.events({
-    'click #complete-trip':function(e){
+    'click [data-js=complete-trip]':function(e){
         var isRideComplete = true;
         var assigned = Rides.find({status: {$in: ["assigned", "pickedUp", "unfound"]}}).fetch();
         assigned.forEach(function(entry){

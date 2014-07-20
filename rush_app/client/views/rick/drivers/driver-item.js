@@ -1,4 +1,3 @@
-
 Template.driverItem.helpers({
   phoneNumber: function(){
     var phoneId = this.phone;

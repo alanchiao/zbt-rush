@@ -1,6 +1,4 @@
 Drivers = new Meteor.Collection('drivers');
-CollectionHandler.addCollection('Drivers', Drivers, {'phone': Phones});
-
 
 Drivers.allow({
   insert: function(){
@@ -18,7 +16,6 @@ Meteor.methods({
   driver: function(attributes){
     var phoneNumber = attributes.phone;
     var driver = _.defaults(_.extend(attributes, {
-      phone: Phones.insert({'phone': phoneNumber}),
       capacity: parseInt(attributes.capacity)
     }), {
       rides: [],
@@ -37,7 +34,6 @@ Meteor.methods({
     if(phoneNumber === '(978)-621-9636'){
       Meteor.call('textSomeone', driverId, function(error){});
     }
-    console.log(driver);
 
     return driverId;
    }
