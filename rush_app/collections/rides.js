@@ -18,8 +18,7 @@ Meteor.methods({
     // selected (Boolean): currently a selected item?
     // assigned (Boolean): currently assigned to a driver?
 
-    var ride = _.defaults(_.extend(attributes,{
-    }), {
+    var ride = _.defaults(attributes, {
       editing: false,
       selected: false,
       status: 'unassigned',
