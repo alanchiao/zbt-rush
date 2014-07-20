@@ -20,7 +20,7 @@ Meteor.methods({
     // assigned (Boolean): currently assigned to a driver?
 
     var ride = _.defaults(_.extend(attributes,{
-      'phone':Phones.insert({'phone':attributes.phone})
+      phone: Phones.insert({'phone':attributes.phone})
     }), {
       editing: false,
       selected: false,

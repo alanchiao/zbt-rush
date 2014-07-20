@@ -26,14 +26,12 @@ var SAMPLE_RIDES = [{
 
 var SAMPLE_DRIVERS = [{
     name: 'Charles',
-    passengers: '0',
     phone: '(617)-393-4234',
     capacity: '5',
     comments: 'ZBestpresidenT',
     rides: []
 }, {
     name: 'Kyle',
-    passengers: '0',
     phone: '(234)-567-7890',
     capacity: '4',
     comments: 'Pretty cool guy',
