@@ -1,33 +1,41 @@
 <template name="rideItem">
-    <div class="ride col-xs-12" data-js="ride" data-id="{{_id}}">
-        <div class="short-info row">
-            <div name="time" class="time col-xs-3" data-js="editable">{{time}}</div>
-            <div class="col-xs-3">
-                <span name="name" data-js="editable">{{name}}</span>
-                <span> - </span>
-                <span name="passengers" data-js="editable">{{passengers}}</span>
-            </div>
-            <div class="location-info col-xs-3">
-                <span name="pickup" data-js="editable">{{pickup}}</span>
-                <span class="glyphicon glyphicon-arrow-right"></span>
-                <span name="dropoff" data-js="editable">{{dropoff}}</span>
-            </div>
-            <div class="ride-buttons col-xs-3 btn-group">
-                <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
-                <span class="edit-button glyphicon glyphicon-edit" data-js="edit" data-target-id="{{_id}}"></span>
-                <!-- don't need data-target-id here now? -->
-                <span class="remove-button glyphicon glyphicon-remove" data-js="delete" data-target-id="{{_id}}"></span>
-            </div>
+  <div class="ride {{#if editing}}editing{{/if}} {{#if selected}}selected{{/if}} col-xs-12" data-js="ride" data-id="{{_id}}" contenteditable="{{#if editing}}true{{/if}}" data-selected="{{selected}}">
+    <form>
+      <div class="short-info row">
+        <div name="time" data-input="true" class="time col-xs-3">{{time}}</div>
+        <div class="col-xs-3">
+          <span name="name" data-input="true">{{name}}</span>
+          <span contenteditable="false"> - </span>
+          <span name="passengers" data-input="true">{{passengers}}</span>
         </div>
-        <div class="additional-info row" data-js="additional-info-{{_id}}">
-            <div class="col-xs-12">
-                <span class="phone-label">Contact: </span>
-                <span name="phone" class="phone" data-js="editable">{{phoneNumber}}</span>
-            </div>
-            <div class="col-xs-12">
-                <span class="comments-label">Comments: </span>
-                <span name="comments" class="comments" data-js="editable">{{comments}}</span>
-            </div>
+        <div class="location-info col-xs-3">
+          <span name="pickup" data-input="true">{{pickup}}</span>
+          <span class="glyphicon glyphicon-arrow-right"></span>
+          <span name="dropoff" data-input="true">{{dropoff}}</span>
         </div>
-    </div>
+        <div class="ride-buttons col-xs-3 btn-group" contenteditable="false">
+          <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
+          {{#if editing}}
+            <button type="submit">
+              <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
+            </button>
+          {{else}}
+            <span class="edit-button glyphicon glyphicon-edit" data-js="edit"></span>
+          {{/if}}
+          <span class="remove-button glyphicon glyphicon-remove" data-js="delete"></span>
+        </div>
+      </div>
+      <div class="additional-info row" data-js="additional-info-{{_id}}">
+        <div class="col-xs-12">
+          <span class="phone-label" contenteditable="false">Contact: </span>
+          <!-- TODO: make phone editable -->
+          <span name="phone" class="phone" contenteditable="false">{{phoneNumber}}</span>
+        </div>
+        <div class="col-xs-12">
+          <span class="comments-label" contenteditable="false">Comments: </span>
+          <span name="comments" data-input="true" class="comments">{{comments}}</span>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>

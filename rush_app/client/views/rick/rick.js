@@ -1,15 +1,6 @@
 //Connects rides and drivers portion of the rick app
 // TODO: change name -> data-id or something similar
 Template.rick.events({
-    'click [data-js=ride]': function(e){
-        var rideEl = e.currentTarget;
-        if (!$(rideEl).data('selected') && !$(rideEl).data('editing')){
-            selectRide(rideEl);
-        } else {
-            deselectRide(rideEl);
-        }
-     },
-
     'click [data-js=driver]': function(e){
         var driverEl = e.currentTarget;
         var sr = selectedRides();
@@ -44,16 +35,6 @@ Template.rick.events({
         return false;
     }
 });
-
-var selectRide = function(rideEl){
-    $(rideEl).data('selected', true);
-    $(rideEl).addClass('selected');
-}
-
-var deselectRide = function(rideEl){
-    $(rideEl).removeData('selected');
-    $(rideEl).removeClass('selected');
-}
 
 var selectedRides = function(){
     return $('[data-js=ride]').filter(function(index, ride){

@@ -1,47 +1,25 @@
 Template.rideItem.helpers({
-	iconify: function(){
-		var f = function(status){
-		}
-
-		//TODO
-		return f;
-	},
-
-    phoneNumber: function(){
-        var phoneId = this.phone;
-        var phone = Phones.findOne(phoneId);
-        return phone['phone'];
-    }
+  phoneNumber: function(){
+    var phoneId = this.phone;
+    var phone = Phones.findOne(phoneId);
+    return phone['phone'];
+  }
 });
 
 Template.rideItem.events({
-    'click [data-js=delete]': function(e){
-    	CollectionHandler.deleteItem('Rides', this._id)(e);
-    	return false;
-    },
-    'click [data-js="edit"]': function(e){
-	    var ride = $('[data-id=' + $(e.currentTarget).attr('data-target-id') + ']')[0];
-    	if($(ride).data('editing')){
-    		$(e.currentTarget).removeClass('glyphicon-check');
-    		$(e.currentTarget).addClass('glyphicon-edit');
-    		$(ride).removeClass('editing');
-	    	CollectionHandler.editItem('Rides', this._id)(e);
-
-	    	$(ride).data('editing', false);
-	    	$(ride).find('[data-js="editable"]').toArray().forEach(function(field, index){
-	    		field.dataset.input = false;
-	    		field.contentEditable = false;
-	    	});
-    	} else {
-    		$(e.currentTarget).removeClass('glyphicon-edit');
-    		$(e.currentTarget).addClass('glyphicon-check');
-    		$(ride).addClass('editing');
-	    	$(ride).data('editing', true);
-	    	$(ride).find('[data-js="editable"]').toArray().forEach(function(field, index){
-	    		field.dataset.input = true;
-	    		field.contentEditable = true;
-	    	});
-    	}
-    	return false;
-    }
+  'click [data-js=ride]': function(e){
+    Rides.update(this._id, {$set:{selected: !this.selected}});
+  },
+  'click [data-js=delete]': function(e){
+    Rides.remove(this._id);
+  },
+  'click [data-js="edit"]': function(e){
+    e.stopPropagation();
+    Rides.update(this._id, {$set:{editing: !this.editing}});
+  },
+  'submit form': function(e){
+    e.preventDefault();
+    var options = utils.formToJson(e.target);
+    Rides.update(this._id, {$set:options});
+  }
 });
