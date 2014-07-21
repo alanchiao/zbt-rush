@@ -1,6 +1,6 @@
 Template.rideItem.events({
   'click [data-js=ride]': function(e){
-    if (!this.driver) {
+    if (!this.driver && !this.editing) {
       Rides.update(this._id, {$set:{selected: !this.selected}});
     }
   },
@@ -34,3 +34,13 @@ Template.rideItem.events({
     Rides.update(this._id, {$set:options});
   }
 });
+
+Template.rideItem.helpers({
+    editingClass: function(){
+      return this.editing ? 'editing' : '';
+    },
+    selectedClass: function(){
+      return this.selected ? 'selected' : '';
+    }
+});
+

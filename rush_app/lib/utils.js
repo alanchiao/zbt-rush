@@ -52,7 +52,7 @@ utils = function(){
      $(form).find('[data-input=true]').each(function(){
          var fieldName = $(this).attr('name');
          var val = $(this).val() ? $(this).val() : $(this).text();
-         json[fieldName] = parseInt(val) ? parseInt(val) : val;
+         json[fieldName] = isNaN(val) ? val : parseInt(val);
          $(this).val('');
      });
      return json;
