@@ -1,23 +1,23 @@
 <template name="rick">
-    <div class="col-sm-12 text-center">
-        <button data-js="reset" class="reset-button btn btn-danger">Reset</button>
+  <div class="col-sm-12 text-center">
+    <button data-js="reset" class="reset-button btn btn-danger">Reset</button>
+  </div>
+  <div id="ride-wrapper" class="generic-wrapper col-sm-5">
+    <h2>Rides</h2>
+    <div id="ride-form" class="generic-form row">
+      {{> rideForm }}
     </div>
-    <div id="ride-wrapper" class="generic-wrapper col-sm-5">
-        <h2>Rides</h2>
-        <div id="ride-form" class="generic-form row">
-            {{> rideForm }}
-        </div>
-        <div id="ride-queue" class="row">
-            {{> rideQueue}}
-        </div>
+    <div id="ride-queue" class="row">
+      {{> rideQueue}}
     </div>
-    <div id="driver-wrapper" class="generic-wrapper col-sm-6 col-sm-offset-1">
-        <h2>Drivers</h2>
-        <div id="driver-form" class="generic-form row">
-            {{> driverForm }}
-        </div>
-        <div id="drivers-list" class="row">
-            {{> driversList }}
-        </div>
+  </div>
+  <div id="driver-wrapper" class="generic-wrapper col-sm-6 col-sm-offset-1">
+    <h2>Drivers</h2>
+    <div id="driver-form" class="generic-form row">
+      {{> driverForm }}
     </div>
+    <div id="drivers-list" class="row">
+      {{> driversList }}
+    </div>
+  </div>
 </template>

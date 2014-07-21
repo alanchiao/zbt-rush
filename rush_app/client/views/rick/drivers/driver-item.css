@@ -16,16 +16,16 @@
 }
 
 .driver-buttons span {
-    color: #888888;
-    padding-left: 5px;
+  color: #888888;
+  padding-left: 5px;
 }
 
 .driver-buttons span:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .expand-button:hover {
-    color: #666666;
+  color: #666666;
 }
 
 .edit-button:hover {
