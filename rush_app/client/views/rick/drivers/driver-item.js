@@ -1,15 +1,10 @@
 Template.driverItem.helpers({
-  phoneNumber: function(){
-    var phoneId = this.phone;
-    var phone = Phones.findOne(phoneId);
-    return phone['phone'];
-  },
-
   listRides: function(){
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   }
 });
 
+//Should eventually be moved back to server-side for most part.
 Template.driverItem.events({
   'click [data-js=driver]': function(e){
     var totalPassengers = 0;
