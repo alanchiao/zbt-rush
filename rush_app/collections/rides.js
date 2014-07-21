@@ -19,6 +19,7 @@ Meteor.methods({
     // assigned (Boolean): currently assigned to a driver?
 
     var ride = _.defaults(attributes, {
+      driver: undefined,
       editing: false,
       selected: false,
       status: 'unassigned',

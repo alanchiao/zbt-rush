@@ -16,17 +16,18 @@ Template.driverItem.events({
     var selectedRides = Rides.find({selected: true}).fetch();
 
     selectedRides.forEach(function(selectedRide){
-      totalPassengers += parseInt(selectedRide.passengers);
+      totalPassengers += selectedRide.passengers;
       Rides.update(selectedRide._id, {
         $set: {
-          status: 'assigned',
-          selected: false
+          driver: this,
+          selected: false,
+          status: 'assigned'
         }
       });
-    });
+    }.bind(this));
 
     Drivers.update(this._id, {
-      $addToSet: {
+      $push: {
         rideIds: {
           $each: selectedRides.map(function(selectedRide){return selectedRide._id})
         }

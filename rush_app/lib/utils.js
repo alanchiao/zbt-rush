@@ -1,7 +1,7 @@
 var SAMPLE_RIDES = [{
     name:'Kevin Tian',
     time: '3:00 PM',
-    passengers: '4',
+    passengers: 4,
     phone: '(510)-378-2423',
     pickup: 'Next House',
     dropoff: 'ZBT',
@@ -9,7 +9,7 @@ var SAMPLE_RIDES = [{
 }, {
     name: 'Alex Jaffe',
     time: '4:45 PM',
-    passengers: '3',
+    passengers: 3,
     phone: '(535)-343-2312',
     pickup: 'Maseeh',
     dropoff: 'ZBT',
@@ -17,7 +17,7 @@ var SAMPLE_RIDES = [{
 }, {
     name: 'Alan Chiao',
     time: '3:45 PM',
-    passengers: '1',
+    passengers: 1,
     phone: '(617)-332-4345',
     pickup: 'Baker',
     dropoff: 'ZBT',
@@ -27,28 +27,19 @@ var SAMPLE_RIDES = [{
 var SAMPLE_DRIVERS = [{
     name: 'Charles',
     phone: '(617)-393-4234',
-    capacity: '5',
-    comments: 'ZBestpresidenT',
-    rides: []
+    capacity: 5,
+    comments: 'ZBestpresidenT'
 }, {
     name: 'Kyle',
     phone: '(234)-567-7890',
-    capacity: '4',
-    comments: 'Pretty cool guy',
-    rides: []
+    capacity: 4,
+    comments: 'Pretty cool guy'
 }];
 
 //Class for random user interface related utility functions
 utils = function(){
   var that = {};
-
-  /* Upon click of a, swap b and c */
-  that.onSwap = function(a, b, c){
-      $(a).click(function(){
-          
-      });
-  }
-
+  
   /* Set up listener to depress single element in
   list upon click. Undepress previously depressed
   element */
@@ -60,7 +51,8 @@ utils = function(){
      var json = {};
      $(form).find('[data-input=true]').each(function(){
          var fieldName = $(this).attr('name');
-         json[fieldName] = $(this).val() ? $(this).val() : $(this).text();
+         var val = $(this).val() ? $(this).val() : $(this).text();
+         json[fieldName] = parseInt(val) ? parseInt(val) : val;
          $(this).val('');
      });
      return json;
