@@ -75,11 +75,11 @@ utils = function(){
       invalid.push('phone');
     }
     // if passengers is not undefined, it should be a number
-    if (json.passengers != undefined && (json.passengers === "" || typeof json.passengers != 'number')) {
+    if (json.passengers != undefined && (json.passengers === "" || typeof json.passengers != 'number' || json.passengers <= 0)) {
       invalid.push('passengers');
     }
     // if capacity is not undefined, it should be a number
-    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number')) {
+    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
       invalid.push('capacity');
     }
     if (json.pickup === "") {
