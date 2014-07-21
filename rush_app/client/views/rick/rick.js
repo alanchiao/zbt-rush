@@ -4,10 +4,5 @@ Template.rick.events({
 
     'click [data-js=reset]': function(e){
         utils.reset();
-    },
-
-    'click [data-js=handle]': function(e){
-        e.stopPropagation();
-        utils.toggleDrawer(e.target);
     }
 });

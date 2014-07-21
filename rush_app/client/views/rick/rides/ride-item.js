@@ -4,6 +4,10 @@ Template.rideItem.events({
       Rides.update(this._id, {$set:{selected: !this.selected}});
     }
   },
+  'click [data-js=handle]': function(e){
+      e.stopPropagation();
+      utils.toggleDrawer(e.target);
+  },
   'click [data-js=delete]': function(e){
     if (this.driver) {
       Drivers.update(this.driver._id, {

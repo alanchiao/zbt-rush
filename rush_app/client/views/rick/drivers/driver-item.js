@@ -39,5 +39,9 @@ Template.driverItem.events({
   },    
   'click [data-js=delete]': function(e){
   	Drivers.remove(this._id);
+  },
+  'click [data-js=handle]': function(e){
+      e.stopPropagation();
+      utils.toggleDrawer(e.target);
   }
 });
