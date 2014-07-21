@@ -8,7 +8,7 @@
 }
 
 .ride.editing {
-  border: thin dashed #cccccc;
+  background: url('img/stripes.png') repeat;
 }
 
 .ride-buttons {
@@ -34,4 +34,11 @@
 
 .remove-button:hover {
   color: #dd3333;
+}
+
+.no-style-button {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  background-color: #ffffff;
 }
