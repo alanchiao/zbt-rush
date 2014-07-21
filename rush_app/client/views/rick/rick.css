@@ -3,51 +3,51 @@
 }
 
 .generic-form {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 	background-color: #eaeaea;
 }
 
 /* Form formatting */
 .input-row {
-    padding-top: 5px;
-    padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .submit-form {
-    width: 100%;
-    vertical-align: center;
+  width: 100%;
+  vertical-align: center;
 }
 
 .selected {
-    background-color: #ffffaa;
+  background-color: #ffffaa;
 }
 
 /* Form drawer handle */
 .ride-drawer-handle-wrapper, .driver-drawer-handle-wrapper {
-    text-align: center;
+  text-align: center;
 }
 
 .ride-drawer-handle, .driver-drawer-handle {
-    color: #888888;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  color: #888888;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .ride-drawer-handle:hover, .driver-drawer-handle:hover {
-    color: #666666;
-    cursor: pointer;
+  color: #666666;
+  cursor: pointer;
 }
 
 /* Generic item */
 
 .short-info {
-    padding-top: 5px;
-    padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .additional-info {
-    display: none;
-    border-top: thin solid #dddddd;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  display: none;
+  border-top: thin solid #dddddd;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

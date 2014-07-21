@@ -1,5 +1,5 @@
 Template.driversList.helpers({
-    drivers: function(){
-        return Drivers.find();
-    }
+  drivers: function(){
+    return Drivers.find();
+  }
 });
