@@ -14,9 +14,8 @@ Rides.allow({
 
 Meteor.methods({
   ride: function(attributes){
-    // editing (Boolean): currently being edited?
-    // selected (Boolean): currently a selected item?
-    // assigned (Boolean): currently assigned to a driver?
+    // editing (Boolean): currently being edited? on UI
+    // selected (Boolean): currently a selected item on UI?
 
     var ride = _.defaults(attributes, {
       driver: undefined,

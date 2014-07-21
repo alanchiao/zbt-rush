@@ -1,6 +1,6 @@
 Template.driver.helpers({
   assignedRides: function(){
-    var rideList = this.rides;
+    var rideList = this.rideIds;
     return Rides.find({_id: {$in: rideList}}).fetch();
   },
   currDriverId: function(){

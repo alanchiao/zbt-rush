@@ -40,6 +40,11 @@ var SAMPLE_DRIVERS = [{
 utils = function(){
   var that = {};
   
+  /**
+  * Converts a standard form into a json file.
+  * Requires: input field elements must be tagged with [data-input=true] and their 'name' must be
+  * the field name.
+  **/
   that.formToJson = function(form){
     var json = {};
     $(form).find('[data-input=true]').each(function(){
@@ -88,6 +93,12 @@ utils = function(){
     return invalid;
   }
 
+  /**
+  * UI drawer expansion/hiding (arrow thing to click for displaying more or less data)
+  * Requires: handle for expanding the drawer has a data-target that tells the drawer
+  * what element contains the additional information to display or hide. That target
+  * element has [data-js={identifier}].
+  **/
   that.toggleDrawer = function(handle){
     var $target = $(document).find('[data-js=' + $(handle).attr('data-target') + ']');
     var $handle = $(handle);
@@ -102,6 +113,7 @@ utils = function(){
     }
   }
 
+  //for development purposes - equivalent to cmd: meteor reset.
   that.reset = function(){
     Rides.find().fetch().forEach(function(ride){
         Rides.remove(ride._id);
