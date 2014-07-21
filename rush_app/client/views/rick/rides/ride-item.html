@@ -1,23 +1,23 @@
 <template name="rideItem">
-  <div class="ride {{#if editing}}editing{{/if}} {{#if selected}}selected{{/if}} col-xs-12" data-js="ride" data-id="{{_id}}" contenteditable="{{#if editing}}true{{/if}}" data-selected="{{selected}}">
+  <div class="ride {{editingClass}} {{selectedClass}} col-xs-12" data-js="ride" data-id="{{_id}}" data-selected="{{selected}}">
     <form>
       <div class="short-info row">
-        <div name="time" data-input="true" class="time col-xs-3">{{time}}</div>
+        <div name="time" data-input="true" class="time col-xs-3" contenteditable={{editing}}>{{time}}</div>
         <div class="col-xs-3">
-          <span name="name" data-input="true">{{name}}</span>
-          <span contenteditable="false"> - </span>
-          <span name="passengers" data-input="true">{{passengers}}</span>
+          <span name="name" data-input="true" contenteditable={{editing}}>{{name}}</span>
+          <span> - </span>
+          <span name="passengers" data-input="true" contenteditable={{editing}}>{{passengers}}</span>
         </div>
         <div class="location-info col-xs-3">
-          <span name="pickup" data-input="true">{{pickup}}</span>
+          <span name="pickup" data-input="true" contenteditable={{editing}}>{{pickup}}</span>
           <span class="glyphicon glyphicon-arrow-right"></span>
-          <span name="dropoff" data-input="true">{{dropoff}}</span>
+          <span name="dropoff" data-input="true" contenteditable={{editing}}>{{dropoff}}</span>
         </div>
-        <div class="ride-buttons col-xs-3 btn-group" contenteditable="false">
+        <div class="ride-buttons col-xs-3 btn-group">
           <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
           {{#if editing}}
             <button type="submit">
-              <span class="edit-button glyphicon glyphicon-check"></span>
+              <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
             </button>
           {{else}}
             <span class="edit-button glyphicon glyphicon-edit" data-js="edit"></span>
@@ -27,13 +27,13 @@
       </div>
       <div class="additional-info row" data-js="additional-info-{{_id}}">
         <div class="col-xs-12">
-          <span class="phone-label" contenteditable="false">Contact: </span>
+          <span class="phone-label">Contact: </span>
           <!-- TODO: make phone editable -->
-          <span name="phone" class="phone" contenteditable="false">{{phone}}</span>
+          <span name="phone" class="phone" contenteditable={{editing}}>{{phone}}</span>
         </div>
         <div class="col-xs-12">
-          <span class="comments-label" contenteditable="false">Comments: </span>
-          <span name="comments" data-input="true" class="comments">{{comments}}</span>
+          <span class="comments-label">Comments: </span>
+          <span name="comments" data-input="true" class="comments" contenteditable={{editing}}>{{comments}}</span>
         </div>
       </div>
     </form>
