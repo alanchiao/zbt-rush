@@ -8,7 +8,7 @@
 }
 
 .ride.editing {
-  background-color: #ffdddd;
+  border: thin dashed #cccccc;
 }
 
 .ride-buttons {

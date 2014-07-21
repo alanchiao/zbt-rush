@@ -1,18 +1,18 @@
 .driver {
-	background-color: white;
-	border: thin solid #cccccc;
-	cursor: pointer;
-	border-radius: 2px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
+  background-color: white;
+  border: thin solid #cccccc;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  }
 
 .driver.editing {
-	border: thin dashed #000000;
+  border: thin dashed #000000;
 }
 
 .driver-buttons {
-	text-align: right;
+  text-align: right;
 }
 
 .driver-buttons span {
@@ -29,9 +29,9 @@
 }
 
 .edit-button:hover {
-	color: #99dd99;
+  color: #99dd99;
 }
 
 .remove-button:hover {
-	color: #dd3333;
+  color: #dd3333;
 }

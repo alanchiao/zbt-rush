@@ -40,22 +40,52 @@ var SAMPLE_DRIVERS = [{
 utils = function(){
   var that = {};
   
-  /* Set up listener to depress single element in
-  list upon click. Undepress previously depressed
-  element */
-  that.selectInList = function(listSelector){
-
-  }
-  
   that.formToJson = function(form){
-     var json = {};
-     $(form).find('[data-input=true]').each(function(){
-         var fieldName = $(this).attr('name');
-         var val = $(this).val() ? $(this).val() : $(this).text();
-         json[fieldName] = isNaN(val) ? val : parseInt(val);
-         $(this).val('');
-     });
-     return json;
+    var json = {};
+    $(form).find('[data-input=true]').each(function(){
+      var fieldName = $(this).attr('name');
+      var val = $(this).val() ? $(this).val() : $(this).text();
+      json[fieldName] = (isNaN(val) || val === "") ? val : parseInt(val);
+      $(this).css('background-color', '#ffffff');
+    });
+    var invalid = that.validateJson(json);
+    if (invalid.length > 0) {
+      invalid.forEach(function(fieldName){
+        $(form).find('[name=' + fieldName + ']').first().css('background-color', '#ffdddd');
+      });
+      return false;
+    } else {
+      that.clearForm(form);
+      return json;
+    }
+  },
+
+  that.clearForm = function(form){
+    $(form).find('[data-input=true]').each(function(){
+      $(this).val('');
+    });
+  },
+
+  that.validateJson = function(json){
+    var invalid = [];
+    if (json.name === "") {
+      invalid.push('name');
+    }
+    if (json.phone === "") {
+      invalid.push('phone');
+    }
+    // if passengers is not undefined, it should be a number
+    if (json.passengers != undefined && (json.passengers === "" || typeof json.passengers != 'number')) {
+      invalid.push('passengers');
+    }
+    // if capacity is not undefined, it should be a number
+    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number')) {
+      invalid.push('capacity');
+    }
+    if (json.pickup === "") {
+      invalid.push('pickup');
+    }
+    return invalid;
   }
 
   that.toggleDrawer = function(handle){

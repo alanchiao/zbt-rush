@@ -14,7 +14,6 @@ Drivers.allow({
 
 Meteor.methods({
   driver: function(attributes){
-    var phoneNumber = attributes.phone;
     var driver = _.defaults(_.extend(attributes, {
       capacity: parseInt(attributes.capacity)
     }), {
@@ -27,13 +26,7 @@ Meteor.methods({
       comments: undefined
     });
 
-
     var driverId = Drivers.insert(driver);
-    //TEST: Using only my phone for now. Feel
-    //free to change to your own phone.
-    if(phoneNumber === '(978)-621-9636'){
-      Meteor.call('textSomeone', driverId, function(error){});
-    }
 
     return driverId;
    }
