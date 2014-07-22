@@ -118,8 +118,10 @@ utils = function(){
       backgroundColor: color
     }, 1, function(){
       $(this).animate({
-        backgroundColor: 'transparent'
-      }, 500);
+        backgroundColor: 'white'
+      }, 500, function(){
+        $(this).css('background-color', '');
+      });
     });
   }
 

@@ -10,7 +10,7 @@ Template.driverItem.events({
     var totalPassengers = 0;
     var selectedRides = Rides.find({selected: true}).fetch();
     if (selectedRides.length > 0) {
-      utils.flash(e.currentTarget, '#ddffaa');
+      utils.flash(e.currentTarget, '#99ff99');
       
       selectedRides.forEach(function(selectedRide){
         totalPassengers += selectedRide.passengers;
