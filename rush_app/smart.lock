@@ -5,7 +5,8 @@
       "iron-router": {},
       "bootstrap-3": {},
       "moment": {},
-      "twilio-meteor": {}
+      "twilio-meteor": {},
+      "jquery-ui": {}
     },
     "packages": {
       "iron-router": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/andreioprisan/twilio-meteor.git",
         "tag": "v1.1.0",
         "commit": "7f36ec52fc334caf8b740320524df62afce890e1"
+      },
+      "jquery-ui": {
+        "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
+        "tag": "v1.9.2",
+        "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

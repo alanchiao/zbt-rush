@@ -9,28 +9,31 @@ Template.driverItem.events({
   'click [data-js=driver]': function(e){
     var totalPassengers = 0;
     var selectedRides = Rides.find({selected: true}).fetch();
+    if (selectedRides.length > 0) {
+      utils.flash(e.currentTarget, '#ddffaa');
+      
+      selectedRides.forEach(function(selectedRide){
+        totalPassengers += selectedRide.passengers;
+        Rides.update(selectedRide._id, {
+          $set: {
+            driver: this,
+            selected: false,
+            status: 'assigned'
+          }
+        });
+      }.bind(this));
 
-    selectedRides.forEach(function(selectedRide){
-      totalPassengers += selectedRide.passengers;
-      Rides.update(selectedRide._id, {
-        $set: {
-          driver: this,
-          selected: false,
-          status: 'assigned'
+      Drivers.update(this._id, {
+        $push: {
+          rideIds: {
+            $each: selectedRides.map(function(selectedRide){return selectedRide._id})
+          }
+        },
+        $inc: {
+          passengers: totalPassengers
         }
       });
-    }.bind(this));
-
-    Drivers.update(this._id, {
-      $push: {
-        rideIds: {
-          $each: selectedRides.map(function(selectedRide){return selectedRide._id})
-        }
-      },
-      $inc: {
-        passengers: totalPassengers
-      }
-    });
+    }
   },    
   'click [data-js=delete]': function(e){
   	Drivers.remove(this._id);

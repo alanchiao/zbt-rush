@@ -3,6 +3,7 @@
     "iron-router": {},
     "bootstrap-3": {},
     "moment": {},
-    "twilio-meteor": {}
+    "twilio-meteor": {},
+    "jquery-ui": {}
   }
 }

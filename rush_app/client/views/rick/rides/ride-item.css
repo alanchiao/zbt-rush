@@ -1,5 +1,5 @@
 .ride {
-  background-color: white;
+  background-color: transparent;
   border: thin solid #cccccc;
   cursor: pointer;
   border-radius: 2px;
@@ -8,7 +8,14 @@
 }
 
 .ride.editing {
-  background: url('img/stripes.png') repeat;
+  border: thin dashed #ff0000;
+  background: url('images/stripe.png') repeat;
+}
+
+/* contenteditable tries to set background-color: white when it is set to false
+  the following styling prevents this from happening for our editable elements */
+.ride form div div span {
+  background-color: transparent !important;
 }
 
 .ride-buttons {
@@ -37,8 +44,8 @@
 }
 
 .no-style-button {
+  background-color: transparent;
   border: none;
   padding: 0px;
   margin: 0px;
-  background-color: #ffffff;
 }

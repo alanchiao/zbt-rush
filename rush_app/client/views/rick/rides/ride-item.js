@@ -27,6 +27,7 @@ Template.rideItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
+    utils.flash(e.currentTarget.parentNode, '#aaddff');
     var options = utils.formToJson(e.target);
     if (this.driver) {
       Drivers.update(this.driver._id, {

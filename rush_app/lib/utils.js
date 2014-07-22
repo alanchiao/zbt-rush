@@ -113,6 +113,16 @@ utils = function(){
     }
   }
 
+  that.flash = function(target, color){
+    $(target).animate({
+      backgroundColor: color
+    }, 1, function(){
+      $(this).animate({
+        backgroundColor: 'transparent'
+      }, 500);
+    });
+  }
+
   //for development purposes - equivalent to cmd: meteor reset.
   that.reset = function(){
     Rides.find().fetch().forEach(function(ride){
