@@ -27,7 +27,6 @@ Template.rideItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
-    utils.flash(e.currentTarget.parentNode, '#aaddff');
     var options = utils.formToJson(e.target);
     if (this.driver) {
       Drivers.update(this.driver._id, {
@@ -36,7 +35,11 @@ Template.rideItem.events({
         }
       });
     }
-    Rides.update(this._id, {$set:options});
+    Rides.update(this._id, {$set:options}, {}, function(error){
+      if (!error) {
+        utils.flash(e.currentTarget.parentNode, '#aaddff');
+      }
+    });
   }
 });
 

@@ -10,8 +10,6 @@ Template.driverItem.events({
     var totalPassengers = 0;
     var selectedRides = Rides.find({selected: true}).fetch();
     if (selectedRides.length > 0) {
-      utils.flash(e.currentTarget, '#99ff99');
-      
       selectedRides.forEach(function(selectedRide){
         totalPassengers += selectedRide.passengers;
         Rides.update(selectedRide._id, {
@@ -31,6 +29,10 @@ Template.driverItem.events({
         },
         $inc: {
           passengers: totalPassengers
+        }
+      }, {}, function(error){
+        if (!error) {
+          utils.flash(e.currentTarget, '#99ff99');
         }
       });
     }
