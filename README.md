@@ -14,9 +14,14 @@ rush_app      : Self-explanatory.
 
 Branches:
 
-master: only for changes related to google_meteor
+master:
 
-base_app: basically what we discussed yesterday at MV with the contributors being Charles, Kyle, Jeffrey, Alan.
+base_app: basically what we discussed yesterday at MV with Charles, Kyle, Jeffrey, Alan.
+This means a ride queue and a driver-side of the app allowing him to indicate that
+he has picked up/cannot find a rushee and the completion of a trip.
+
+js-refactor:ignore for now. Some previous refactoring changes that were merged on
+to base_app already.
 
 activities: any changes, but focused on activities section of rush_app for now. 
 Don't think will be of use in the near future, but has some code already.
