@@ -13,6 +13,13 @@ Drivers.allow({
 });
 
 Meteor.methods({
+  /** 
+  * Format of driver attributes:
+  * name: string
+  * phone: (***)-(***)-(****)
+  * capacity: max number of people who can fit in driver's car
+  * passengers: number of people currently in a driver's car
+  **/
   driver: function(attributes){
     var driver = _.defaults(_.extend(attributes, {
       capacity: parseInt(attributes.capacity)
