@@ -1,9 +1,9 @@
 <template name="rideItem">
-  <div class="ride {{editingClass}} {{selectedClass}} col-xs-12" data-js="ride" data-id="{{_id}}" data-selected="{{selected}}">
+  <div class="ride {{isEditing}} {{isSelected}} col-xs-12" data-js="ride" data-id="{{_id}}" data-selected="{{selected}}">
     <form>
       <div class="short-info row">
         <div class="col-xs-3">
-          <span name="time" data-input="true" class="time" contenteditable={{editing}}>{{time}}</span>
+          <span name="time" data-input="true" class="time" contenteditable={{editing}}>{{formattedTime}}</span>
         </div>
         <div class="col-xs-3">
           <span name="name" data-input="true" contenteditable={{editing}}>{{name}}</span>

@@ -1,6 +1,6 @@
 var SAMPLE_RIDES = [{
     name:'Kevin Tian',
-    time: '3:00 PM',
+    time: '2014-09-01T15:00',
     passengers: 4,
     phone: '(510)-378-2423',
     pickup: 'Next House',
@@ -8,7 +8,7 @@ var SAMPLE_RIDES = [{
     comments: 'Mr. Fantastic'
 }, {
     name: 'Alex Jaffe',
-    time: '4:45 PM',
+    time: '2014-09-01T16:00',
     passengers: 3,
     phone: '(535)-343-2312',
     pickup: 'Maseeh',
@@ -16,7 +16,7 @@ var SAMPLE_RIDES = [{
     comments: 'J-j-j-jaffe'
 }, {
     name: 'Alan Chiao',
-    time: '3:45 PM',
+    time: '2014-09-01T18:30',
     passengers: 1,
     phone: '(617)-332-4345',
     pickup: 'Baker',

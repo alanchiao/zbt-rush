@@ -21,7 +21,7 @@ Meteor.methods({
 	* pickup: string: location
 	* dropoff: string: location
 	* comments: string
-	* driver: not quite sure?
+	* driver: the driver that the ride belongs to, else undefined
 	* editing: boolean: currently being edited by someone (any user) on UI or not 
 	* selected: boolean: currently selected by someone (any user) on UI or not
 	* status: string: either unassigned, assigned, pickedUp, unfound, or complete 

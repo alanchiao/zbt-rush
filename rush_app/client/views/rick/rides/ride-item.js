@@ -44,11 +44,19 @@ Template.rideItem.events({
 });
 
 Template.rideItem.helpers({
-  editingClass: function(){
+  isEditing: function(){
     return this.editing ? 'editing' : '';
   },
-  selectedClass: function(){
+  isSelected: function(){
     return this.selected ? 'selected' : '';
+  },
+  formattedTime: function(){
+    var today = new Date(Date.now()).toDateString();
+    var rideDate = new Date(this.time).toDateString();
+    var rideHourMin = this.time.split('T')[1];
+    var dateString = rideDate.split(' ').splice(1, 2).join(' ').replace(/^0/, '');
+
+    return (rideDate == today) ? rideHourMin : dateString + ', ' + rideHourMin;
   }
 });
 
