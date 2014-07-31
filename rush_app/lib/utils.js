@@ -76,6 +76,9 @@ utils = function(){
     if (json.name === "") {
       invalid.push('name');
     }
+    if (json.time === "") {
+      invalid.push('time');
+    }
     if (json.phone === "") {
       invalid.push('phone');
     }
