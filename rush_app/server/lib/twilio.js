@@ -11,7 +11,7 @@ Meteor.methods({
     textSomeone: function(driverId, host, number){
         console.log("----------TWILIO--------");
         twilio.sendSms({
-            to:'+19786219636',
+            to: number,
             from:'+15082831128',
             body: 'http://' + host + '/driver/' + driverId
         }, function(err, responseData){
