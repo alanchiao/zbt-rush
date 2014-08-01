@@ -5,6 +5,7 @@ Template.rideForm.events({
     e.preventDefault();
     var ride = utils.formToJson(e.target);
     if (ride) {
+      utils.clearForm(e.target);
       Meteor.call('ride', ride, function(error,id){
         if(error){
           return alert(error.reason);

@@ -65,14 +65,13 @@ utils = function(){
       });
       return false;
     } else {
-      that.clearForm(form);
       return json;
     }
   },
 
   that.clearForm = function(form){
     $(form).find('[data-input=true]').each(function(){
-      $(this).val('');
+      $(this).val($(this).data('default') || '');
     });
   },
 
@@ -81,7 +80,7 @@ utils = function(){
     if (json.name === "") {
       invalid.push('name');
     }
-    if (json.time === "") {
+    if (json.time === "" || (json.time != undefined && !json.time.match(/^2014-0[89]-[0-9]{2}T[0-9]{2}:[0-9]{2}/))) {
       invalid.push('time');
     }
     if (json.phone === "") {
