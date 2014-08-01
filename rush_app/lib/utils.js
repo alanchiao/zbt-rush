@@ -1,3 +1,8 @@
+var USABLE_NUMBERS = [
+	'+19786219636', '+14354143012', '+17865661641',
+	'+17147026149', '+12819950162', '+19135498027',
+	'+15103783381', '+15156643991', '+18587051195'];
+	 
 var SAMPLE_RIDES = [{
     name:'Kevin Tian',
     time: '3:00 PM',
@@ -125,6 +130,16 @@ utils = function(){
     });
   }
 
+	that.parseNumber = function(phoneNumber){
+		var reg = new RegExp("[+\\-() ]", "g");
+		phoneNumber = phoneNumber.toString();
+		var emptied = phoneNumber.replace(reg, "");
+		if(phoneNumber.length === 10)
+			emptied = "1" + emptied;
+	  emptied = "+" + emptied;
+		return emptied;
+	}
+
   //for development purposes - equivalent to cmd: meteor reset.
   that.reset = function(){
     Rides.find().fetch().forEach(function(ride){
@@ -151,7 +166,7 @@ utils = function(){
 
   that.sampleRides = SAMPLE_RIDES;
   that.sampleDrivers = SAMPLE_DRIVERS;
-  
+	that.usableNumbers = USABLE_NUMBERS;  
   //prevent modification of object slots
   Object.freeze(that);
   return that;
