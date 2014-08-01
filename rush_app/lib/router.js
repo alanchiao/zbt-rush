@@ -8,7 +8,14 @@ Router.configure({
 Router.onBeforeAction('loading');
     
 Router.map(function(){
-  this.route('rick', {path: '/'});
+  this.route('rick', {
+		path: '/',
+		waitOn: function(){
+			/**Must wait for rides model to be ready in order to retrieve the ride objects under
+			a driver that match the riders ids**/
+			return Meteor.subscribe('rides');
+		}
+	});
   this.route('driver', {
     path: '/driver/:_id',
     waitOn: function(){

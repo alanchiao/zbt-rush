@@ -1,3 +1,11 @@
+Template.rideOptions.helpers({
+	isPickedUp: function(){
+		return (this.status === 'pickedUp') ? 'pickedUp' : '';
+	},
+	isUnfound: function(){
+		return (this.status === 'unfound') ? 'unfound' : '';
+	}
+});
 Template.rideOptions.events({
   'click [data-js=pickedup]':function(e){
     e.preventDefault();

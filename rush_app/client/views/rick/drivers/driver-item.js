@@ -1,7 +1,14 @@
 Template.driverItem.helpers({
   listRides: function(){
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
-  }
+  },
+	textable: function(){
+		var parsedNumber = utils.parseNumber(this.phone);
+		if (utils.usableNumbers.indexOf(parsedNumber) !== -1){
+			return true;
+		}
+		return false;
+	}
 });
 
 //Should eventually be moved back to server-side for most part.
@@ -43,5 +50,10 @@ Template.driverItem.events({
   'click [data-js=handle]': function(e){
       e.stopPropagation();
       utils.toggleDrawer(e.target);
-  }
+  },
+	'click [data-js=text]':function(e){
+		var phoneNumber = this.phone;
+		var parsedNumber = utils.parseNumber(phoneNumber);
+		Meteor.call('textSomeone', this._id, window.location.host, parsedNumber, function(error, id){});
+	}
 });
