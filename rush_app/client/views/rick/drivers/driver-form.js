@@ -7,9 +7,6 @@ Template.driverForm.events({
     if (driver) {
       Meteor.call('driver', driver, function(error, id){
 				var parsedNumber = utils.parseNumber(driver.phone);
-				console.log(parsedNumber);
-				console.log(utils.usableNumbers);
-
         if (error){
           return alert(error.reason);
         }

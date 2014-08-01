@@ -35,3 +35,7 @@
 .remove-button:hover {
   color: #dd3333;
 }
+
+.additional-info .extra-info {
+	line-height: 25px;
+}

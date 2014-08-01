@@ -134,7 +134,7 @@ utils = function(){
 		var reg = new RegExp("[+\\-() ]", "g");
 		phoneNumber = phoneNumber.toString();
 		var emptied = phoneNumber.replace(reg, "");
-		if(phoneNumber.length === 10)
+		if(emptied.length === 10)
 			emptied = "1" + emptied;
 	  emptied = "+" + emptied;
 		return emptied;
