@@ -14,3 +14,10 @@ Template.rideForm.events({
   }
 });
 
+Template.rideForm.helpers({
+  currentTime: function(){
+    var d = new Date();
+    d.setHours(d.getHours() - d.getTimezoneOffset()/60);
+    return d.toISOString().split(':').splice(0,2).join(':');
+  }
+})

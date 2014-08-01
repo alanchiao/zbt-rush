@@ -7,21 +7,23 @@
           <div class="col-md-4">
             <input name="name" class="form-control form-control" type="text" value="" placeholder="* Name" data-input="true" />
           </div>
-          <div class="col-md-4">
-            <input name="time" class="form-control" type="text" value="" placeholder="Pickup Time" data-input="true" />
-          </div>
-          <div class="col-md-4">
-            <input name="phone" class="form-control" type="text" value="" placeholder="* Phone" data-input="true" />
+          <div class="col-md-8">
+            <input name="time" class="form-control" type="datetime-local" value="{{currentTime}}" data-input="true" />
           </div>
         </div>
         <div class="input-row row">
-          <div class="col-md-4">  
+          <div class="col-md-6">
+            <input name="phone" class="form-control" type="text" value="" placeholder="* Phone" data-input="true" />
+          </div>
+          <div class="col-md-6">  
             <input name="passengers" class="form-control" type="text" value="" placeholder="* Num. People" data-input="true"/>
           </div>
-          <div class="col-md-4">  
+        </div>
+        <div class="input-row row">
+          <div class="col-md-6">  
             <input name="pickup" class="form-control" type="text" value="" placeholder="* Pickup Loc." data-input="true"/>
           </div>
-          <div class="col-md-4">  
+          <div class="col-md-6">  
             <input name="dropoff" class="form-control" type="text" value="" placeholder="Dropoff Loc." data-input="true"/>
           </div>
         </div>
