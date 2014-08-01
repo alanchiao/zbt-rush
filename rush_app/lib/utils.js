@@ -3,7 +3,7 @@ var SAMPLE_RIDES = [{
     time: '2014-09-01T15:00',
     passengers: 4,
     phone: '(510)-378-2423',
-    pickup: 'Next House',
+    pickup: 'Next',
     dropoff: 'ZBT',
     comments: 'Mr. Fantastic'
 }, {
