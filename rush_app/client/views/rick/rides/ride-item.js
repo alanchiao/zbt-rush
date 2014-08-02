@@ -28,7 +28,10 @@ Template.rideItem.events({
     });
   },
   'click [data-js=delete]': function(e){
-    Rides.remove(this._id);
+    e.stopPropagation();
+    if (confirm("Are you sure you want to delete " + this.name + "'s ride request?")) {
+      Rides.remove(this._id);
+    }
   },
   'click [data-js="edit"]': function(e){
     e.stopPropagation();
