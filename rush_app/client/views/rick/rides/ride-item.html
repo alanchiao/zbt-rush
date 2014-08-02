@@ -24,7 +24,11 @@
           {{else}}
             <span class="edit-button glyphicon glyphicon-edit" data-js="edit"></span>
           {{/if}}
-          <span class="remove-button glyphicon glyphicon-remove" data-js="delete"></span>
+          {{#if driver}}
+            <span class="unassign-button glyphicon glyphicon-chevron-left" data-js="unassign"></span>
+          {{else}}
+            <span class="delete-button glyphicon glyphicon-remove" data-js="delete"></span>
+          {{/if}}
         </div>
       </div>
       <div class="additional-info row" data-js="additional-info-{{_id}}">

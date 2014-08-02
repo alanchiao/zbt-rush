@@ -39,7 +39,7 @@ Template.driverItem.events({
         }
       }, {}, function(error){
         if (!error) {
-          utils.flash(e.currentTarget, '#99ff99');
+          utils.flash(e.currentTarget.firstElementChild, '#99ff99');
         }
       });
     }

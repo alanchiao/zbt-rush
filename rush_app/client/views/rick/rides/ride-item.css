@@ -39,7 +39,11 @@
   color: #99dd99;
 }
 
-.remove-button:hover {
+.unassign-button:hover {
+  color: #ffaa33;
+}
+
+.delete-button:hover {
   color: #dd3333;
 }
 
