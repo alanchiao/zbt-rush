@@ -69,7 +69,8 @@ utils = function(){
     }
   },
 
-  that.clearForm = function(form){
+  that.resetForm = function(form){
+    $(form).find('[name="name"]').focus();
     $(form).find('[data-input=true]').each(function(){
       $(this).val($(this).data('default') || '');
     });

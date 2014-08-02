@@ -5,13 +5,16 @@ Template.rideForm.events({
     e.preventDefault();
     var ride = utils.formToJson(e.target);
     if (ride) {
-      utils.clearForm(e.target);
+      utils.resetForm(e.target);
       Meteor.call('ride', ride, function(error,id){
         if(error){
           return alert(error.reason);
         }
       });
     }
+  },'click [data-js=handle]': function(e){
+    e.stopPropagation();
+    utils.toggleDrawer(e.target);
   }
 });
 

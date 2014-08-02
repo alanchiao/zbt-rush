@@ -3,8 +3,8 @@ Template.driverForm.events({
   'submit form': function(e){
     e.preventDefault();
     var driver = utils.formToJson(e.target);
-
     if (driver) {
+      utils.resetForm(e.target);
       Meteor.call('driver', driver, function(error, id){
 				var parsedNumber = utils.parseNumber(driver.phone);
         if (error){
@@ -15,5 +15,9 @@ Template.driverForm.events({
 				}
       });
     }
+  },
+  'click [data-js=handle]': function(e){
+    e.stopPropagation();
+    utils.toggleDrawer(e.target);
   }
 });
