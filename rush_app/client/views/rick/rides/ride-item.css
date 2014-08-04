@@ -7,6 +7,10 @@
   margin-bottom: 5px;
 }
 
+.ride.selected {
+  background-color: #ffffaa;
+}
+
 .ride.editing {
   border: thin dashed #ff0000;
   background: url('images/stripe.png') repeat;

@@ -6,14 +6,14 @@
           <span name="time" class="time">{{formattedTime}}</span>
         </div>
         <div class="col-xs-3">
-          <span name="name" data-input="true" contenteditable={{editing}}>{{name}}</span>
+          <span name="name" data-input="true" contenteditable={{editing}} data-default="_">{{name}}</span>
           <span> - </span>
-          <span name="passengers" data-input="true" contenteditable={{editing}}>{{passengers}}</span>
+          <span name="passengers" data-input="true" contenteditable={{editing}} data-default="_">{{passengers}}</span>
         </div>
         <div class="location-info col-xs-3">
-          <span name="pickup" data-input="true" contenteditable={{editing}}>{{pickup}}</span>
+          <span name="pickup" data-input="true" contenteditable={{editing}} data-default="_">{{pickup}}</span>
           <span class="glyphicon glyphicon-arrow-right"></span>
-          <span name="dropoff" data-input="true" contenteditable={{editing}}>{{dropoff}}</span>
+          <span name="dropoff" data-input="true" contenteditable={{editing}} data-default="_">{{dropoff}}</span>
         </div>
         <div class="ride-buttons col-xs-3 btn-group">
           <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
@@ -34,11 +34,11 @@
       <div class="additional-info row" data-js="additional-info-{{_id}}">
         <div class="col-xs-12">
           <span class="phone-label">Contact: </span>
-          <span name="phone" data-input="true" class="phone" contenteditable={{editing}}>{{phone}}</span>
+          <span name="phone" data-input="true" class="phone" contenteditable={{editing}} data-default="_">{{phone}}</span>
         </div>
         <div class="col-xs-12">
           <span class="comments-label">Comments: </span>
-          <span name="comments" data-input="true" class="comments" contenteditable={{editing}}>{{comments}}</span>
+          <span name="comments" data-input="true" class="comments" contenteditable={{editing}} data-default="_">{{comments}}</span>
         </div>
       </div>
     </form>

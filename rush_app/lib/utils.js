@@ -76,6 +76,16 @@ utils = function(){
     });
   },
 
+  that.resetItem = function(form, options){
+    $(form).find('[data-input=true]').each(function(){
+      if (options && options.default) {
+        $(this).html($(this).html() || $(this).data('default') || '');
+      } else {
+        $(this).html(($(this).html() == '_') ? '' : $(this).html());
+      }
+    });
+  },
+
   that.validateJson = function(json){
     var invalid = [];
     if (json.name === "") {

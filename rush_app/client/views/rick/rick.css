@@ -29,10 +29,6 @@
   vertical-align: center;
 }
 
-.selected {
-  background-color: #ffffaa;
-}
-
 /* Form drawer handle */
 .ride-drawer-handle-wrapper, .driver-drawer-handle-wrapper {
   text-align: center;

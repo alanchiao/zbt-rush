@@ -35,6 +35,16 @@ Template.rideItem.events({
   },
   'click [data-js="edit"]': function(e){
     e.stopPropagation();
+    if (this.selected) {
+      Rides.update(this._id, {$set: {selected: false}});
+    }
+    var item = $(e.target).closest('form').get(0);
+    if (this.editing) {
+      utils.resetItem(item);
+    } else {
+      utils.resetItem(item, {default: true});
+    }
+    
     Rides.update(this._id, {$set:{editing: !this.editing}});
   },
   'submit form': function(e){
