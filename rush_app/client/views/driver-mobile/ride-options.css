@@ -1,7 +1,7 @@
-.pickedUp {
+.found {
 	color: green
 }
 
-.unfound {
+.not-found {
 	color: red;
 }

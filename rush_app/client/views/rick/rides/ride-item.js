@@ -20,7 +20,7 @@ Template.rideItem.events({
     });
     Rides.update(this._id, {
       $set: {
-        status: 'unassigned'
+        status: Rides.states.UNASSIGNED
       },
       $unset: {
         driver: ''

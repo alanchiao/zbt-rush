@@ -12,6 +12,15 @@ Drivers.allow({
   }
 });
 
+//Enums
+Drivers.states = {
+	WAITING: 'waiting',
+	UNACKED: 'unacked',
+	ACKED: 'acked'
+}
+
+Object.freeze(Drivers.states);
+
 Meteor.methods({
   /** 
   * Format of driver attributes:
@@ -19,6 +28,10 @@ Meteor.methods({
   * phone: (***)-(***)-(****)
   * capacity: max number of people who can fit in driver's car
   * passengers: number of people currently in a driver's car
+	* status: waiting, unacked, or acked.
+	*		waiting: whenever driver has no rides assigned.
+	*		unacked: whenever driver has rides and has just had updated rides
+	*		acked: 
   **/
   driver: function(attributes){
     var driver = _.defaults(_.extend(attributes, {
@@ -26,11 +39,11 @@ Meteor.methods({
     }), {
       rideIds: [],
       passengers: 0,
-
       name: undefined,
       phone: undefined,
       capacity: undefined,
-      comments: undefined
+      comments: undefined,
+			status: Drivers.states.WAITING
     });
 
     var driverId = Drivers.insert(driver);

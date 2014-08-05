@@ -1,7 +1,7 @@
 Template.rideQueue.helpers({
   unAssignedRides: function(){
     return Rides.find({
-      status: 'unassigned'
+      status: Rides.states.UNASSIGNED
     }, {
       sort: ['time']
     });
