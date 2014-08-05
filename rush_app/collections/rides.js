@@ -1,5 +1,15 @@
 Rides = new Meteor.Collection("rides");
 
+Rides.states = {
+	UNASSIGNED: 'unassigned',
+	ASSIGNED: 'assigned',
+	FOUND: 'found',
+	NOT_FOUND: 'not found',
+	COMPLETE_FOUND: 'complete found',
+	COMPLETE_NOT_FOUND: 'complete not found'
+};
+Object.freeze(Rides.states);
+
 Rides.allow({
   insert: function(){
     return true;
@@ -11,18 +21,6 @@ Rides.allow({
     return true;
   }
 });
-
-//Enums
-Rides.states = {
-	UNASSIGNED: 'unassigned',
-	ASSIGNED: 'assigned',
-	FOUND: 'found',
-	NOT_FOUND: 'not found',
-	COMPLETE_FOUND: 'complete found',
-	COMPLETE_NOT_FOUND: 'complete not found'
-};
-
-Object.freeze(Rides.states);
 
 Meteor.methods({
 	/**
@@ -61,7 +59,6 @@ Meteor.methods({
       comments: undefined
     });
     var rideId = Rides.insert(ride);
-
     return rideId;
   }
 });

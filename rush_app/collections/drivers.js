@@ -1,5 +1,12 @@
 Drivers = new Meteor.Collection('drivers');
 
+Drivers.states = {
+	WAITING: 'waiting',
+	UNACKED: 'unacked',
+	ACKED: 'acked'
+}
+Object.freeze(Drivers.states);
+
 Drivers.allow({
   insert: function(){
     return true;
@@ -11,15 +18,6 @@ Drivers.allow({
     return true;
   }
 });
-
-//Enums
-Drivers.states = {
-	WAITING: 'waiting',
-	UNACKED: 'unacked',
-	ACKED: 'acked'
-}
-
-Object.freeze(Drivers.states);
 
 Meteor.methods({
   /** 
@@ -47,7 +45,6 @@ Meteor.methods({
     });
 
     var driverId = Drivers.insert(driver);
-
     return driverId;
    }
 });
