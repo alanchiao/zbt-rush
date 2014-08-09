@@ -29,6 +29,9 @@ Template.driverItem.events({
       }.bind(this));
 
       Drivers.update(this._id, {
+        $set: {
+          status: Drivers.states.UNACKED
+        },
         $push: {
           rideIds: {
             $each: selectedRides.map(function(selectedRide){return selectedRide._id})
@@ -36,10 +39,6 @@ Template.driverItem.events({
         },
         $inc: {
           passengers: totalPassengers
-        }
-      }, {}, function(error){
-        if (!error) {
-          utils.flash(e.currentTarget.firstElementChild, '#99ff99');
         }
       });
     }

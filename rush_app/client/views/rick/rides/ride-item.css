@@ -1,6 +1,6 @@
 .ride {
   background-color: transparent;
-  border: thin solid #cccccc;
+  border: thin solid #444444;
   cursor: pointer;
   border-radius: 2px;
   margin-top: 5px;
@@ -14,6 +14,14 @@
 .ride.editing {
   border: thin dashed #ff0000;
   background: url('images/stripe.png') repeat;
+}
+
+.ride.status-found > form > .short-info {
+  /* green highlight */
+}
+
+.ride.status-not-found > form > .short-info {
+  /* red highlight */
 }
 
 /* contenteditable tries to set background-color: white when it is set to false
