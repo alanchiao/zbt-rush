@@ -6,6 +6,7 @@ Template.rideOptions.helpers({
 		return (this.status === Rides.states.NOT_FOUND) ? 'not-found' : '';
 	}
 });
+
 Template.rideOptions.events({
   'click [data-js=found]':function(e){
     e.preventDefault();

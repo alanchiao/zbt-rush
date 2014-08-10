@@ -21,6 +21,8 @@ Drivers.allow({
 
 Meteor.methods({
   /** 
+	* Create driver
+	*
   * Format of driver attributes:
   * name: string
   * phone: (***)-(***)-(****)

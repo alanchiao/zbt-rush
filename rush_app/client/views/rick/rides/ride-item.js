@@ -11,30 +11,20 @@ Template.rideItem.events({
   'click [data-js=unassign]': function(e){
     e.stopPropagation();
     Drivers.update(this.driver._id, {
-      $set: {
-        status: Drivers.states.UNACKED
-      },
-      $pull: {
-        rideIds: this._id
-      },
-      $inc: {
-        passengers: -this.passengers
-      }
+      $set: {status: Drivers.states.UNACKED},
+      $pull: {rideIds: this._id},
+      $inc: {passengers: -this.passengers}
     });
+
     if (this.driver.rideIds.length === 0) {
       Drivers.update(this.driver._id, {
-        $set: {
-          status: Drivers.states.WAITING
-        }
+        $set: {status: Drivers.states.WAITING}
       });
     }
+
     Rides.update(this._id, {
-      $set: {
-        status: Rides.states.UNASSIGNED
-      },
-      $unset: {
-        driver: ''
-      }
+      $set: {status: Rides.states.UNASSIGNED},
+      $unset: {driver: ''}
     });
   },
   'click [data-js=delete]': function(e){
