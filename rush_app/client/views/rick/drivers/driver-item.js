@@ -1,5 +1,6 @@
 Template.driverItem.helpers({
   listRides: function(){
+		console.log(this._id);
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
 	textable: function(){
