@@ -1,31 +1,17 @@
 Template.driverAcked.helpers({
 	assignedRides: function(){
-		var rideList = this.rideIds;
-		return Rides.find({_id: {$in: rideList}}).fetch();
+		return Rides.find({_id: {$in: this.rideIds}}).fetch();
 	}
 });
 
 Template.driverAcked.events({
   'click [data-js=complete-trip]':function(e){
 		//Should disable complete-trip button until no rides lift to take care of.
-    var isRideComplete = true;
-    var assigned = Rides.find({status: {$in: [Rides.states.ASSIGNED, Rides.states.FOUND, 
-			Rides.states.NOT_FOUND]}}).fetch();
-    assigned.forEach(function(entry){
-      if(entry.status !== Rides.states.FOUND &&  entry.status !== Rides.states.NOT_FOUND){
-         isRideComplete = false;
-      }
-    }); 
-     
-    if(isRideComplete){
-      assigned.forEach(function(entry){
-				if(entry.status === Rides.states.FOUND)
-        	Rides.update(entry._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
-				if(entry.status === Rides.states.NOT_FOUND)
-					Rides.update(entry._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
-      });
-    } else {
-      alert("Ride is actually not complete");
-    }
+		Meteor.call('completeTrip', this._id, function(error, isComplete){
+			console.log(isComplete);
+			if(!isComplete){
+				alert("Trip is actually not complete :D");
+			}
+		});
   }
 });

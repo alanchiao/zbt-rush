@@ -66,20 +66,67 @@ Meteor.methods({
 		});
 
 		var driver = Drivers.find(driverId).fetch()[0];
-
-		if(driver.rideIds.length === 0){
-			Drivers.update(driver._id, {
-				$set: {status: Drivers.states.WAITING}
-			});
-		}
+		onDriverUpdate(driver);
 
 		Rides.update(rideId, {
 			$set: {status: Rides.states.UNASSIGNED},
 			$unset: {driver:''}
 		});
+	},
+
+	setDriverStatus: function(driverId, state){
+		Drivers.update(driverId, {
+			$set: {status: state}
+		});
+	},
+
+  completeTrip: function(driverId){
+    var isTripComplete = true;
+		var driver = Drivers.find(driverId).fetch()[0];
+    var assigned = Rides.find({_id: {$in: driver.rideIds}}).fetch();
+		
+    assigned.forEach(function(ride){
+      if(ride.status !== Rides.states.FOUND &&  ride.status !== Rides.states.NOT_FOUND){
+         isTripComplete = false;
+      }
+    }); 
+     
+    if(isTripComplete){
+      assigned.forEach(function(ride){
+				if(ride.status === Rides.states.FOUND)
+        	Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
+				if(ride.status === Rides.states.NOT_FOUND)
+					Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
+
+				Drivers.update(driverId, {
+					$pull: {rideIds: ride._id},
+					$inc: {passengers: -ride.passengers}
+				});
+      });
+		}
+
+		driver = Drivers.find(driverId).fetch()[0];
+		onDriverUpdate(driver);
+
+		return isTripComplete;
 	}
 });
 
+
+//Private Helper Methods
+
+/** Any checks needed to be done after
+* a driver has been changed **/
+var onDriverUpdate = function(driver){
+	if(driver.rideIds.length === 0){
+		Drivers.update(driver._id, {
+			$set: {status: Drivers.states.WAITING}
+		});
+	}
+}
+
+/** Logic behind assigning a list of rides
+* to a driver **/
 var assignRides = function(rideIds, driverId){
 	var driver = Drivers.find(driverId).fetch()[0];
 	var rides = Rides.find({_id: {$in: rideIds}}).fetch();
