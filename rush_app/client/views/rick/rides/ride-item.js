@@ -10,22 +10,7 @@ Template.rideItem.events({
   },
   'click [data-js=unassign]': function(e){
     e.stopPropagation();
-    Drivers.update(this.driver._id, {
-      $set: {status: Drivers.states.UNACKED},
-      $pull: {rideIds: this._id},
-      $inc: {passengers: -this.passengers}
-    });
-
-    if (this.driver.rideIds.length === 0) {
-      Drivers.update(this.driver._id, {
-        $set: {status: Drivers.states.WAITING}
-      });
-    }
-
-    Rides.update(this._id, {
-      $set: {status: Rides.states.UNASSIGNED},
-      $unset: {driver: ''}
-    });
+		Meteor.call("unAssignRide", this.driver._id, this._id, function(error){});
   },
   'click [data-js=delete]': function(e){
     e.stopPropagation();

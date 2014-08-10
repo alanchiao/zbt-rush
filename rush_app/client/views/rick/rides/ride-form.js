@@ -12,7 +12,8 @@ Template.rideForm.events({
         }
       });
     }
-  },'click [data-js=handle]': function(e){
+  },
+	'click [data-js=handle]': function(e){
     e.stopPropagation();
     jQueryUtils.toggleDrawer(e.target);
   }

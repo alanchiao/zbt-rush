@@ -14,7 +14,7 @@ utils = function(){
       }
     });
   }
-	//Needs to be moved elsewhere
+	//Needs to be moved elsewhere. Not util since app-specific
   that.validateJson = function(json){
     var invalid = [];
     if (json.name === "") {
