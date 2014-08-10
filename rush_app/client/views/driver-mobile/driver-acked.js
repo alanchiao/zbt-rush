@@ -6,7 +6,6 @@ Template.driverAcked.helpers({
 
 Template.driverAcked.events({
   'click [data-js=complete-trip]':function(e){
-		//Should disable complete-trip button until no rides lift to take care of.
 		Meteor.call('completeTrip', this._id, function(error, isComplete){
 			console.log(isComplete);
 			if(!isComplete){
