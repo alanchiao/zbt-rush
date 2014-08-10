@@ -6,7 +6,7 @@ Template.rideItem.events({
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
-    utils.toggleDrawer(e.target);
+    jQueryUtils.toggleDrawer(e.target);
   },
   'click [data-js=unassign]': function(e){
     e.stopPropagation();
@@ -59,7 +59,7 @@ Template.rideItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
-    var options = utils.formToJson(e.target);
+    var options = formUtils.formToJson(e.target);
     if (this.driver) {
       Drivers.update(this.driver._id, {
         $inc: {
@@ -69,7 +69,7 @@ Template.rideItem.events({
     }
     Rides.update(this._id, {$set:options}, {}, function(error){
       if (!error) {
-        utils.flash(e.currentTarget.parentNode, '#aaddff');
+        jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
       }
     });
   }
