@@ -41,7 +41,7 @@ var SAMPLE_DRIVERS = [{
     comments: 'Pretty cool guy'
 }];
 
-var libFixtures = function(){
+libFixtures = function(){
 	
 	var that = {};
 	 
