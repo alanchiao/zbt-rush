@@ -49,6 +49,12 @@ utils = function(){
 	  emptied = "+" + emptied;
 		return emptied;
 	}
+
+	that.getCurrentTime = function(){
+    var d = new Date();
+    d.setHours(d.getHours() - d.getTimezoneOffset()/60);
+    return d.toISOString().split(':').splice(0,2).join(':');
+	}
   //prevent modification of object slots
   Object.freeze(that);
   return that;
