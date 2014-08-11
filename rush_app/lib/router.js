@@ -1,5 +1,12 @@
-//Standard routing logic. Iron Router.
-
+/**
+* Standard routing logic. Iron Router.
+*
+* GET  /                  : main page for administrative control by rick
+* GET  /drivers/:id       : main page for driver app usage
+* GET  /cars              : page for CRUD administration of cars
+* GET  /cars/json         : get json version of all cars
+* POST /cars/:id/location : update car location   
+**/
 Router.configure({
   loadingTemplate:'loading',
   layoutTemplate: 'layout'

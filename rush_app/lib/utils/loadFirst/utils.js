@@ -40,6 +40,16 @@ utils = function(){
     return invalid;
   }
 
+	that.validateCar = function(json){
+    var invalid = [];
+    if (json.name === "") {
+      invalid.push('name');
+    }
+    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
+      invalid.push('capacity');
+    }
+	}
+
 	that.parsePhoneNumber = function(phoneNumber){
 		var reg = new RegExp("[+\\-() ]", "g");
 		phoneNumber = phoneNumber.toString();
