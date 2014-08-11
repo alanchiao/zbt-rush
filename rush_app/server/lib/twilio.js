@@ -12,7 +12,8 @@ Meteor.methods({
         twilio.sendSms({
             to: number,
             from:'+15082831128',
-            body: 'http://' + urlHost + '/driver/' + driverId
+            body: 'Your rides have been updated.\n' +
+								  'http://' + urlHost + '/driver/' + driverId
         }, function(err, responseData){
             if(!err){}
        });

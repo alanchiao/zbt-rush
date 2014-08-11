@@ -10,9 +10,6 @@ Template.driverForm.events({
         if (error){
           return alert(error.reason);
         }
-				else if (libFixtures.usableNumbers.indexOf(parsedNumber) !== -1){
-					Meteor.call('textSomeone', id, window.location.host, parsedNumber, function(error, id){}); 
-				}
       });
     }
   },
