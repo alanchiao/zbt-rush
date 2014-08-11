@@ -1,0 +1,21 @@
+.center {
+	text-align: center;
+}
+
+html, #wrapper {
+	height: 100%;
+}
+
+body {
+	height: 90%;
+}
+
+#driver-mobile {
+	font-size: 64px;
+}
+
+#driver-mobile .btn{
+	height: 15%;
+	width: 50%;
+}
+
