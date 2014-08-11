@@ -4,7 +4,7 @@ Template.driverForm.events({
     e.preventDefault();
     var driver = formUtils.formToJson(e.target);
     if (driver) {
-      utils.resetForm(e.target);
+      formUtils.resetForm(e.target);
       Meteor.call('driver', driver, function(error, id){
 				var parsedNumber = utils.parsePhoneNumber(driver.phone);
         if (error){
