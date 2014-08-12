@@ -42,8 +42,8 @@ utils = function(){
 
 	that.validateCar = function(json){
     var invalid = [];
-    if (json.name === "") {
-      invalid.push('name');
+    if (json.description === "") {
+      invalid.push('description');
     }
     if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
       invalid.push('capacity');

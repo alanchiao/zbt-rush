@@ -28,7 +28,8 @@ Meteor.methods({
 			allowedDrivers: [],
 			lastPingTime: null,
 			lastLatitude: null,
-			lastLongitude: null
+			lastLongitude: null,
+			editing: false
 		});
 
 		var carId = Cars.insert(car);

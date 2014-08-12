@@ -18,7 +18,7 @@ Template.rideItem.events({
       Rides.remove(this._id);
     }
   },
-  'click [data-js="edit"]': function(e){
+  'click [data-js=edit]': function(e){
     e.stopPropagation();
     if (this.selected) {
       Rides.update(this._id, {$set: {selected: false}});
