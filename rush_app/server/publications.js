@@ -6,3 +6,7 @@ Meteor.publish('drivers', function(){
 Meteor.publish('rides', function(){
 	return Rides.find();
 });
+
+Meteor.publish('cars', function(){
+	return Cars.find();
+});

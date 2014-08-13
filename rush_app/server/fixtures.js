@@ -1,7 +1,7 @@
 //Standard fixture loading when the database is empty. For development convenience.
 
 if (Rides.find().count() === 0){
-    utils.sampleRides.forEach(function(ride){
+    libFixtures.sampleRides.forEach(function(ride){
         Meteor.call('ride', ride, function(error, id){
             if(error){
                 return alert(error.reason);
@@ -11,7 +11,7 @@ if (Rides.find().count() === 0){
 }
 
 if (Drivers.find().count() === 0){
-    utils.sampleDrivers.forEach(function(driver){
+    libFixtures.sampleDrivers.forEach(function(driver){
         Meteor.call('driver', driver, function(error,id){
             if(error){
                 return alert(error.reason);

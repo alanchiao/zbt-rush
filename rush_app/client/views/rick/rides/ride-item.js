@@ -6,36 +6,11 @@ Template.rideItem.events({
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
-    utils.toggleDrawer(e.target);
+    jQueryUtils.toggleDrawer(e.target);
   },
   'click [data-js=unassign]': function(e){
     e.stopPropagation();
-    Drivers.update(this.driver._id, {
-      $set: {
-        status: Drivers.states.UNACKED
-      },
-      $pull: {
-        rideIds: this._id
-      },
-      $inc: {
-        passengers: -this.passengers
-      }
-    });
-    if (this.driver.rideIds.length === 0) {
-      Drivers.update(this.driver._id, {
-        $set: {
-          status: Drivers.states.WAITING
-        }
-      });
-    }
-    Rides.update(this._id, {
-      $set: {
-        status: Rides.states.UNASSIGNED
-      },
-      $unset: {
-        driver: ''
-      }
-    });
+		Meteor.call("unAssignRide", this.driver._id, this._id, function(error){});
   },
   'click [data-js=delete]': function(e){
     e.stopPropagation();
@@ -43,7 +18,7 @@ Template.rideItem.events({
       Rides.remove(this._id);
     }
   },
-  'click [data-js="edit"]': function(e){
+  'click [data-js=edit]': function(e){
     e.stopPropagation();
     if (this.selected) {
       Rides.update(this._id, {$set: {selected: false}});
@@ -59,7 +34,7 @@ Template.rideItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
-    var options = utils.formToJson(e.target);
+    var options = formUtils.formToJson(e.target);
     if (this.driver) {
       Drivers.update(this.driver._id, {
         $inc: {
@@ -69,7 +44,7 @@ Template.rideItem.events({
     }
     Rides.update(this._id, {$set:options}, {}, function(error){
       if (!error) {
-        utils.flash(e.currentTarget.parentNode, '#aaddff');
+        jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
       }
     });
   }

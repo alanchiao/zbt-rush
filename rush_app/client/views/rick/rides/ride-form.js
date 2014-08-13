@@ -3,25 +3,24 @@
 Template.rideForm.events({
   'submit form': function(e){
     e.preventDefault();
-    var ride = utils.formToJson(e.target);
+    var ride = formUtils.formToJson(e.target);
     if (ride) {
-      utils.resetForm(e.target);
+      formUtils.resetForm(e.target);
       Meteor.call('ride', ride, function(error,id){
         if(error){
           return alert(error.reason);
         }
       });
     }
-  },'click [data-js=handle]': function(e){
+  },
+	'click [data-js=handle]': function(e){
     e.stopPropagation();
-    utils.toggleDrawer(e.target);
+    jQueryUtils.toggleDrawer(e.target);
   }
 });
 
 Template.rideForm.helpers({
   currentTime: function(){
-    var d = new Date();
-    d.setHours(d.getHours() - d.getTimezoneOffset()/60);
-    return d.toISOString().split(':').splice(0,2).join(':');
+    return utils.getCurrentTime();
   }
 })
