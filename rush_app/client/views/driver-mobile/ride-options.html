@@ -1,8 +1,12 @@
 <template name="rideOptions">
-  <div class="col-md-6">
-    <span class="{{isFound}} glyphicon glyphicon-ok" data-js="found"></span>
-  </div>
-  <div class="col-md-6">
-    <span class="{{isNotFound}} glyphicon glyphicon-remove" data-js="not-found"></span>
+  <div class="text-center">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">
+        <span class="finish-ride-button glyphicon glyphicon-ok" data-js="found"></span>
+      </button>
+      <button type="button" class="btn btn-default">
+        <span class="finish-ride-button glyphicon glyphicon-remove" data-js="not-found"></span>
+      </button>
+    </div>
   </div>
 </template>

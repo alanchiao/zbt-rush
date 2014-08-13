@@ -1,15 +1,17 @@
 <template name="driverAcked">
-  <div id="rides-list">
+  <div class="driver-ui-rides-list">
     {{#each assignedRides}}
-    <div class="row">
-      <div class="col-md-10">
-        {{> rideItem }}
+      <div class="{{isFound}} {{isNotFound}} driver-ui-ride row">
+        <div class="col-xs-12">
+            {{> rideItem }}
+            {{> rideOptions}}
+        </div>
       </div>
-      <div class="col-md-2">
-        {{> rideOptions}}
-      </div>
-    </div>
     {{/each}}
   </div>
-  <button data-js="complete-trip"> Complete Trip </button>
+  <div class="complete-trip-button-container row">
+    <div class="col-xs-12">
+      <button data-js="complete-trip" class="btn btn-block btn-success"> Complete Trip </button>
+    </div>
+  </div>
 </template>
