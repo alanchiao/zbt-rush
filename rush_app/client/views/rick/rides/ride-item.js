@@ -51,6 +51,9 @@ Template.rideItem.events({
 });
 
 Template.rideItem.helpers({
+  isDriverUI: function() {
+    return window.location.pathname.match('/drivers/.*$');
+  },
   isEditing: function(){
     return this.editing ? 'editing' : '';
   },
