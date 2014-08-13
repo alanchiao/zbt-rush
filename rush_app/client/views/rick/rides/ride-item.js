@@ -54,10 +54,10 @@ Template.rideItem.helpers({
   isDriverUI: function() {
     return window.location.pathname.match('/drivers/.*$');
   },
-  isEditing: function(){
+  editingClass: function(){
     return this.editing ? 'editing' : '';
   },
-  isSelected: function(){
+  selectedClass: function(){
     return this.selected ? 'selected' : '';
   },
   formattedTime: function(){
