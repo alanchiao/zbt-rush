@@ -10,24 +10,30 @@ Template.driver.helpers({
 
 Template.driver.events({
   'click [data-js=complete-trip]':function(e){
-    var isRideComplete = true;
-    var assigned = Rides.find({status: {$in: [Rides.states.ASSIGNED, RIDES.states.FOUND, 
-			Rides.states.NOT_FOUND]}}).fetch();
-    assigned.forEach(function(entry){
-      if(entry.status !== Rides.states.FOUND &&  entry.status !== RIDES.states.NOT_FOUND){
-         isRideComplete = false;
+    var assigned = Rides.find({
+      status: {
+        $in: [
+          Rides.states.ASSIGNED,
+          RIDES.states.FOUND,
+          Rides.states.NOT_FOUND
+        ]
       }
-    }); 
+    }).fetch();
+
+    var isRideComplete = assigned.every(function(ride){
+      return ride.status === Rides.states.FOUND || ride.status === Rides.states.NOT_FOUND;
+    });
      
     if(isRideComplete){
-      assigned.forEach(function(entry){
-				if(entry.status === Rides.states.FOUND)
-        	Rides.update(entry._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
-				if(entry.status === Rides.states.NOT_FOUND)
-					Rides.update(entry._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
+      assigned.forEach(function(ride){
+				if(ride.status === Rides.states.FOUND) {
+        	Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
+        }
+				if(ride.status === Rides.states.NOT_FOUND) {
+					Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
+        }
       });
-    }
-    else {
+    } else {
       alert("Ride is actually not complete");
     }
   }
