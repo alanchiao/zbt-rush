@@ -1,5 +1,4 @@
 jQueryUtils = function(){
-	var that = {};
 
   /**
   * UI drawer expansion/hiding (arrow thing to click for displaying more or less data)
@@ -7,7 +6,7 @@ jQueryUtils = function(){
   * what element contains the additional information to display or hide. That target
   * element has [data-js={identifier}].
   **/
-  that.toggleDrawer = function(handle){
+  function toggleDrawer(handle){
     var $target = $(document).find('[data-js=' + $(handle).attr('data-target') + ']');
     var $handle = $(handle);
     if($target.is(':hidden')){
@@ -21,7 +20,7 @@ jQueryUtils = function(){
     }
   }
 
-  that.flash = function(target, color){
+  function flash(target, color){
     $(target).animate({
       backgroundColor: color
     }, 1, function(){
@@ -32,8 +31,10 @@ jQueryUtils = function(){
       });
     });
   }
-	
-	Object.freeze(that);
-	return that;
+
+  return {
+    toggleDrawer: toggleDrawer,
+    flash: flash
+  }
 }();
 

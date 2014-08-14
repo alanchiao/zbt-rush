@@ -51,11 +51,18 @@ Template.rideItem.events({
 });
 
 Template.rideItem.helpers({
-  isEditing: function(){
-    return this.editing ? 'editing' : '';
+  isDriverUI: function(){
+    return window.location.pathname.match('/drivers/.*$');
   },
-  isSelected: function(){
-    return this.selected ? 'selected' : '';
+  editingClass: function(){
+    return this.editing && 'editing';
+  },
+  selectedClass: function(){
+    return this.selected && 'selected';
+  },
+  statusClass: function(){
+    return this.status === Rides.states.FOUND && 'status-found' ||
+      this.status === Rides.states.NOT_FOUND && 'status-not-found';
   },
   formattedTime: function(){
     var today = new Date().toDateString();

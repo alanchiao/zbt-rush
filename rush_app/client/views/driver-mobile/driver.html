@@ -1,13 +1,14 @@
 <template name="driver">
-	<div class="center" id="driver-mobile">
-		{{#if isDriverWaiting}}
-			{{> driverWaiting}}
-		{{/if}}
-		{{#if isDriverUnacked}}
-			{{> driverUnacked}}
-		{{/if}}
-		{{#if isDriverAcked}}
-			{{> driverAcked}}
-		{{/if}}	
-	</div>
+  <meta name="viewport" content="width=device-width">
+  <div class="container" id="driver-mobile">
+    {{#if isDriverWaiting}}
+      {{> driverWaiting}}
+    {{/if}}
+    {{#if isDriverUnacked}}
+      {{> driverUnacked}}
+    {{/if}}
+    {{#if isDriverAcked}}
+      {{> driverAcked}}
+    {{/if}} 
+  </div>
 </template>

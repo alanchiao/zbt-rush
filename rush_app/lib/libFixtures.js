@@ -31,12 +31,12 @@ var SAMPLE_RIDES = [{
 
 var SAMPLE_DRIVERS = [{
     name: 'Charles',
-    phone: '(617)-393-4234',
+    phone: '19786219636',
     capacity: 5,
     comments: 'ZBestpresidenT'
 }, {
     name: 'Kyle',
-    phone: '(234)-567-7890',
+    phone: '14354143012',
     capacity: 4,
     comments: 'Pretty cool guy'
 }];

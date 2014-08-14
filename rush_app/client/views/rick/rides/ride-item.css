@@ -16,12 +16,12 @@
   background: url('images/stripe.png') repeat;
 }
 
-.ride.status-found > form > .short-info {
-  /* green highlight */
+.ride.status-found .short-info {
+  background-color: #dbffdb;
 }
 
-.ride.status-not-found > form > .short-info {
-  /* red highlight */
+.ride.status-not-found .short-info {
+  background-color: #ffdbdb;
 }
 
 /* contenteditable tries to set background-color: white when it is set to false

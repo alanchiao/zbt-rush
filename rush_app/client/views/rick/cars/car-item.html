@@ -1,24 +1,24 @@
 <template name="carItem">
-	<div class="{{isEditing}} car col-xs-12">
-		<div class="row">
-			<form>
-				<div class="col-xs-7"> 
-					<span name="description" data-input="true" contentEditable={{editing}}>{{description}} </span>
-				</div>
-				<div class="col-xs-2">
-					<span name="capacity" data-input="true" contentEditable={{editing}}> {{capacity}} </span>
-				</div>
-				<div class="col-xs-3">
-					{{#if editing}}
-						<button type="submit" class="no-style-button">
-							<span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
-						</button>
-					{{else}}
-						<span class="glyphicon glyphicon-edit" data-js="edit"></span>
-					{{/if}}
-					<span class="glyphicon glyphicon-remove" data-js="delete"></span>
-				</div>
-			</form>
-		</div>
-	</div>
+  <div class="{{editingClass}} car col-xs-12">
+    <div class="row">
+      <form>
+        <div class="col-xs-7">
+          <span name="description" data-input="true" contentEditable={{editing}}>{{description}} </span>
+        </div>
+        <div class="col-xs-2">
+          <span name="capacity" data-input="true" contentEditable={{editing}}> {{capacity}} </span>
+        </div>
+        <div class="col-xs-3">
+          {{#if editing}}
+            <button type="submit" class="no-style-button">
+              <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
+            </button>
+          {{else}}
+            <span class="glyphicon glyphicon-edit" data-js="edit"></span>
+          {{/if}}
+          <span class="glyphicon glyphicon-remove" data-js="delete"></span>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>

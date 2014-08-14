@@ -1,9 +1,6 @@
 Template.driverWaiting.helpers({
-	whenDone: function(){
-		if(false){
-			return 'Please await further actions';
-		} else {
-			return 'Please have fun';
-		}
-	}
+  whenDone: function(){
+  	var defaultMessage = "Thanks for driving, " + this.name + "! Nothing to do yet.";
+    return this.comments ? this.comments : defaultMessage;
+  }
 });

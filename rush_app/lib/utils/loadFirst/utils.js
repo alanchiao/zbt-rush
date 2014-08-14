@@ -1,11 +1,10 @@
 //Class for generic utility functions, applicable anywhere.
 utils = function(){
-  var that = {};
 
   //I understand its usage, but needs clearer function name.	
 	//like toggleItem?. Move to formUtils after if location is
 	//more appropriate than jQueryUtils.
-  that.resetItem = function(form, options){
+  function resetItem(form, options){
     $(form).find('[data-input=true]').each(function(){
       if (options && options.default) {
         $(this).html($(this).html() || $(this).data('default') || '');
@@ -15,7 +14,7 @@ utils = function(){
     });
   }
 	//Needs to be moved elsewhere. Not util since app-specific
-  that.validateJson = function(json){
+  function validateJson(json){
     var invalid = [];
     if (json.name === "") {
       invalid.push('name');
@@ -27,11 +26,11 @@ utils = function(){
       invalid.push('phone');
     }
     // if passengers is not undefined, it should be a number
-    if (json.passengers != undefined && (json.passengers === "" || typeof json.passengers != 'number' || json.passengers <= 0)) {
+    if (json.passengers !== undefined && (json.passengers === "" || typeof json.passengers != 'number' || json.passengers <= 0)) {
       invalid.push('passengers');
     }
     // if capacity is not undefined, it should be a number
-    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
+    if (json.capacity !== undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
       invalid.push('capacity');
     }
     if (json.pickup === "") {
@@ -40,7 +39,7 @@ utils = function(){
     return invalid;
   }
 
-	that.validateCar = function(json){
+	function validateCar(json){
     var invalid = [];
     if (json.description === "") {
       invalid.push('description');
@@ -50,7 +49,7 @@ utils = function(){
     }
 	}
 
-	that.parsePhoneNumber = function(phoneNumber){
+	function parsePhoneNumber(phoneNumber){
 		var reg = new RegExp("[+\\-() ]", "g");
 		phoneNumber = phoneNumber.toString();
 		var emptied = phoneNumber.replace(reg, "");
@@ -60,12 +59,17 @@ utils = function(){
 		return emptied;
 	}
 
-	that.getCurrentTime = function(){
+	function getCurrentTime(){
     var d = new Date();
     d.setHours(d.getHours() - d.getTimezoneOffset()/60);
     return d.toISOString().split(':').splice(0,2).join(':');
 	}
-  //prevent modification of object slots
-  Object.freeze(that);
-  return that;
+
+  return {
+    resetItem: resetItem,
+    validateJson: validateJson,
+    validateCar: validateCar,
+    parsePhoneNumber: parsePhoneNumber,
+    getCurrentTime: getCurrentTime
+  };
 }();

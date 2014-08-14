@@ -1,5 +1,5 @@
 Template.carsList.helpers({
-	cars: function(){
-		return Cars.find();
-	}
+  cars: function(){
+    return Cars.find();
+  }
 });

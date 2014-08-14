@@ -22,6 +22,10 @@
   border: thin dashed #000000;
 }
 
+.rider-info.overfilled {
+  color: red;
+}
+
 .driver-buttons {
   text-align: right;
 }
