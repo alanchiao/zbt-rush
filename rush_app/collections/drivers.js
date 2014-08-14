@@ -9,13 +9,13 @@ Object.freeze(Drivers.states);
 
 Drivers.allow({
   insert: function(){
-  return true;
+    return true;
   },
   update: function(){
-  return true;
+    return true;
   },
   remove: function(){
-  return true;
+    return true;
   }
 });
 
@@ -70,7 +70,7 @@ Meteor.methods({
 
     Rides.update(rideId, {
       $set: {status: Rides.states.UNASSIGNED},
-      $unset: {driver:''}
+      $unset: {driver: ''}
     });
   },
 
@@ -89,21 +89,19 @@ Meteor.methods({
      
     if(isTripComplete){
       assigned.forEach(function(ride){
-      if(ride.status === Rides.states.FOUND){
-        Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
-      }
-      if(ride.status === Rides.states.NOT_FOUND){
-        Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
-
+        if(ride.status === Rides.states.FOUND){
+          Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_FOUND}});
+        }
+        if(ride.status === Rides.states.NOT_FOUND){
+          Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
+        }
         Drivers.update(driverId, {
           $pull: {rideIds: ride._id},
           $inc: {passengers: -ride.passengers}
         });
-      }
       });
     }
 
-    driver = Drivers.findOne(driverId);
     onDriverUpdate(driver);
 
     return isTripComplete;
@@ -113,7 +111,7 @@ Meteor.methods({
 
 //Private Helper Methods
 
-/** Any checks needed to be done after
+/** Any checks that should occur whenever
 * a driver has been changed **/
 var onDriverUpdate = function(driver){
   if(driver.rideIds.length === 0){
@@ -123,8 +121,7 @@ var onDriverUpdate = function(driver){
   }
 }
 
-/** Logic behind assigning a list of rides
-* to a driver **/
+/** Assigns a list of rides to a driver **/
 var assignRides = function(rideIds, driverId){
   var driver = Drivers.findOne(driverId);
   var rides = Rides.find({_id: {$in: rideIds}}).fetch();
@@ -136,7 +133,7 @@ var assignRides = function(rideIds, driverId){
         $set: {
           driver: driver,
           selected: false,
-          status: 'assigned'
+          status: Rides.states.ASSIGNED
         }
       });
     });

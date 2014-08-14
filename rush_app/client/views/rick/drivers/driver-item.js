@@ -7,10 +7,7 @@ Template.driverItem.helpers({
   },
   textable: function(){
     var parsedNumber = utils.parsePhoneNumber(this.phone);
-    if (libFixtures.usableNumbers.indexOf(parsedNumber) !== -1){
-      return true;
-    }
-    return false;
+    return libFixtures.usableNumbers.indexOf(parsedNumber) !== -1;
   }
 });
 
@@ -20,7 +17,7 @@ Template.driverItem.events({
     Meteor.call('assignSelectedRides', this._id, function(error){});
   },  
   'click [data-js=delete]': function(e){
-  Drivers.remove(this._id);
+    Drivers.remove(this._id);
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
