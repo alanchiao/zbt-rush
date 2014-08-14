@@ -1,12 +1,6 @@
 Template.driverAcked.helpers({
   assignedRides: function(){
     return Rides.find({_id: {$in: this.rideIds}}).fetch();
-  },
-  isFound: function(){
-    return this.status == Rides.states.FOUND ? 'found' : '';
-  },
-  isNotFound: function() {
-    return this.status == Rides.states.NOT_FOUND ? 'not-found' : '';
   }
 });
 

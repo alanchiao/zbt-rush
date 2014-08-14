@@ -17,7 +17,7 @@ Template.carItem.events({
 });
 
 Template.carItem.helpers({
-  isEditing: function(){
-    return this.editing ? 'editing' : '';
+  editingClass: function(){
+    return this.editing && 'editing';
   }
 });

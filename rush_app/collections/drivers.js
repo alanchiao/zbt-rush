@@ -100,10 +100,10 @@ Meteor.methods({
           $inc: {passengers: -ride.passengers}
         });
       });
+      Drivers.update(driver._id, {
+        $set: {status: Drivers.states.WAITING}
+      });
     }
-
-    onDriverUpdate(driver);
-
     return isTripComplete;
   }
 });

@@ -10,14 +10,6 @@
   border: none;
 }
 
-.driver-ui-ride.found {
-  background-color: #dbffdb;
-}
-
-.driver-ui-ride.not-found {
-  background-color: #ffdbdb;
-}
-
 .complete-trip-button-container {
   margin-top: 20px;
 }
