@@ -15,7 +15,9 @@ Template.rideForm.events({
   },
 	'click [data-js=handle]': function(e){
     e.stopPropagation();
-    jQueryUtils.toggleDrawer(e.target);
+    var handle = $(e.target);
+    var drawer = $('body').find('[data-js="ride-form"]');
+    jQueryUtils.toggleDrawer(handle, drawer);
   }
 });
 

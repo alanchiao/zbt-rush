@@ -17,7 +17,7 @@
         </div>
         {{#unless isDriverUI}}
           <div class="ride-buttons col-sm-3 btn-group">
-            <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle" data-target="additional-info-{{_id}}"></span>
+            <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle"></span>
             {{#if editing}}
               <button type="submit" class="no-style-button">
                 <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
@@ -33,7 +33,7 @@
           </div>
         {{/unless}}
       </div>
-      <div class="additional-info row" data-js="additional-info-{{_id}}">
+      <div class="additional-info row" data-js="additional-info">
         <div class="col-sm-12">
           <span class="phone-label">Contact: </span>
           <span name="phone" data-input="true" class="phone" contenteditable={{editing}} data-default="_">{{phone}}</span>

@@ -15,6 +15,8 @@ Template.driverForm.events({
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
-    jQueryUtils.toggleDrawer(e.target);
+    var handle = $(e.target);
+    var drawer = $('body').find('[data-js="driver-form"]');
+    jQueryUtils.toggleDrawer(handle, drawer);
   }
 });

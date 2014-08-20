@@ -17,6 +17,7 @@ Meteor.methods({
   * Create car
   *
   * Format of car attributes:
+  * name
   * description
   * capacity
   * allowedDrivers
@@ -24,12 +25,17 @@ Meteor.methods({
   **/
   car: function(attributes){
 
-    var car = _.extend(attributes, {
+    var car = _.defaults(_.extend(attributes, {
+      capacity: parseInt(attributes.capacity)
+    }), {
       allowedDrivers: [],
       lastPingTime: null,
       lastLatitude: null,
       lastLongitude: null,
-      editing: false
+      editing: false,
+
+      name: undefined,
+      description: undefined
     });
 
     var carId = Cars.insert(car);

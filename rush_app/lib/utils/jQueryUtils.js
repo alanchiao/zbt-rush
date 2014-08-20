@@ -6,17 +6,15 @@ jQueryUtils = function(){
   * what element contains the additional information to display or hide. That target
   * element has [data-js={identifier}].
   **/
-  function toggleDrawer(handle){
-    var $target = $(document).find('[data-js=' + $(handle).attr('data-target') + ']');
-    var $handle = $(handle);
-    if($target.is(':hidden')){
-        $target.slideDown('fast');
-        $handle.removeClass('glyphicon-chevron-down');
-        $handle.addClass('glyphicon-chevron-up');
+  function toggleDrawer(handle, drawer){
+    if(drawer.is(':hidden')){
+        drawer.slideDown('fast');
+        handle.removeClass('glyphicon-chevron-down');
+        handle.addClass('glyphicon-chevron-up');
     } else {
-        $target.slideUp('fast');
-        $handle.removeClass('glyphicon-chevron-up');
-        $handle.addClass('glyphicon-chevron-down');
+        drawer.slideUp('fast');
+        handle.removeClass('glyphicon-chevron-up');
+        handle.addClass('glyphicon-chevron-down');
     }
   }
 

@@ -7,15 +7,15 @@ var authToken = '40dd0dffd467036e0e053d1e1d2cb324';
 twilio = Twilio(accountSID, authToken);
 
 Meteor.methods({
-    textSomeone: function(driverId, urlHost, number){
-        console.log("--------TWILIO--------");
-        twilio.sendSms({
-            to: number,
-            from:'+15082831128',
-            body: 'Your rides have been updated.\n' +
-								  'http://' + urlHost + '/drivers/' + driverId
-        }, function(err, responseData){
-            if(!err){}
-       });
-    }
+  sendText: function(driverId, urlHost, number){
+    console.log("--------TWILIO--------");
+    twilio.sendSms({
+      to: number,
+      from:'+15082831128',
+      body: 'Your rides have been updated.\n' +
+        'http://' + urlHost + '/drivers/' + driverId
+    }, function(err, responseData){
+      if(!err){}
+    });
+  }
 });

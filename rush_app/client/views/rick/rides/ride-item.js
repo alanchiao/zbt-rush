@@ -6,7 +6,9 @@ Template.rideItem.events({
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
-    jQueryUtils.toggleDrawer(e.target);
+    var handle = $(e.target);
+    var drawer = handle.parents('[data-js="ride"]').find('[data-js="additional-info"]');
+    jQueryUtils.toggleDrawer(handle, drawer);
   },
   'click [data-js=unassign]': function(e){
     e.stopPropagation();

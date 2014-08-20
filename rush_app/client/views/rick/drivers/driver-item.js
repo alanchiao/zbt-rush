@@ -1,18 +1,39 @@
 Template.driverItem.events({
   'click [data-js=driver]': function(e){
-    Meteor.call('assignSelectedRides', this._id, function(error){});
+    Meteor.call('assignSelectedRides', this._id, function(error){
+      if(error){
+        // handle it!
+      } else {
+        var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
+        var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
+        jQueryUtils.toggleDrawer(handle, drawer);
+      }
+    });
   },  
   'click [data-js=delete]': function(e){
     Drivers.remove(this._id);
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
-    jQueryUtils.toggleDrawer(e.target);
+    var handle = $(e.target);
+    var drawer = handle.parents('[data-js="driver"]').find('[data-js="additional-info"]');
+    jQueryUtils.toggleDrawer(handle, drawer);
   },
   'click [data-js=text]':function(e){
     var phoneNumber = this.phone;
     var parsedNumber = utils.parsePhoneNumber(phoneNumber);
-    Meteor.call('textSomeone', this._id, window.location.host, parsedNumber, function(error, id){});
+    $(e.target).text('Texting...');
+    Meteor.call('sendText', this._id, window.location.host, parsedNumber, function(error, id){
+      if(error){
+        $(e.target).text('Failure!');
+        console.log(error);
+      } else {
+        $(e.target).text('Success!');
+        window.setTimeout(function(){
+          $(e.target).text('Text');
+        }, 1000);
+      }
+    });
   }
 });
 
