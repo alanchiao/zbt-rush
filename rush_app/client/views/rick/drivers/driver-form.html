@@ -10,9 +10,18 @@
           <div class="col-md-4">
             <input class="form-control" name="phone" type="text" value="" placeholder="* Phone" data-input='true'/>
           </div>
+					<!--
           <div class="col-md-4">
             <input class="form-control" name="capacity" type="text" value="" placeholder="* Capacity" data-input='true'/>
           </div>
+					-->
+					<div class="col-md-4">
+						<select name="car" data-input='true'>
+							{{#each unAssignedCars }}
+								<option value="{{_id}}">{{description}}</option>
+							{{/each}}
+						</select>
+					</div>
         </div>
         <div class="input-row row">
           <div class="col-md-8">

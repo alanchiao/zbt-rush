@@ -59,11 +59,19 @@ Router.map(function(){
 		where: 'server',
 		action: function(){
 			var data = this.request.body;
+			var accuracy;
+			if("accuracy" in data){
+				accuracy = data.accuracy;
+			}
+			else {
+				accuracy = null;
+			}
 			Cars.update(this.params._id, {
 				$set: {
 					lastLongitude: data.longitude,
 					lastLatitude: data.latitude,
-					lastPingTime: utils.getCurrentTime()
+					lastPingTime: utils.getCurrentTime(),
+					lastAccuracy: accuracy
 				}
 			});
 		}	

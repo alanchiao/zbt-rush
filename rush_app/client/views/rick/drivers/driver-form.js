@@ -6,7 +6,7 @@ Template.driverForm.events({
     if (driver) {
       formUtils.resetForm(e.target);
       Meteor.call('driver', driver, function(error, id){
-				var parsedNumber = utils.parsePhoneNumber(driver.phone);
+      	Cars.update(driver.car, {$set:{driver:Drivers.find(id).fetch()[0]}});
         if (error){
           return alert(error.reason);
         }
@@ -19,4 +19,13 @@ Template.driverForm.events({
     var drawer = $('body').find('[data-js="driver-form"]');
     jQueryUtils.toggleDrawer(handle, drawer);
   }
+});
+
+Template.driverForm.helpers({
+	unAssignedCars: function(){
+		console.log(Cars.find({driver: null}).fetch());
+    return Cars.find({
+      driver: null
+    }).fetch();
+	}
 });

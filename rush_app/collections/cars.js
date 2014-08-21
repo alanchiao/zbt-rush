@@ -20,6 +20,7 @@ Meteor.methods({
   * name
   * description
   * capacity
+	* driver
   * allowedDrivers
   * lastPingTime, lastLatitude, lastLongitude
   **/
@@ -28,6 +29,7 @@ Meteor.methods({
     var car = _.defaults(_.extend(attributes, {
       capacity: parseInt(attributes.capacity)
     }), {
+			driver: null,
       allowedDrivers: [],
       lastPingTime: null,
       lastLatitude: null,
