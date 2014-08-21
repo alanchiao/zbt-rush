@@ -7,7 +7,6 @@
 }
 
 .driver.status-waiting > .short-info {
-  background-color: #dbffdb;
 }
 
 .driver.status-unacked > .short-info {
@@ -15,7 +14,7 @@
 }
 
 .driver.status-acked > .short-info {
-  background-color: #ffffad;
+  background-color: #dbffdb;
 }
 
 .driver.editing {

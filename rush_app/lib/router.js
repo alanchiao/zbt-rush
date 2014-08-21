@@ -22,7 +22,7 @@ Router.map(function(){
 		waitOn: function(){
 			/**Must wait for rides model to be ready in order to retrieve the ride objects under
 			a driver that match the riders ids**/
-			return Meteor.subscribe('rides');
+			return Meteor.subscribe('rides'); 
 		}
 	});
   this.route('driver', {

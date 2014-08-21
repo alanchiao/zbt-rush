@@ -52,5 +52,9 @@ Template.driverItem.helpers({
   },
 	carCapacity: function(){
 		return Cars.find(this.car).fetch()[0].capacity;
+	},
+	carDescription: function(){
+		return Cars.find(this.car).fetch()[0].description;
 	}
+	
 });

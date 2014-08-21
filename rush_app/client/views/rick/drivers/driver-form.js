@@ -23,7 +23,6 @@ Template.driverForm.events({
 
 Template.driverForm.helpers({
 	unAssignedCars: function(){
-		console.log(Cars.find({driver: null}).fetch());
     return Cars.find({
       driver: null
     }).fetch();

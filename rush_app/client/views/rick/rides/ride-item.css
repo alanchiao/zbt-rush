@@ -16,11 +16,11 @@
   background: url('images/stripe.png') repeat;
 }
 
-.ride.status-found .short-info {
+.driver-ui-ride.status-found, .ride.status-found{
   background-color: #dbffdb;
 }
 
-.ride.status-not-found .short-info {
+.driver-ui-ride.status-not-found, .ride.status-not-found{
   background-color: #ffdbdb;
 }
 
