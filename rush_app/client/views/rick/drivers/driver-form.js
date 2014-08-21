@@ -6,7 +6,7 @@ Template.driverForm.events({
     if (driver) {
       formUtils.resetForm(e.target);
       Meteor.call('driver', driver, function(error, id){
-      	Cars.update(driver.car, {$set:{driver:Drivers.find(id).fetch()[0]}});
+        Cars.update(driver.carId, {$set:{driver:Drivers.findOne(id)}});
         if (error){
           return alert(error.reason);
         }

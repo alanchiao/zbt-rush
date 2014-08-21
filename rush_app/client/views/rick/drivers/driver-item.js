@@ -11,7 +11,7 @@ Template.driverItem.events({
     });
   },  
   'click [data-js=delete]': function(e){
-		Cars.update(this.car, {$set: {driver:null}});
+		Cars.update(this.carId, {$set: {driver:null}});
     Drivers.remove(this._id);
   },
   'click [data-js=handle]': function(e){
@@ -43,7 +43,7 @@ Template.driverItem.helpers({
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
   overfilled: function(){
-		var car = Cars.find(this.car).fetch()[0];
+		var car = Cars.findOne(this.carId);
     return (this.passengers > car.capacity) ? 'overfilled' : '';
   },
   textable: function(){
@@ -51,10 +51,10 @@ Template.driverItem.helpers({
     return libFixtures.usableNumbers.indexOf(parsedNumber) !== -1;
   },
 	carCapacity: function(){
-		return Cars.find(this.car).fetch()[0].capacity;
+		return Cars.findOne(this.carId).capacity;
 	},
 	carDescription: function(){
-		return Cars.find(this.car).fetch()[0].description;
+		return Cars.findOne(this.carId).description;
 	}
 	
 });
