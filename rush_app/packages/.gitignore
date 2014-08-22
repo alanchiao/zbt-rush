@@ -4,3 +4,9 @@
 /moment
 /twilio-meteor
 /jquery-ui
+/mapbox.js
+/iron-layout
+/iron-core
+/iron-dynamic-template
+/wait-on-lib
+/external-file-loader

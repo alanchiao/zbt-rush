@@ -4,6 +4,7 @@
     "bootstrap-3": {},
     "moment": {},
     "twilio-meteor": {},
-    "jquery-ui": {}
+    "jquery-ui": {},
+    "external-file-loader": {}
   }
 }
