@@ -1,11 +1,11 @@
 <template name="driverItem">
   <div class="driver status-{{status}} col-sm-12" data-js="driver">
     <div class="short-info row">
-      <div class="rider-info {{overfilled}} col-sm-5">{{name}} ({{passengers}}/{{carCapacity}} full)
+      <div class="rider-info {{overfilled}} col-sm-4">{{name}} ({{passengers}}/{{carCapacity}} full)
       </div>
-      <div class="phone col-sm-2">{{phone}}</div>
-			<div class="col-sm-2">{{carDescription}}</div>
-      <div class="driver-buttons col-sm-3 btn-group">
+      <div class="phone col-sm-3">{{phone}}</div>
+			<div class="col-sm-3">{{carName}}</div>
+      <div class="driver-buttons col-sm-2 btn-group">
         <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle"></span>
         <span class="remove-button glyphicon glyphicon-remove" data-js="delete"></span>
       </div>

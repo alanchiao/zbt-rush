@@ -29,29 +29,26 @@ var SAMPLE_RIDES = [{
     comments: 'Skippah'
 }];
 
-var SAMPLE_DRIVERS = [{
-    name: 'Charles',
-    phone: '19786219636',
-    capacity: 5,
-    comments: 'ZBestpresidenT'
-}, {
-    name: 'Kyle',
-    phone: '14354143012',
-    capacity: 4,
-    comments: 'Pretty cool guy'
+var SAMPLE_CARS = [{
+    name: 'Jackies Car',
+    description: 'gray car',
+    capacity: 5
 }];
 
 libFixtures = function(){
 	
-	var that = {};
+    var that = {};
 	 
   //for development purposes - equivalent to cmd: meteor reset.
   that.reset = function(){
-    Rides.find().fetch().forEach(function(ride){
+    Rides.find().forEach(function(ride){
         Rides.remove(ride._id);
     });
-    Drivers.find().fetch().forEach(function(driver){
+    Drivers.find().forEach(function(driver){
         Drivers.remove(driver._id);
+    });
+    Cars.find().forEach(function(car){
+        Cars.remove(car._id);
     });
     SAMPLE_RIDES.forEach(function(ride){
         Meteor.call('ride', ride, function(error,id){
@@ -60,8 +57,8 @@ libFixtures = function(){
             }
         });
     });
-    SAMPLE_DRIVERS.forEach(function(driver){
-        Meteor.call('driver', driver, function(error,id){
+    SAMPLE_CARS.forEach(function(car){
+        Meteor.call('car', car, function(error,id){
             if(error){
                 return alert(error.reason);
             }
@@ -70,7 +67,6 @@ libFixtures = function(){
   }
 
   that.sampleRides = SAMPLE_RIDES;
-  that.sampleDrivers = SAMPLE_DRIVERS;
 	that.usableNumbers = USABLE_NUMBERS;  
 
 	return that;

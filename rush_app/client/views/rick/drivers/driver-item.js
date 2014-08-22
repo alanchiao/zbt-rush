@@ -4,15 +4,21 @@ Template.driverItem.events({
       if(error){
         // handle it!
       } else {
-        var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
-        var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
-        jQueryUtils.toggleDrawer(handle, drawer);
+        // var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
+        // var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
+        // jQueryUtils.toggleDrawer(handle, drawer);
       }
     });
-  },  
+  },
   'click [data-js=delete]': function(e){
-		Cars.update(this.carId, {$set: {driver:null}});
-    Drivers.remove(this._id);
+    e.stopPropagation();
+    if (confirm("Are you sure you want to delete " + this.name + "? If he or she has any rides, they will be unassigned.")) {
+      Cars.update(this.carId, {$set: {driver:null}});
+      this.rideIds.forEach(function(rideId){
+        Meteor.call("unAssignRide", this._id, rideId, function(error){});
+      }.bind(this));
+      Drivers.remove(this._id);
+    }
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
@@ -21,6 +27,7 @@ Template.driverItem.events({
     jQueryUtils.toggleDrawer(handle, drawer);
   },
   'click [data-js=text]':function(e){
+    e.stopPropagation();
     var phoneNumber = this.phone;
     var parsedNumber = utils.parsePhoneNumber(phoneNumber);
     $(e.target).text('Texting...');
@@ -53,8 +60,8 @@ Template.driverItem.helpers({
 	carCapacity: function(){
 		return Cars.findOne(this.carId).capacity;
 	},
-	carDescription: function(){
-		return Cars.findOne(this.carId).description;
+	carName: function(){
+		return Cars.findOne(this.carId).name;
 	}
 	
 });
