@@ -25,6 +25,9 @@ utils = function(){
     if (json.phone === "") {
       invalid.push('phone');
     }
+    if (json.carId === "") {
+      invalid.push('carId');
+    }
     // if passengers is not undefined, it should be a number
     if (json.passengers !== undefined && (json.passengers === "" || typeof json.passengers != 'number' || json.passengers <= 0)) {
       invalid.push('passengers');

@@ -27,7 +27,7 @@ Meteor.methods({
   * Format of driver attributes:
   * name: string
   * phone: (***)-(***)-(****)
-  * capacity: max number of people who can fit in driver's car
+  * carId: id of this driver's car
   * passengers: number of people currently in a driver's car
   * status: waiting, unacked, or acked.
   *     waiting: whenever driver has no rides assigned.
@@ -35,13 +35,12 @@ Meteor.methods({
   *     acked: 
   **/
   driver: function(attributes){
-    var driver = _.defaults(_.extend(attributes, {
-      capacity: parseInt(attributes.capacity)
-    }), {
+    var driver = _.defaults(attributes, {
       rideIds: [],
       passengers: 0,
       name: undefined,
       phone: undefined,
+      carId: undefined,
       capacity: undefined,
       comments: undefined,
       status: Drivers.states.WAITING
@@ -58,14 +57,14 @@ Meteor.methods({
   },
 
   unAssignRide:function(driverId, rideId){
-    var ride = Rides.find(rideId).fetch()[0];
+    var ride = Rides.findOne(rideId);
     Drivers.update(driverId, {
       $set: {status: Drivers.states.UNACKED},
       $pull: {rideIds: rideId},
       $inc: {passengers: -ride.passengers}
     });
 
-    var driver = Drivers.find(driverId).fetch()[0];
+    var driver = Drivers.findOne(driverId);
     onDriverUpdate(driver);
 
     Rides.update(rideId, {
