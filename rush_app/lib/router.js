@@ -42,6 +42,12 @@ Router.map(function(){
 			return Meteor.subscribe('cars');
 		}
 	});
+	this.route('map',{
+		path: '/map',
+		waitOn: function(){
+			return Meteor.subscribe('cars');
+		}
+	});
 	this.route('carsJSON', {
 		path: '/cars/json',
 		where: 'server',
