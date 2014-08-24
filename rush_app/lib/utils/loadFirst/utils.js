@@ -19,6 +19,9 @@ utils = function(){
     if (json.name === "") {
       invalid.push('name');
     }
+    if (json.description === "") {
+      invalid.push('description');
+    }
     if (json.time === "" || (json.time != undefined && !json.time.match(/^2014-0[89]-[0-9]{2}T[0-9]{2}:[0-9]{2}/))) {
       invalid.push('time');
     }

@@ -1,11 +1,3 @@
-#cars{
-  width: 60%;
-}
-
-.generic-full-wrapper {
-  margin: 2%;
-}
-
 .car {
   background-color: transparent;
   border: thin solid #444444;

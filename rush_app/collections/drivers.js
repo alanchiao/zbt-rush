@@ -53,7 +53,8 @@ Meteor.methods({
   assignSelectedRides:function(driverId){
     var selectedRides = Rides.find({selected: true}).fetch();
     var selectedRideIds = selectedRides.map(function(selectedRide){return selectedRide._id});
-    assignRides(selectedRideIds, driverId); 
+    assignRides(selectedRideIds, driverId);
+    return selectedRides;
   },
 
   unAssignRide:function(driverId, rideId){

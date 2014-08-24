@@ -4,7 +4,13 @@
       <div class="rider-info {{overfilled}} col-sm-4">{{name}} ({{passengers}}/{{carCapacity}} full)
       </div>
       <div class="phone col-sm-3">{{phone}}</div>
-			<div class="col-sm-3">{{carName}}</div>
+      <div class="col-sm-3">
+        <select class="form-control" name="carId" data-input='true'>
+          {{#each unAssignedCars}}
+            {{makeOption ../carId}}
+          {{/each}}
+        </select>
+      </div>
       <div class="driver-buttons col-sm-2 btn-group">
         <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle"></span>
         <span class="remove-button glyphicon glyphicon-remove" data-js="delete"></span>

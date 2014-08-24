@@ -10,7 +10,7 @@ formUtils = function(){
     var json = {};
     $(form).find('[data-input=true]').each(function(){
       var fieldName = $(this).attr('name');
-      var val = $(this).val() ? $(this).val() : $(this).text();
+      var val = $(this).val() || $(this).text();
       json[fieldName] = (isNaN(val) || val === "") ? val : parseInt(val);
       $(this).css('background-color', '#ffffff');
     });

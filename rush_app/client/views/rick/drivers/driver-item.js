@@ -1,12 +1,14 @@
 Template.driverItem.events({
   'click [data-js=driver]': function(e){
-    Meteor.call('assignSelectedRides', this._id, function(error){
+    Meteor.call('assignSelectedRides', this._id, function(error, result){
       if(error){
-        // handle it!
-      } else {
-        // var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
-        // var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
-        // jQueryUtils.toggleDrawer(handle, drawer);
+        console.log(error);
+      } else if (result.length > 0) {
+        var textButton = $(e.target).parents('[data-js="driver"]').find('[data-js="text"]');
+        textButton.text('Text');
+        var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
+        var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
+        jQueryUtils.showDrawer(handle, drawer);
       }
     });
   },
@@ -36,10 +38,7 @@ Template.driverItem.events({
         $(e.target).text('Failure!');
         console.log(error);
       } else {
-        $(e.target).text('Success!');
-        window.setTimeout(function(){
-          $(e.target).text('Text');
-        }, 1000);
+        $(e.target).text('Sent!');
       }
     });
   }
@@ -62,6 +61,17 @@ Template.driverItem.helpers({
 	},
 	carName: function(){
 		return Cars.findOne(this.carId).name;
-	}
+	},
+  unAssignedCars: function(){
+    return Cars.find();
+  },
+  makeOption: function(carId){
+    var result = '<option value="' + this._id + '"';
+    if (carId == this._id) {
+      result += ' selected="selected"'
+    }
+    result += '>' + this.name + '</option>';
+    return new Handlebars.SafeString(result);
+  }
 	
 });
