@@ -1,11 +1,12 @@
 /**
 * Standard routing logic. Iron Router.
 *
-* GET  /                  : main page for administrative control by rick
-* GET  /drivers/:id       : main page for active driver app usage
-* GET  /cars              : page for CRUD administration of cars
-* GET  /cars/json         : get json version of all cars
-* POST /cars/:id/location : update car location   
+* GET  /                           : main page for administrative control by rick
+* GET  /map								         : get map with all active drivers displayed
+* GET  /cars                       : page for CRUD administration of cars
+* GET  /activeDrivers/:id          : main page for active driver app usage
+* GET  /activeDrivers/json         : get json version of all drivers
+* POST /activeDrivers/:id/location : update driver location   
 **/
 Router.configure({
   loadingTemplate:'loading',
@@ -14,7 +15,7 @@ Router.configure({
 
 Router.onBeforeAction(function(){
 	this.render('loading')
-}, {except: ['carsJSON', 'carLocation']});
+}, {except: ['driversJSON', 'driverLocation']});
     
 Router.map(function(){
   this.route('rick', {
@@ -26,7 +27,7 @@ Router.map(function(){
 		}
 	});
   this.route('driver', {
-    path: '/drivers/:_id',
+    path: '/activeDrivers/:_id',
     waitOn: function(){
         /**Must wait for drivers model to be ready before going to drivers page**/
         return Meteor.subscribe('drivers');
@@ -48,20 +49,20 @@ Router.map(function(){
 			return Meteor.subscribe('cars');
 		}
 	});
-	this.route('carsJSON', {
-		path: '/cars/json',
+	this.route('driversJSON', {
+		path: '/activeDrivers/json',
 		where: 'server',
 		waitOn: function(){
-			return Meteor.subscribe('cars');
+			return Meteor.subscribe('activeDrivers');
 		},
 		action: function(){
-			var cars = Cars.find().fetch();
+			var drivers = ActiveDrivers.find().fetch();
 			this.response.setHeader('Content-Type', 'application/json');
-			this.response.end(JSON.stringify(cars));
+			this.response.end(JSON.stringify(drivers));
 		}
 	});
-	this.route('carLocation', {
-		path: '/cars/:_id/location',
+	this.route('driverLocation', {
+		path: '/activeDrivers/:_id/location',
 		where: 'server',
 		action: function(){
 			var data = this.request.body;
@@ -72,7 +73,7 @@ Router.map(function(){
 			else {
 				accuracy = null;
 			}
-			Cars.update(this.params._id, {
+			ActiveDrivers.update(this.params._id, {
 				$set: {
 					lastLongitude: data.longitude,
 					lastLatitude: data.latitude,

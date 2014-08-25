@@ -13,7 +13,7 @@ Meteor.methods({
       to: number,
       from:'+15082831128',
       body: 'Your rides have been updated.\n' +
-        'http://' + urlHost + '/drivers/' + driverId
+        'http://' + urlHost + '/activeDrivers/' + driverId
     }, function(err, responseData){
       if(!err){}
     });

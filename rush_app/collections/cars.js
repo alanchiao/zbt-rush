@@ -30,7 +30,6 @@ Meteor.methods({
   * - capacity
 	* - driver
   * - allowedDrivers
-  * - lastPingTime, lastLatitude, lastLongitude
 	*
 	* UI-Related attributes:
 	* - editing
@@ -39,9 +38,6 @@ Meteor.methods({
     var car = _.defaults(_.extend(attributes, {
     }), {
       allowedDrivers: [],
-      lastPingTime: null,
-      lastLatitude: null,
-      lastLongitude: null,
       editing: false
     });
 		var response = Cars.validate(car);

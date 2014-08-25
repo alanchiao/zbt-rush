@@ -1,11 +1,11 @@
 Template.driver.helpers({
   isDriverWaiting: function(){
-    return this.status === Drivers.states.WAITING;
+    return this.status === ActiveDrivers.states.WAITING;
   },
   isDriverUnacked: function(){
-    return this.status === Drivers.states.UNACKED;
+    return this.status === ActiveDrivers.states.UNACKED;
   },
   isDriverAcked: function(){
-    return this.status === Drivers.states.ACKED;
+    return this.status === ActiveDrivers.states.ACKED;
   }
 });

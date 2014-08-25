@@ -33,13 +33,19 @@ Meteor.methods({
 	* - instruction: what driver should do upon completion
 	* - passengers: number of people currently in active driver's car
 	* - rideIds: ids of rides driver has currently
+	*
+	* Location related attributes: 
+  * - lastPingTime, lastLatitude, lastLongitude
 	**/
 
 	activeDriver: function(attributes){
 		var activeDriver = _.defaults(attributes, {
 			rideIds:[],
 			passengers: 0,
-			status: ActiveDrivers.states.WAITING
+			status: ActiveDrivers.states.WAITING,
+      lastPingTime: null,
+      lastLatitude: null,
+      lastLongitude: null
 		});
 
 		var activeDriverId = ActiveDrivers.insert(activeDriver);

@@ -10,3 +10,7 @@ Meteor.publish('rides', function(){
 Meteor.publish('cars', function(){
 	return Cars.find();
 });
+
+Meteor.publish('activeDrivers', function(){
+	return ActiveDrivers.find();
+})
