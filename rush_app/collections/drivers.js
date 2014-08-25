@@ -12,6 +12,12 @@ Drivers.allow({
   }
 });
 
+Drivers.validate = function(data){
+	var validator = ModelValidator(data);
+	validator.checkNonEmpty('name');
+	validator.checkNonEmpty('phone');
+	return validator.getResponse();
+};
 
 Meteor.methods({
   /** 
@@ -28,9 +34,16 @@ Meteor.methods({
     var driver = _.defaults(attributes, {
 			isAssigned: false
     });
-    var driverId = Drivers.insert(driver);
-    return driverId;
-  }
+		var response = Drivers.validate(driver);
+		if(response.isInputValid === true){
+			response.driverId = Drivers.insert(driver);
+		}
+		return response;
+  },
+	updateDriver: function(driver){
+		var response = Drivers.validate(driver);
+		return response;
+	}
 	/**
 	deleteDriver: function(driverId){
 		var driver = Drivers.findOne(driverId);

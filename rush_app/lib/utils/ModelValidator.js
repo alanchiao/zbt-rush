@@ -7,7 +7,7 @@ ModelValidator = function(data){
 		}
 	}
 	
-	function checkNonNegativeNumber(attrName){
+	function checkPositiveNumber(attrName){
 		if(data[attrName] === "" || typeof data[attrName] !== 'number' || data[attrName] <= 0){
 			invalid.push(attrName);
 		}
@@ -23,7 +23,7 @@ ModelValidator = function(data){
 
 	return {
 		checkNonEmpty: checkNonEmpty,
-		checkNonNegativeNumber: checkNonNegativeNumber,
+		checkPositiveNumber: checkPositiveNumber,
 		getResponse: getResponse
 	};
 };

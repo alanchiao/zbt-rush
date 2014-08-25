@@ -12,39 +12,52 @@ Cars.allow({
   }
 });
 
+Cars.validate = function(data){
+	var validator = ModelValidator(data);
+	validator.checkNonEmpty('name');
+	validator.checkNonEmpty('description');
+	validator.checkPositiveNumber('capacity');
+	return validator.getResponse();
+};
+
 Meteor.methods({
   /**
   * Create car
   *
   * Format of car attributes:
-  * name
-  * description
-  * capacity
-	* driver
-  * allowedDrivers
-  * lastPingTime, lastLatitude, lastLongitude
+  * - name
+  * - description
+  * - capacity
+	* - driver
+  * - allowedDrivers
+  * - lastPingTime, lastLatitude, lastLongitude
+	*
+	* UI-Related attributes:
+	* - editing
   **/
   car: function(attributes){
-
     var car = _.defaults(_.extend(attributes, {
-      capacity: parseInt(attributes.capacity)
     }), {
-			driver: null,
       allowedDrivers: [],
       lastPingTime: null,
       lastLatitude: null,
       lastLongitude: null,
-      editing: false,
-
-      name: undefined,
-      description: undefined
+      editing: false
     });
-
-    var carId = Cars.insert(car);
-    return carId;
+		var response = Cars.validate(car);
+		if(response.isInputValid === true){
+			response.carId = Cars.insert(car);
+		}
+		return response;
   },
 
-  updateLocation: function(carId, latitude, longitude){
-  }
+	editCar: function(carId, attributes){
+		var response = Cars.validate(attributes);
+		if(response.isInputValid === true){
+			Cars.update(carId, {$set: attributes}, function(error){
+				if(error){throwError(error.reason)};		
+			});	
+		}
+		return response;
+	}
 });
-

@@ -8,11 +8,13 @@ Template.carItem.events({
   'submit form': function(e){
     e.preventDefault();
     var carDetails = formUtils.formToJson(e.target);
-    Cars.update(this._id, {$set: carDetails}, function(error){
-      if(!error){
+    Meteor.call("editCar", this._id, carDetails, function(error, response){
+			if(response.isInputValid === true){
         jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
-      }
-    });
+			} else {
+				alert('invalid edit');
+			}
+		});
   }
 });
 

@@ -4,14 +4,10 @@ Template.rideForm.events({
   'submit form': function(e){
     e.preventDefault();
     var ride = formUtils.formToJson(e.target);
-    if (ride) {
-      formUtils.resetForm(e.target);
-      Meteor.call('ride', ride, function(error,id){
-        if(error){
-          return alert(error.reason);
-        }
-      });
-    }
+		Meteor.call('ride', ride, function(error, response){
+			if(error){alert(error.reason)};
+			formUtils.onResponse(response, e.target);
+    });
   },
 	'click [data-js=handle]': function(e){
     e.stopPropagation();

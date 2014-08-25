@@ -5,16 +5,11 @@ Template.driverForm.events({
     var driver = formUtils.formToJson(e.target);
 		formUtils.resetForm(e.target);
 		Meteor.call('driver', driver, function(error, response){
-			if (error){
-				return alert(error.reason);
-			}
-			else if (response.isValidInput === false){
-		    //Utils.flashError(response.invalidInputs)		
-			}
+			if (error){return alert(error.reason);}
+			formUtils.onResponse(response, e.target);
 		});
   },
   'click [data-js=handle]': function(e){
-		console.log("hello");
     e.stopPropagation();
     var handle = $(e.target);
     var drawer = $('body').find('[data-js="driver-form"]');

@@ -34,9 +34,21 @@ formUtils = function(){
     });
   }
 
+	function onResponse(response, form){
+		if(response.isInputValid === true){
+			resetForm(form);
+		}
+		else{
+      response.invalid.forEach(function(fieldName){
+        $(form).find('[name=' + fieldName + ']').first().css('background-color', '#ffdddd');
+      });
+		}
+	}
+
 	return {
     formToJson: formToJson,
-    resetForm: resetForm
+    resetForm: resetForm,
+		onResponse: onResponse
   };
 }();
 

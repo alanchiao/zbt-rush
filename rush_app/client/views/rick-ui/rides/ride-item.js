@@ -36,18 +36,13 @@ Template.rideItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
-    var options = formUtils.formToJson(e.target);
-    if (this.driver) {
-      Drivers.update(this.driver._id, {
-        $inc: {
-          passengers: options.passengers - this.passengers
-        }
-      });
-    }
-    Rides.update(this._id, {$set:options}, {}, function(error){
-      if (!error) {
+    var rideDetails  = formUtils.formToJson(e.target);
+		Meteor.call('editRide', this._id, rideDetails, function(error, response){
+			if(response.isInputValid === true){
         jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
-      }
+      } else {
+				alert('invalid edit');
+			}
     });
   }
 });
