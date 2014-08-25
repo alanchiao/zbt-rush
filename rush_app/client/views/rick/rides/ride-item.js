@@ -70,6 +70,20 @@ Template.rideItem.helpers({
     var today = new Date().toDateString();
     var rideDate = new Date(this.time).toDateString();
     var rideHourMin = this.time.split('T')[1];
+    var rideHour = parseInt(rideHourMin.split(':')[0]);
+    var rideMin = rideHourMin.split(':')[1];
+    if (rideHour === 0) {
+      rideHour = 12;
+      period = 'AM';
+    } else if (rideHour > 0 && rideHour < 12) {
+      period = 'AM';
+    } else if (rideHour == 12) {
+      period = 'PM';
+    } else if (rideHour > 12 && rideHour < 24) {
+      rideHour -= 12;
+      period = 'PM';
+    }
+    rideHourMin = '' + rideHour + ':' + rideMin + ' ' + period;
     var dateString = rideDate.split(' ').splice(1, 2).join(' ').replace(/^0/, '');
 
     return (rideDate == today) ? rideHourMin : dateString + ', ' + rideHourMin;
