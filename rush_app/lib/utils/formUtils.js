@@ -14,6 +14,7 @@ formUtils = function(){
       json[fieldName] = (isNaN(val) || val === "") ? val : parseInt(val);
       $(this).css('background-color', '#ffffff');
     });
+		/**
     var invalid = utils.validateJson(json);
     if (invalid.length > 0) {
       invalid.forEach(function(fieldName){
@@ -21,8 +22,9 @@ formUtils = function(){
       });
       return false;
     } else {
+		**/
       return json;
-    }
+    //}
   }
 
   function resetForm(form){

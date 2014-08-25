@@ -2,7 +2,7 @@
 * Standard routing logic. Iron Router.
 *
 * GET  /                  : main page for administrative control by rick
-* GET  /drivers/:id       : main page for driver app usage
+* GET  /drivers/:id       : main page for active driver app usage
 * GET  /cars              : page for CRUD administration of cars
 * GET  /cars/json         : get json version of all cars
 * POST /cars/:id/location : update car location   
@@ -32,7 +32,7 @@ Router.map(function(){
         return Meteor.subscribe('drivers');
     },
     data:function(){
-        var driver = Drivers.findOne(this.params._id);
+        var driver = ActiveDrivers.findOne(this.params._id);
         return driver;
     }
   });

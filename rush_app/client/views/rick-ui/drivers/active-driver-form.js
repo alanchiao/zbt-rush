@@ -1,12 +1,13 @@
 // these events apply to the driver form only. duplicate code exists in ride-form.js
-Template.driverForm.events({
+Template.activeDriverForm.events({
   'submit form': function(e){
     e.preventDefault();
-    var driver = formUtils.formToJson(e.target);
-    if (driver) {
+    var activeDriver = formUtils.formToJson(e.target);
+    if (activeDriver) {
       formUtils.resetForm(e.target);
-      Meteor.call('driver', driver, function(error, id){
-        Cars.update(driver.carId, {$set:{driver:Drivers.findOne(id)}});
+      Meteor.call('activeDriver', activeDriver, function(error, id){
+        Cars.update(activeDriver.carId, {$set:{driver:ActiveDrivers.findOne(id)}});
+				Drivers.update(activeDriver.driverId, {$set:{isAssigned: true}});
         if (error){
           return alert(error.reason);
         }
@@ -21,10 +22,15 @@ Template.driverForm.events({
   }
 });
 
-Template.driverForm.helpers({
+Template.activeDriverForm.helpers({
 	unAssignedCars: function(){
     return Cars.find({
       driver: null
     }).fetch();
+	},
+	unAssignedDrivers:function(){
+		return Drivers.find({
+			isAssigned: false
+		}).fetch();
 	}
 });

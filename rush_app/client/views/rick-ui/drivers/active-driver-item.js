@@ -1,4 +1,4 @@
-Template.driverItem.events({
+Template.activeDriverItem.events({
   'click [data-js=driver]': function(e){
     Meteor.call('assignSelectedRides', this._id, function(error, result){
       if(error){
@@ -19,7 +19,8 @@ Template.driverItem.events({
       this.rideIds.forEach(function(rideId){
         Meteor.call("unAssignRide", this._id, rideId, function(error){});
       }.bind(this));
-      Drivers.remove(this._id);
+			Drivers.update(this.driverId, {$set: {isAssigned:false}});
+      ActiveDrivers.remove(this._id);
     }
   },
   'click [data-js=handle]': function(e){
@@ -44,7 +45,7 @@ Template.driverItem.events({
   }
 });
 
-Template.driverItem.helpers({
+Template.activeDriverItem.helpers({
   listRides: function(){
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
@@ -53,7 +54,8 @@ Template.driverItem.helpers({
     return (this.passengers > car.capacity) ? 'overfilled' : '';
   },
   textable: function(){
-    var parsedNumber = utils.parsePhoneNumber(this.phone);
+		var phone = Drivers.findOne(this.driverId).phone;
+    var parsedNumber = utils.parsePhoneNumber(phone);
     return libFixtures.usableNumbers.indexOf(parsedNumber) !== -1;
   },
 	carCapacity: function(){
@@ -61,6 +63,12 @@ Template.driverItem.helpers({
 	},
 	carName: function(){
 		return Cars.findOne(this.carId).name;
+	},
+	driverName: function(){
+		return Drivers.findOne(this.driverId).name;
+	},
+	driverPhone: function(){
+		return Drivers.findOne(this.driverId).phone;
 	},
   unAssignedCars: function(){
     return Cars.find();
