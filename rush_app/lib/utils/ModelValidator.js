@@ -2,7 +2,9 @@ ModelValidator = function(data){
   var invalid = [];
   
   function checkNonEmpty(attrName){
-    if(data[attrName] === ""){
+    // if field is empty or starts with * (placeholder indicating requiredness),
+    // this is an invalid value for the field
+    if(data[attrName] === "" || data[attrName].charAt(0) == "*"){
       invalid.push(attrName);
     }
   }

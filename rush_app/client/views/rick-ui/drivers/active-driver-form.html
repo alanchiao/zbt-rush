@@ -9,6 +9,7 @@
         <div class="input-row row">
           <div class="col-md-6">
 						<select class="form-control" name="driverId" data-input='true'>
+              <option value="" disabled selected style='display:none;'>* Driver</option>
 							{{#each unAssignedDrivers }}
 								<option value="{{_id}}">{{name}}</option>
 							{{/each}}
@@ -16,6 +17,7 @@
           </div>
 					<div class="col-md-6">
 						<select class="form-control" name="carId" data-input='true'>
+              <option value="" disabled selected style='display:none;'>* Car</option>
 							{{#each unAssignedCars }}
 								<option value="{{_id}}">{{name}}</option>
 							{{/each}}
