@@ -10,7 +10,7 @@ Template.driver.helpers({
   }
 });
 
-if(window.location.pathname.match('/activeDrivers/.*$') && navigator && !navigator.userAgent.match(/Android/i)){
+if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.userAgent.match(/Android/i)){
 	var updateLocation = function(){
 		navigator.geolocation.getCurrentPosition(function(position){
 			var latitude  =  position['coords']['latitude'];

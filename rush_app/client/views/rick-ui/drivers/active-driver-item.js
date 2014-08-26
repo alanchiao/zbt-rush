@@ -35,7 +35,7 @@ Template.activeDriverItem.events({
 		var driver = Drivers.findOne(this.driverId);
     var parsedNumber = utils.parsePhoneNumber(driver.phone);
     $(e.target).text('Texting...');
-    var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/activeDrivers/' + this.driverId;
+    var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/drivers/' + this.driverId;
     Meteor.call('sendText', text, parsedNumber, function(error, id){
       if(error){
         $(e.target).text('Failure!');

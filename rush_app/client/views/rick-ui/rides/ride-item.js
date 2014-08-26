@@ -49,7 +49,7 @@ Template.rideItem.events({
 
 Template.rideItem.helpers({
   isDriverUI: function(){
-    return window.location.pathname.match('/activeDrivers/.*$');
+    return window.location.pathname.match('/drivers/.*$');
   },
   editingClass: function(){
     return this.editing && 'editing';

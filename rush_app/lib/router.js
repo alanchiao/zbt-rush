@@ -3,10 +3,10 @@
 *
 * GET  /                           : main page for administrative control by rick
 * GET  /map								         : get map with all active drivers displayed
-* GET  /cars                       : page for CRUD administration of cars
-* GET  /activeDrivers/:id          : main page for active driver app usage
-* GET  /activeDrivers/json         : get json version of all drivers
-* POST /activeDrivers/:id/location : update driver location   
+* GET  /create                       : page for CRUD administration of cars
+* GET  /drivers/:id          : main page for active driver app usage
+* GET  /drivers/json         : get json version of all drivers
+* POST /drivers/:id/location : update driver location   
 **/
 Router.configure({
   loadingTemplate:'loading',
@@ -28,13 +28,13 @@ Router.map(function(){
 	});
 	//I hope that the id of an active driver is never 'json'
 	this.route('driversJSON', {
-		path: '/activeDrivers/json',
+		path: '/drivers/json',
 		where: 'server',
 		waitOn: function(){
-			return Meteor.subscribe('activeDrivers');
+			return Meteor.subscribe('drivers');
 		},
 		action: function(){
-			var drivers = ActiveDrivers.find().fetch();
+			var drivers = drivers.find().fetch();
 			drivers.forEach(function(driver){
 				driver.driverContent = Drivers.findOne(driver.driverId);
 				driver.carContent = Cars.findOne(driver.carId);
@@ -44,17 +44,17 @@ Router.map(function(){
 		}
 	});
   this.route('driver', {
-    path: '/activeDrivers/:_id',
+    path: '/drivers/:_id',
     waitOn: function(){
         return Meteor.subscribe('drivers');
     },
     data:function(){
-        var driver = ActiveDrivers.findOne(this.params._id);
+        var driver = drivers.findOne(this.params._id);
         return driver;
     }
   });
 	this.route('driverLocation', {
-		path: '/activeDrivers/:_id/location',
+		path: '/drivers/:_id/location',
 		where: 'server',
 		action: function(){
 			var data = this.request.body;
@@ -66,7 +66,7 @@ Router.map(function(){
 				accuracy = null;
 			}
 
-			ActiveDrivers.update(this.params._id, {
+			drivers.update(this.params._id, {
 				$set: {
 					lastLongitude: data.longitude,
 					lastLatitude: data.latitude,
@@ -76,8 +76,8 @@ Router.map(function(){
 			});
 		}
 	});
-	this.route('cars',{
-		path: '/cars',
+	this.route('create',{
+		path: '/create',
 		waitOn: function(){
 			return Meteor.subscribe('cars');
 		}
