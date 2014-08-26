@@ -9,6 +9,7 @@ Template.driverItem.events({
 				activeDriver.rideIds.forEach(function(rideId){
 					Meteor.call("unAssignRide", id, rideId, function(error){});
 				});
+				Drivers.update(id, {$set: {isAssigned:false}});
 				ActiveDrivers.remove(activeDriver._id);
 			}
 			Drivers.remove(this._id);

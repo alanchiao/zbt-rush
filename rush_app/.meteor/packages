@@ -12,3 +12,4 @@ moment
 twilio-meteor
 jquery-ui
 external-file-loader
+http

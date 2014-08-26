@@ -1,11 +1,12 @@
 Template.carItem.events({
   'click [data-js=delete]':function(e){
-		if(confirm("Are you sure you want to delete " + this.name + "? Any driver using the car will become active and corresponding rides will be unassigned")){
+		if(confirm("Are you sure you want to delete " + this.name + "? Any driver using the car will become inactive and corresponding rides will be unassigned")){
 			if(this.isAssigned == true){
 				var activeDriver = ActiveDrivers.findOne({carId:this._id});
 				activeDriver.rideIds.forEach(function(rideId){
 					Meteor.call("unAssignRide", activeDriver._id, rideId, function(error){});
 				});
+				Drivers.update(activeDriver.driverId, {$set: {isAssigned:false}});
 				ActiveDrivers.remove(activeDriver._id);
 			}
 			Cars.remove(this._id);

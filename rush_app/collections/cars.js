@@ -15,7 +15,6 @@ Cars.allow({
 Cars.validate = function(data){
 	var validator = ModelValidator(data);
 	validator.checkNonEmpty('name');
-	validator.checkNonEmpty('description');
 	validator.checkPositiveNumber('capacity');
 	return validator.getResponse();
 };
