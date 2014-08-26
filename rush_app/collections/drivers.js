@@ -31,9 +31,11 @@ Meteor.methods({
 	* - isAssigned: if driver is 'assigned' to be active 
   **/
   driver: function(attributes){
-    var driver = _.defaults(attributes, {
-			isAssigned: false
-    });
+    var driver = _.defaults(_.extend(attributes, {
+			capacity: parseInt(attributes.capacity)
+    }), {
+			isAssigned:false	
+		});
 		var response = Drivers.validate(driver);
 		if(response.isInputValid === true){
 			response.driverId = Drivers.insert(driver);
