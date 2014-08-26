@@ -9,20 +9,16 @@ Template.map.rendered = function(){
     function updateDrivers(){
       carLayer.clearLayers();
       ActiveDrivers.find().forEach(function(driver){
-        var lastPingTime = parseInt(driver.lastPingTime);
-
-        if (!isNaN(lastPingTime)) {
-          var delta = Date.now() - lastPingTime;
-          // Check if we've heard from the car in the last 5 minutes
-          if (delta < 5 * 60 * 1000) {
-            var lat = parseFloat(driver.lastLatitude);
-            var lon = parseFloat(driver.lastLongitude);
-            if (!isNaN(lat) && !isNaN(lon)) {
-              // Determine color of dot based on last ping time
-              var color = delta < 2 * 60 * 1000 ? 'green' : 'yellow';
-              var marker = L.circleMarker([lat, lon], {color: color, fill: true, fillOpacity: 1.0});
-              carLayer.addLayer(marker);
-            }
+        var delta = new Date(utils.getCurrentTime()) - new Date(driver.lastPingTime);
+        // Check if we've heard from the car in the last 5 minutes
+        if (delta < 5 * 60 * 1000) {
+          var lat = parseFloat(driver.lastLatitude);
+          var lon = parseFloat(driver.lastLongitude);
+          if (!isNaN(lat) && !isNaN(lon)) {
+            // Determine color of dot based on last ping time
+            var color = delta < 2 * 60 * 1000 ? 'green' : 'yellow';
+            var marker = L.circleMarker([lat, lon], {color: color, fill: true, fillOpacity: 1.0});
+            carLayer.addLayer(marker);
           }
         }
       });
