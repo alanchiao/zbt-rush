@@ -57,12 +57,15 @@ Meteor.methods({
 	* - selected: boolean: currently selected by someone (any user) on UI or not
 	*/
   ride: function(attributes){
-    var ride = _.defaults(attributes, {
+    var ride = _.defaults(_.extend(attributes, {
+			capacity: parseInt(attributes.capacity)
+		}),{
       driver: undefined,
       editing: false,
       selected: false,
       status: Rides.states.UNASSIGNED,
     });
+
 		var response = Rides.validate(ride);
 		if(response.isInputValid === true){
 			response.rideId = Rides.insert(ride);
@@ -76,7 +79,7 @@ Meteor.methods({
 			var ride = Rides.findOne(rideId);
 
 			if(ride.driver){
-				Drivers.update(ride.driver._id, {
+				ActiveDrivers.update(ride.driver._id, {
 					$inc: {
 						passengers: attributes.passengers - ride.passengers
 					}
