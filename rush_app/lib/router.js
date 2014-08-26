@@ -31,25 +31,25 @@ Router.map(function(){
 		path: '/drivers/json',
 		where: 'server',
 		waitOn: function(){
-			return Meteor.subscribe('drivers');
+			return Meteor.subscribe('activeDrivers');
 		},
 		action: function(){
-			var drivers = drivers.find().fetch();
-			drivers.forEach(function(driver){
+			var activeDrivers = ActiveDrivers.find().fetch();
+			activeDrivers.forEach(function(driver){
 				driver.driverContent = Drivers.findOne(driver.driverId);
 				driver.carContent = Cars.findOne(driver.carId);
 			});
 			this.response.setHeader('Content-Type', 'application/json');
-			this.response.end(JSON.stringify(drivers));
+			this.response.end(JSON.stringify(activeDrivers));
 		}
 	});
   this.route('driver', {
     path: '/drivers/:_id',
     waitOn: function(){
-        return Meteor.subscribe('drivers');
+        return Meteor.subscribe('activeDrivers');
     },
     data:function(){
-        var driver = drivers.findOne(this.params._id);
+        var driver = ActiveDrivers.findOne(this.params._id);
         return driver;
     }
   });
@@ -66,7 +66,7 @@ Router.map(function(){
 				accuracy = null;
 			}
 
-			drivers.update(this.params._id, {
+			ActiveDrivers.update(this.params._id, {
 				$set: {
 					lastLongitude: data.longitude,
 					lastLatitude: data.latitude,
