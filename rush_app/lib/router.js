@@ -45,9 +45,6 @@ Router.map(function(){
 	});
   this.route('driver', {
     path: '/drivers/:_id',
-    waitOn: function(){
-        return Meteor.subscribe('activeDrivers');
-    },
     data:function(){
         var driver = ActiveDrivers.findOne(this.params._id);
         return driver;
