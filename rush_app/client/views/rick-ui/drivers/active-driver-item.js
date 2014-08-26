@@ -6,6 +6,7 @@ Template.activeDriverItem.events({
       } else if (result.length > 0) {
         var textButton = $(e.target).parents('[data-js="driver"]').find('[data-js="text"]');
         textButton.text('Text');
+        textButton.show();
         var handle = $(e.target).parents('[data-js="driver"]').find('[data-js="handle"]');
         var drawer = $(e.target).parents('[data-js="driver"]').find('[data-js="additional-info"]');
         jQueryUtils.showDrawer(handle, drawer);
@@ -32,18 +33,26 @@ Template.activeDriverItem.events({
   },
   'click [data-js=text]':function(e){
     e.stopPropagation();
-		var driver = Drivers.findOne(this.driverId);
-    var parsedNumber = utils.parsePhoneNumber(driver.phone);
-    $(e.target).text('Texting...');
-    var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/drivers/' + this._id;
-    Meteor.call('sendText', text, parsedNumber, function(error, id){
-      if(error){
-        $(e.target).text('Failure!');
-        console.log(error);
-      } else {
-        $(e.target).text('Sent!');
-      }
-    });
+    if (!$(e.target).data('disabled')) {
+      $(e.target).data('disabled', 'disabled');
+      window.setTimeout(function(){
+        $(e.target).removeData('disabled');
+      }, 500);
+
+  		var driver = Drivers.findOne(this.driverId);
+      var parsedNumber = utils.parsePhoneNumber(driver.phone);
+      $(e.target).text('Texting...');
+      var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/drivers/' + this._id;
+      Meteor.call('sendText', text, parsedNumber, function(error, id){
+        if(error){
+          $(e.target).text('Failure!');
+          console.log(error);
+        } else {
+          $(e.target).text('Sent!');
+          $(e.target).fadeOut();
+        }
+      });
+    }
   }
 });
 

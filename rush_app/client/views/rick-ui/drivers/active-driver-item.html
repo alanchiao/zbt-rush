@@ -3,7 +3,14 @@
     <div class="short-info row">
       <div class="rider-info {{overfilled}} col-sm-4">{{driverName}} ({{passengers}}/{{carCapacity}} full)
       </div>
-      <div class="phone col-sm-3">{{driverPhone}}</div>
+      <div class="phone col-sm-3">
+        <span>{{driverPhone}}</span>
+        <span>
+          {{#if textable}}
+            <a data-js="text">Text</a>
+          {{/if}}
+        </span>
+      </div>
       <div class="carName col-sm-3">{{carName}}</div>
       <div class="driver-buttons col-sm-2 btn-group">
         <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle"></span>
@@ -13,14 +20,9 @@
     <div class="additional-info row" data-js="additional-info">
       <div class="extra-info col-sm-12">
         <div class="row">
-          <div class="col-sm-10">
+          <div class="col-sm-12">
             <span class="comments-label">Instructions when complete: </span>
             <span name="comments" class="comments">{{instruction}}</span>
-          </div>
-          <div class="col-sm-2 text-right">
-            {{#if textable}}
-              <a data-js="text">Text</a>
-            {{/if}}
           </div>
         </div>
       </div>    

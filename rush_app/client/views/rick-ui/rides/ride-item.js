@@ -12,7 +12,11 @@ Template.rideItem.events({
   },
   'click [data-js=unassign]': function(e){
     e.stopPropagation();
-		Meteor.call("unAssignRide", this.driver._id, this._id, function(error){});
+    var textButton = $(e.target).parents('[data-js="driver"]').find('[data-js="text"]');
+    textButton.text('Text');
+    textButton.show();
+    
+    Meteor.call("unAssignRide", this.driver._id, this._id, function(error){});
   },
   'click [data-js=delete]': function(e){
     e.stopPropagation();
