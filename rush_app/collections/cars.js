@@ -28,8 +28,8 @@ Meteor.methods({
   * - name
   * - description
   * - capacity
-	* - driver
   * - allowedDrivers
+	* - isAssigned : if is assigned to active driver
 	*
 	* UI-Related attributes:
 	* - editing
@@ -38,7 +38,8 @@ Meteor.methods({
     var car = _.defaults(_.extend(attributes, {
     }), {
       allowedDrivers: [],
-      editing: false
+			isAssigned: false,
+			editing: false
     });
 		var response = Cars.validate(car);
 		if(response.isInputValid === true){

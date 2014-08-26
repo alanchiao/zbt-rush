@@ -13,4 +13,4 @@ Meteor.publish('cars', function(){
 
 Meteor.publish('activeDrivers', function(){
 	return ActiveDrivers.find();
-})
+});

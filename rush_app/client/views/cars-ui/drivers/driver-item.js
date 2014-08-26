@@ -5,7 +5,7 @@ Template.driverItem.events({
 			if(this.isAssigned === true){
 				var id = this._id;
 				var activeDriver = ActiveDrivers.findOne({driverId: id});
-				Cars.update(activeDriver.carId, {$set: {driver:null}});
+				Cars.update(activeDriver.carId, {$set: {isAssigned:false}});
 				activeDriver.rideIds.forEach(function(rideId){
 					Meteor.call("unAssignRide", id, rideId, function(error){});
 				});

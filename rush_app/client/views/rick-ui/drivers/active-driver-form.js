@@ -6,7 +6,7 @@ Template.activeDriverForm.events({
     if (activeDriver) {
       formUtils.resetForm(e.target);
       Meteor.call('activeDriver', activeDriver, function(error, id){
-        Cars.update(activeDriver.carId, {$set:{driver:ActiveDrivers.findOne(id)}});
+        Cars.update(activeDriver.carId, {$set:{isAssigned: true}});
 				Drivers.update(activeDriver.driverId, {$set:{isAssigned: true}});
         if (error){
           return alert(error.reason);
@@ -25,7 +25,7 @@ Template.activeDriverForm.events({
 Template.activeDriverForm.helpers({
 	unAssignedCars: function(){
     return Cars.find({
-      driver: null
+      isAssigned:false
     }).fetch();
 	},
 	unAssignedDrivers:function(){

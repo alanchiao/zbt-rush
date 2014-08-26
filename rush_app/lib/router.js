@@ -26,10 +26,26 @@ Router.map(function(){
 			return Meteor.subscribe('rides'); 
 		}
 	});
+	//I hope that the id of an active driver is never 'json'
+	this.route('driversJSON', {
+		path: '/activeDrivers/json',
+		where: 'server',
+		waitOn: function(){
+			return Meteor.subscribe('activeDrivers');
+		},
+		action: function(){
+			var drivers = ActiveDrivers.find().fetch();
+			drivers.forEach(function(driver){
+				driver.driverContent = Drivers.findOne(driver.driverId);
+				driver.carContent = Cars.findOne(driver.carId);
+			});
+			this.response.setHeader('Content-Type', 'application/json');
+			this.response.end(JSON.stringify(drivers));
+		}
+	});
   this.route('driver', {
     path: '/activeDrivers/:_id',
     waitOn: function(){
-        /**Must wait for drivers model to be ready before going to drivers page**/
         return Meteor.subscribe('drivers');
     },
     data:function(){
@@ -48,40 +64,6 @@ Router.map(function(){
 		waitOn: function(){
 			return Meteor.subscribe('cars');
 		}
-	});
-	this.route('driversJSON', {
-		path: '/activeDrivers/json',
-		where: 'server',
-		waitOn: function(){
-			return Meteor.subscribe('activeDrivers');
-		},
-		action: function(){
-			var drivers = ActiveDrivers.find().fetch();
-			this.response.setHeader('Content-Type', 'application/json');
-			this.response.end(JSON.stringify(drivers));
-		}
-	});
-	this.route('driverLocation', {
-		path: '/activeDrivers/:_id/location',
-		where: 'server',
-		action: function(){
-			var data = this.request.body;
-			var accuracy;
-			if("accuracy" in data){
-				accuracy = data.accuracy;
-			}
-			else {
-				accuracy = null;
-			}
-			ActiveDrivers.update(this.params._id, {
-				$set: {
-					lastLongitude: data.longitude,
-					lastLatitude: data.latitude,
-					lastPingTime: utils.getCurrentTime(),
-					lastAccuracy: accuracy
-				}
-			});
-		}	
 	});
 });
 
