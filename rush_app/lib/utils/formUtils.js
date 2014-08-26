@@ -38,7 +38,7 @@ formUtils = function(){
 	
 	function onResponse(response, form){
 		if(response.isInputValid === true){
-			resetForm(form);
+			this.resetForm(form);
 		}
 		else{
       response.invalid.forEach(function(fieldName){
@@ -49,17 +49,7 @@ formUtils = function(){
 
 	return {
     formToJson: formToJson,
-		onResponse: onResponse
+	onResponse: onResponse,
+	resetForm: resetForm
   };
 }();
-
-
-//Private methods
-
-//Takes care of reseting form input values upon successful submit
-var resetForm =  function(form){
-	$(form).find('[name="name"]').focus();
-	$(form).find('[data-input=true]').each(function(){
-		$(this).val($(this).data('default') || '');
-	});
-}
