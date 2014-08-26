@@ -13,47 +13,6 @@ utils = function(){
       }
     });
   }
-	//Needs to be moved elsewhere. Not util since app-specific
-  function validateJson(json){
-    var invalid = [];
-    if (json.name === "") {
-      invalid.push('name');
-    }
-    if (json.description === "") {
-      invalid.push('description');
-    }
-    if (json.time === "" || (json.time != undefined && !json.time.match(/^2014-0[89]-[0-9]{2}T[0-9]{2}:[0-9]{2}/))) {
-      invalid.push('time');
-    }
-    if (json.phone === "") {
-      invalid.push('phone');
-    }
-    if (json.carId === "") {
-      invalid.push('carId');
-    }
-    // if passengers is not undefined, it should be a number
-    if (json.passengers !== undefined && (json.passengers === "" || typeof json.passengers != 'number' || json.passengers <= 0)) {
-      invalid.push('passengers');
-    }
-    // if capacity is not undefined, it should be a number
-    if (json.capacity !== undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
-      invalid.push('capacity');
-    }
-    if (json.pickup === "") {
-      invalid.push('pickup');
-    }
-    return invalid;
-  }
-
-	function validateCar(json){
-    var invalid = [];
-    if (json.description === "") {
-      invalid.push('description');
-    }
-    if (json.capacity != undefined && (json.capacity === "" || typeof json.capacity != 'number' || json.capacity <= 0)) {
-      invalid.push('capacity');
-    }
-	}
 
 	function parsePhoneNumber(phoneNumber){
 		var reg = new RegExp("[+\\-() ]", "g");
@@ -73,8 +32,6 @@ utils = function(){
 
   return {
     resetItem: resetItem,
-    validateJson: validateJson,
-    validateCar: validateCar,
     parsePhoneNumber: parsePhoneNumber,
     getCurrentTime: getCurrentTime
   };
