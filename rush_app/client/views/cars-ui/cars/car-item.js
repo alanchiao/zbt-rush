@@ -1,6 +1,15 @@
 Template.carItem.events({
   'click [data-js=delete]':function(e){
-    Cars.remove(this._id);
+		if(confirm("Are you sure you want to delete " + this.name + "? Any driver using the car will become active and corresponding rides will be unassigned")){
+			if(this.isAssigned == true){
+				var activeDriver = ActiveDrivers.findOne({carId:this._id});
+				activeDriver.rideIds.forEach(function(rideId){
+					Meteor.call("unAssignRide", activeDriver._id, rideId, function(error){});
+				});
+				ActiveDrivers.remove(activeDriver._id);
+			}
+			Cars.remove(this._id);
+		}
   },
   'click [data-js=edit]':function(e){
     Cars.update(this._id, {$set:{editing: !this.editing}});
