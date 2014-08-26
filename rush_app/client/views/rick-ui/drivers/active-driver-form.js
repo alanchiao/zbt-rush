@@ -8,6 +8,10 @@ Template.activeDriverForm.events({
       Meteor.call('activeDriver', activeDriver, function(error, id){
         Cars.update(activeDriver.carId, {$set:{isAssigned: true}});
 				Drivers.update(activeDriver.driverId, {$set:{isAssigned: true}});
+
+        var text = 'Rick has selected you to drive! You should be receiving another text shortly with a link to your assigned rides.';
+        var parsedNumber = utils.parsePhoneNumber(Drivers.findOne(activeDriver.driverId).phone);
+        Meteor.call('sendText', text, parsedNumber);
         if (error){
           return alert(error.reason);
         }
@@ -25,7 +29,7 @@ Template.activeDriverForm.events({
 Template.activeDriverForm.helpers({
 	unAssignedCars: function(){
     return Cars.find({
-      isAssigned:false
+      isAssigned: false
     }).fetch();
 	},
 	unAssignedDrivers:function(){

@@ -15,7 +15,7 @@ Template.activeDriverItem.events({
   'click [data-js=delete]': function(e){
     e.stopPropagation();
 		var driver = Drivers.findOne(this.driverId);
-    if (confirm("Are you sure you want to delete " + driver.name + "? If he or she has any rides, they will be unassigned.")) {
+    if (confirm("Are you sure you want to deactivate " + driver.name + "? If he or she has any rides, they will be unassigned.")) {
       Cars.update(this.carId, {$set: {isAssigned:false}});
       this.rideIds.forEach(function(rideId){
         Meteor.call("unAssignRide", this._id, rideId, function(error){});
@@ -33,10 +33,10 @@ Template.activeDriverItem.events({
   'click [data-js=text]':function(e){
     e.stopPropagation();
 		var driver = Drivers.findOne(this.driverId);
-    var phoneNumber = driver.phone;
-    var parsedNumber = utils.parsePhoneNumber(phoneNumber);
+    var parsedNumber = utils.parsePhoneNumber(driver.phone);
     $(e.target).text('Texting...');
-    Meteor.call('sendText', this._id, window.location.host, parsedNumber, function(error, id){
+    var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/activeDrivers/' + this.driverId;
+    Meteor.call('sendText', text, parsedNumber, function(error, id){
       if(error){
         $(e.target).text('Failure!');
         console.log(error);
@@ -74,14 +74,6 @@ Template.activeDriverItem.helpers({
 	},
   unAssignedCars: function(){
     return Cars.find();
-  },
-  makeOption: function(carId){
-    var result = '<option value="' + this._id + '"';
-    if (carId == this._id) {
-      result += ' selected="selected"'
-    }
-    result += '>' + this.name + '</option>';
-    return new Handlebars.SafeString(result);
   }
 	
 });

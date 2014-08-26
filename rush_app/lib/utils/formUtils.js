@@ -12,19 +12,8 @@ formUtils = function(){
       var fieldName = $(this).attr('name');
       var val = $(this).val() || $(this).text();
       json[fieldName] = (isNaN(val) || val === "") ? val : parseInt(val);
-      $(this).css('background-color', '#ffffff');
     });
-		/**
-    var invalid = utils.validateJson(json);
-    if (invalid.length > 0) {
-      invalid.forEach(function(fieldName){
-        $(form).find('[name=' + fieldName + ']').first().css('background-color', '#ffdddd');
-      });
-      return false;
-    } else {
-		**/
-      return json;
-    //}
+    return json;
   }
 
   function resetForm(form){

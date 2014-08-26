@@ -1,17 +1,20 @@
 <template name="activeDriverForm">
   <div class="col-md-12" data-js="driver-form">
-    <h4> Make Driver Active </h4>
+    <h4> Deploy Driver </h4>
+    <div class="col-md-12">
+      <a href="/cars">Create a new driver or car</a>
+    </div>
     <div class="col-md-12">
       <form>
         <div class="input-row row">
-          <div class="col-md-4">
+          <div class="col-md-6">
 						<select class="form-control" name="driverId" data-input='true'>
 							{{#each unAssignedDrivers }}
 								<option value="{{_id}}">{{name}}</option>
 							{{/each}}
 						</select>
           </div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<select class="form-control" name="carId" data-input='true'>
 							{{#each unAssignedCars }}
 								<option value="{{_id}}">{{name}}</option>

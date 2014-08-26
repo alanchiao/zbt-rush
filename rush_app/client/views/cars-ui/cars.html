@@ -1,15 +1,6 @@
 <template name="cars">
 	<div class="container-fluid">
 		<div class="row">
-			<div id="cars" class="generic-wrapper col-md-12">
-				<h2> Cars </h2>
-				<div class="generic-form row">
-					{{> carForm }}
-				</div>
-				<div class="row">
-					{{> carsList }}
-				</div>
-			</div>
 			<div id="drivers" class="generic-wrapper col-md-12">
 				<h2> Drivers </h2>
 				<div class="generic-form row">
@@ -17,6 +8,15 @@
 				</div>
 				<div class="row">
 					{{> driversList }}
+				</div>
+			</div>
+			<div id="cars" class="generic-wrapper col-md-12">
+				<h2> Cars </h2>
+				<div class="generic-form row">
+					{{> carForm }}
+				</div>
+				<div class="row">
+					{{> carsList }}
 				</div>
 			</div>
 		</div>
