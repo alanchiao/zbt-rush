@@ -3,7 +3,8 @@ Template.activeDriverForm.events({
   'submit form': function(e){
     e.preventDefault();
     var activeDriver = formUtils.formToJson(e.target);
-    if (activeDriver) {
+    var validation = ActiveDrivers.validate(activeDriver);
+    if (validation.isInputValid) {
       formUtils.resetForm(e.target);
       Meteor.call('activeDriver', activeDriver, function(error, id){
         Cars.update(activeDriver.carId, {$set:{isAssigned: true}});
@@ -16,6 +17,8 @@ Template.activeDriverForm.events({
           return alert(error.reason);
         }
       });
+    } else {
+      formUtils.onResponse(validation, e.target);
     }
   },
   'click [data-js=handle]': function(e){

@@ -19,6 +19,13 @@ ActiveDrivers.allow({
   }
 });
 
+ActiveDrivers.validate = function(data){
+  var validator = ModelValidator(data);
+  validator.checkNonEmpty('driverId');
+  validator.checkNonEmpty('carId');
+  return validator.getResponse();
+};
+
 Meteor.methods({
 	/**
 	* Active Driver
