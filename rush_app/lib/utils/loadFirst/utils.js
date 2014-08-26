@@ -66,9 +66,7 @@ utils = function(){
 	}
 
 	function getCurrentTime(){
-    var d = new Date();
-    d.setHours(d.getHours() - d.getTimezoneOffset()/60);
-    return d.toISOString().split(':').splice(0,2).join(':');
+    return Date.now();
 	}
 
   return {
