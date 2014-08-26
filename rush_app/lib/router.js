@@ -53,6 +53,29 @@ Router.map(function(){
         return driver;
     }
   });
+	this.route('driverLocation', {
+		path: '/activeDrivers/:_id/location',
+		where: 'server',
+		action: function(){
+			var data = this.request.body;
+			var accuracy;
+			if("accuracy" in data){
+				accuracy = data.accuracy;
+			}
+			else {
+				accuracy = null;
+			}
+
+			ActiveDrivers.update(this.params._id, {
+				$set: {
+					lastLongitude: data.longitude,
+					lastLatitude: data.latitude,
+					lastPingTime: utils.getCurrentTime(),
+					lastAccuracy: accuracy
+				}
+			});
+		}
+	});
 	this.route('cars',{
 		path: '/cars',
 		waitOn: function(){

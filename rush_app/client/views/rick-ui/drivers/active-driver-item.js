@@ -32,7 +32,8 @@ Template.activeDriverItem.events({
   },
   'click [data-js=text]':function(e){
     e.stopPropagation();
-    var phoneNumber = this.phone;
+		var driver = Drivers.findOne(this.driverId);
+    var phoneNumber = driver.phone;
     var parsedNumber = utils.parsePhoneNumber(phoneNumber);
     $(e.target).text('Texting...');
     Meteor.call('sendText', this._id, window.location.host, parsedNumber, function(error, id){
