@@ -46,7 +46,7 @@ Router.map(function(){
   this.route('driver', {
     path: '/drivers/:_id',
     data:function(){
-        var driver = ActiveDrivers.findOne(this.params._id);
+        var driver = ActiveDrivers.findOne({driverId: this.params._id});
         return driver;
     }
   });
