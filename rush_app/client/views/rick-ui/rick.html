@@ -14,12 +14,27 @@
         </div>
       </div>
       <div id="driver-wrapper" class="generic-wrapper col-md-12">
-        <h2>Active Drivers</h2>
-        <div id="driver-form" class="generic-form row">
-          {{> activeDriverForm }}
+        <h2>Drivers</h2>
+        <ul class="nav nav-tabs">
+          <li><a href="#active-drivers">Deploy</a></li>
+          <li><a href="#drivers">New</a></li>
+        </ul>
+        <br>
+        <div id="active-drivers">
+          <div id="driver-form" class="generic-form row">
+            {{> activeDriverForm }}
+          </div>
+          <div id="drivers-list" class="row">
+            {{> activeDriversList }}
+          </div>
         </div>
-        <div id="drivers-list" class="row">
-          {{> activeDriversList }}
+        <div id="drivers">
+          <div class="generic-form row">
+            {{> driverForm }}
+          </div>
+          <div class="row">
+            {{> driversList }}
+          </div>
         </div>
       </div>
     </div>
