@@ -26,6 +26,12 @@ Template.activeDriverForm.events({
     var handle = $(e.target);
     var drawer = $('body').find('[data-js="driver-form"]');
     jQueryUtils.toggleDrawer(handle, drawer);
+  },
+  'click [data-js=addNewCar]': function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    
+    $('#cars').modal();
   }
 });
 

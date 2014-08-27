@@ -4,29 +4,32 @@
     <div class="col-md-12">
       <form>
         <div class="input-row row">
-          <div class="col-md-6">
-						<select class="form-control" name="driverId" data-input='true'>
+          <div class="col-md-5">
+						<select class="form-control ui-form-element" name="driverId" data-input='true'>
               <option value="" disabled selected style='display:none;'>* Driver</option>
 							{{#each unAssignedDrivers }}
 								<option value="{{_id}}">{{name}}</option>
 							{{/each}}
 						</select>
           </div>
-					<div class="col-md-6">
-						<select class="form-control" name="carId" data-input='true'>
+					<div class="col-md-4">
+						<select class="form-control ui-form-element" name="carId" data-input='true'>
               <option value="" disabled selected style='display:none;'>* Car</option>
 							{{#each unAssignedCars }}
 								<option value="{{_id}}">{{name}}</option>
 							{{/each}}
 						</select>
 					</div>
+          <div class="col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-0">
+            <button class="btn btn-block btn-warning ui-form-element" data-js="addNewCar">Edit Cars</button>
+          </div>
         </div>
         <div class="input-row row">
           <div class="col-md-8">
-            <textarea class="form-control" name="instruction" value="" placeholder="Instructions when complete" data-input='true'></textarea>
+            <textarea class="form-control ui-form-element" name="instruction" value="" placeholder="Instructions when complete" data-input='true'></textarea>
           </div>
           <div class="col-md-4">
-            <input type="submit" value="Add Driver" class="btn btn-primary btn-block submit-form"/>
+            <input type="submit" value="Deploy Driver" class="btn btn-primary btn-block submit-form"/>
           </div>
         </div>
       </form>
