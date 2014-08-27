@@ -13,6 +13,14 @@ Template.carItem.events({
     }
   },
   'click [data-js=edit]':function(e){
+    e.stopPropagation();
+    var item = $(e.target).closest('form').get(0);
+    if (this.editing) {
+      utils.resetItem(item);
+    } else {
+      utils.resetItem(item, {default: true});
+    }
+
     Cars.update(this._id, {$set:{editing: !this.editing}});
   },
   'submit form': function(e){
