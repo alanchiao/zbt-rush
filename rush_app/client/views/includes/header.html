@@ -1,9 +1,9 @@
 <template name="header">
-	{{#if notAndroid}}
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/"> ZBT Rush </a>
-			</div>
-		</nav>
-	{{/if}}
+  {{#unless isAndroid}}
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"> ZBT Rush </a>
+      </div>
+    </nav>
+  {{/unless}}
 </template>

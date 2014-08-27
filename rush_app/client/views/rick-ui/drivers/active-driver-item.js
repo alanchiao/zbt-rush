@@ -16,7 +16,7 @@ Template.activeDriverItem.events({
   'click [data-js=delete]': function(e){
     e.stopPropagation();
 		var driver = Drivers.findOne(this.driverId);
-    if (confirm("Are you sure you want to deactivate " + driver.name + "? If he or she has any rides, they will be unassigned.")) {
+    if (confirm("Deactivate " + driver.name + "? Any assigned rides will be put back in the queue.")) {
       Cars.update(this.carId, {$set: {isAssigned:false}});
       this.rideIds.forEach(function(rideId){
         Meteor.call("unAssignRide", this._id, rideId, function(error){});
