@@ -1,12 +1,12 @@
 /**
 * Standard routing logic. Iron Router.
 *
-* GET  /                           : main page for administrative control by rick
-* GET  /map								         : get map with all active drivers displayed
-* GET  /create                       : page for CRUD administration of cars
-* GET  /drivers/:id          : main page for active driver app usage
-* GET  /drivers/json         : get json version of all drivers
-* POST /drivers/:id/location : update driver location   
+* GET  /                     : main page for administrative control by rick
+* GET  /map								   : get map with all active drivers displayed
+* GET  /create               : page for CRUD administration of cars
+* GET  /drivers/:id          : main page for active driver app usage - id is that of driver
+* GET  /drivers/json         : get json version of all active drivers
+* POST /drivers/:id/location : update driver location  - id is that of active driver 
 **/
 Router.configure({
   loadingTemplate:'loading',
@@ -35,12 +35,19 @@ Router.map(function(){
 		},
 		action: function(){
 			var activeDrivers = ActiveDrivers.find().fetch();
+			var activeDriverDetails = [];
 			activeDrivers.forEach(function(driver){
-				driver.driverContent = Drivers.findOne(driver.driverId);
-				driver.carContent = Cars.findOne(driver.carId);
+				activeDriverDetails.push({
+					_id: driver._id,
+					driverId: driver.driverId,
+					driverContent: Drivers.findOne(driver.driverId),
+					carContent:Cars.findOne(driver.carId)
+				});
 			});
-			this.response.setHeader('Content-Type', 'application/json');
-			this.response.end(JSON.stringify(activeDrivers));
+
+			var headers = {'Content-Type': 'application/json'};
+			this.response.writeHead(200, headers);
+			this.response.end(JSON.stringify(activeDriverDetails));
 		}
 	});
   this.route('driver', {
@@ -71,6 +78,9 @@ Router.map(function(){
 					lastAccuracy: accuracy
 				}
 			});
+			var headers={};
+			this.response.writeHead(200, headers);
+			this.response.end();
 		}
 	});
 	this.route('create',{

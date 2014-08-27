@@ -27,5 +27,5 @@ if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.use
 			
 		});
 	}
-	Meteor.setInterval(updateLocation, 5*1000);
+	Meteor.setInterval(updateLocation, 20*1000);
 }

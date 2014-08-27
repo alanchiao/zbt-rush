@@ -18,6 +18,7 @@ Template.carItem.events({
   'submit form': function(e){
     e.preventDefault();
     var carDetails = formUtils.formToJson(e.target);
+		console.log(carDetails);
     Meteor.call("editCar", this._id, carDetails, function(error, response){
       if(response.isInputValid === true){
         jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');

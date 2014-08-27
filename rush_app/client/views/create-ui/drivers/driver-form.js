@@ -7,11 +7,5 @@ Template.driverForm.events({
 			if (error){return alert(error.reason);}
 			formUtils.onResponse(response, e.target);
 		});
-  },
-  'click [data-js=handle]': function(e){
-    e.stopPropagation();
-    var handle = $(e.target);
-    var drawer = $('body').find('[data-js="driver-form"]');
-    jQueryUtils.toggleDrawer(handle, drawer);
   }
 });
