@@ -6,6 +6,7 @@ Template.map.rendered = function(){
 
     var carLayer = L.layerGroup([]).addTo(mapbox);
 
+
     function updateDrivers(){
       carLayer.clearLayers();
       ActiveDrivers.find().forEach(function(driver){
@@ -18,6 +19,9 @@ Template.map.rendered = function(){
             // Determine color of dot based on last ping time
             var color = delta < 2 * 60 * 1000 ? 'green' : 'yellow';
             var marker = L.circleMarker([lat, lon], {color: color, fill: true, fillOpacity: 1.0});
+            var driv = Drivers.findOne({_id: driver.driverId});
+            var car = Cars.findOne({_id: driver.carId});
+            marker.bindPopup(driv.name + " " + car.name);
             carLayer.addLayer(marker);
           }
         }
