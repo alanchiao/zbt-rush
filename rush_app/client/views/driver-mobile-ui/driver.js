@@ -16,6 +16,7 @@ if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.use
 		navigator.geolocation.getCurrentPosition(function(position){
 			var latitude  =  position['coords']['latitude'];
 			var longitude =  position['coords']['longitude'];
+      var accuracy = position['coords']['accuracy'];
 			var hrefParts = window.location.href.split("/");
 			var activeDriverId = ActiveDrivers.findOne({driverId:hrefParts[hrefParts.length-1]})._id;
 			console.log(activeDriverId);
@@ -24,7 +25,8 @@ if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.use
 				  {
 				  	longitude:longitude,
 						latitude:latitude,
-            pingtime: utils.getCurrentTime()
+            pingtime: utils.getCurrentTime(),
+            accuracy: accuracy
 				  }
 				},
 				function(error, result){}
