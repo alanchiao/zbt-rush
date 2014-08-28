@@ -6,11 +6,12 @@ Template.map.rendered = function(){
 
     var carLayer = L.layerGroup([]).addTo(mapbox);
 
-
     function updateDrivers(){
       carLayer.clearLayers();
       ActiveDrivers.find().forEach(function(driver){
         var delta = new Date(utils.getCurrentTime()) - new Date(driver.lastPingTime);
+        console.log(driver);
+        console.log(delta);
         // Check if we've heard from the car in the last 5 minutes
         if (delta < 5 * 60 * 1000) {
           var lat = parseFloat(driver.lastLatitude);
