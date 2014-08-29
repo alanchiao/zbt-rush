@@ -25,6 +25,24 @@ Template.activeDriverItem.events({
       ActiveDrivers.remove(this._id);
     }
   },
+  'click [data-js=edit]':function(e){
+    e.stopPropagation();
+    var item = $(e.target).closest('form').get(0);
+    if (this.editing) {
+      utils.resetItem(item);
+    } else {
+      utils.resetItem(item, {default: true});
+    }
+
+    ActiveDrivers.update(this._id, {$set:{editing: !this.editing}});
+  },
+  'submit form': function(e){
+    e.preventDefault();
+    var newDoneMessage = formUtils.formToJson(e.target).comments;
+    Meteor.call("changeDoneMessage", this._id, newDoneMessage, function(error, response){
+      jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
+    });
+  },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
     var handle = $(e.target);
@@ -83,6 +101,8 @@ Template.activeDriverItem.helpers({
 	},
   unAssignedCars: function(){
     return Cars.find();
+  },
+  editingClass: function(){
+    return this.editing && 'editing';
   }
-	
 });

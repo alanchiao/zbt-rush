@@ -47,6 +47,7 @@ Meteor.methods({
 
 	activeDriver: function(attributes){
 		var activeDriver = _.defaults(attributes, {
+      editing: false,
 			rideIds:[],
 			passengers: 0,
 			status: ActiveDrivers.states.WAITING,
@@ -66,7 +67,7 @@ Meteor.methods({
     return selectedRides;
   },
 
-  unAssignRide:function(driverId, rideId){
+  unAssignRide: function(driverId, rideId){
     var ride = Rides.findOne(rideId);
     ActiveDrivers.update(driverId, {
       $set: {status: ActiveDrivers.states.UNACKED},
@@ -80,6 +81,12 @@ Meteor.methods({
     Rides.update(rideId, {
       $set: {status: Rides.states.UNASSIGNED},
       $unset: {driver: ''}
+    });
+  },
+
+  changeDoneMessage: function(driverId, newMessage){
+    ActiveDrivers.update(driverId, {
+      $set: {instruction: newMessage}
     });
   },
 

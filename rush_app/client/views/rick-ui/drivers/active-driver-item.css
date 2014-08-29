@@ -6,6 +6,11 @@
   margin-bottom: 5px;
 }
 
+.driver .additional-info.editing {
+  border: thin dashed #ff0000;
+  background: url('images/stripe.png') repeat;
+}
+
 .driver.status-waiting > .short-info {
   background-color: #dbffdb;
 }
