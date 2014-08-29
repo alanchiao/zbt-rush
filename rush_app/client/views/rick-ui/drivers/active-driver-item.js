@@ -3,7 +3,7 @@ Template.activeDriverItem.rendered = function(){
 	this.contentAutorun = Deps.autorun(function(){
 		var driver = ActiveDrivers.findOne(t.data._id);
 		if(driver){
-			t.findAll('[data-input=true]').forEach(function(field){
+			t.find('[name=comments]').forEach(function(field){
 				field.innerHTML = driver[$(field).attr('name')];
 			});
 		}
