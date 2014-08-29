@@ -1,3 +1,15 @@
+Template.activeDriverItem.rendered = function(){
+	var t = this;
+	this.contentAutorun = Deps.autorun(function(){
+		var driver = ActiveDrivers.findOne(t.data._id);
+		if(driver){
+			t.findAll('[data-input=true]').forEach(function(field){
+				field.innerHTML = driver[$(field).attr('name')];
+			});
+		}
+	});
+};
+
 Template.activeDriverItem.events({
   'click [data-js=driver]': function(e){
     Meteor.call('assignSelectedRides', this._id, function(error, result){

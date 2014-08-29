@@ -12,11 +12,13 @@ Router.configure({
   loadingTemplate:'loading',
   layoutTemplate: 'layout'
 });
+Router.onBeforeAction(function(pause){
+	if(!this.ready()){
+		this.render('loading');
+		pause();
+	}
+}, {except:['driversJSON', 'driverLocation']});
 
-Router.onBeforeAction(function(){
-	this.render('loading')
-}, {except: ['driversJSON', 'driverLocation']});
-    
 Router.map(function(){
   this.route('rick', {
 		path: '/',
