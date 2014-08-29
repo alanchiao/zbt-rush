@@ -3,9 +3,9 @@ Template.driverForm.events({
   'submit form': function(e){
     e.preventDefault();
     var driver = formUtils.formToJson(e.target);
-		Meteor.call('driver', driver, function(error, response){
-			if (error){return alert(error.reason);}
-			formUtils.onResponse(response, e.target);
-		});
+	Meteor.call('driver', driver, function(error, response){
+		if (error){return alert(error.reason);}
+		formUtils.onResponse(response, e.target);
+	});
   }
 });
