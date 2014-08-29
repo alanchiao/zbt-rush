@@ -23,8 +23,16 @@ Template.map.rendered = function(){
             );
             var driv = Drivers.findOne({_id: driver.driverId});
             var car = Cars.findOne({_id: driver.carId});
-            marker.bindPopup(driv.name + " " + car.name);
+
+
+						var rides = Rides.find({_id: {$in: driver.rideIds}});
+						var totalPassengers = 0;
+						rides.forEach(function(ride){
+							totalPassengers += ride.passengers;
+						});
+						marker.bindPopup(driv.name + "\n\n" + totalPassengers + "/" + car.capacity);
             carLayer.addLayer(marker);
+						marker.openPopup();
             if (driver.lastAccuracy > 100) {
               // this is completely made up
               // the inner circle has radius 5, and tolerates up to 100m of accuracy
@@ -47,4 +55,3 @@ Template.map.rendered = function(){
     setInterval(updateDrivers, 5000);
   });
 };
-
