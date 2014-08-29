@@ -38,7 +38,6 @@ Meteor.methods({
 	*     unacked: whenever driver has rides and has his rides updated
 	*     acked: driver has rides and has notified that he has seen everything
 	* - instruction: what driver should do upon completion
-	* - passengers: number of people currently in active driver's car
 	* - rideIds: ids of rides driver has currently
 	*
 	* Location related attributes: 
@@ -49,7 +48,6 @@ Meteor.methods({
 		var activeDriver = _.defaults(attributes, {
       editing: false,
 			rideIds:[],
-			passengers: 0,
 			status: ActiveDrivers.states.WAITING,
       lastPingTime: null,
       lastLatitude: null,
@@ -71,8 +69,7 @@ Meteor.methods({
     var ride = Rides.findOne(rideId);
     ActiveDrivers.update(driverId, {
       $set: {status: ActiveDrivers.states.UNACKED},
-      $pull: {rideIds: rideId},
-      $inc: {passengers: -ride.passengers}
+      $pull: {rideIds: rideId}
     });
 
     var driver = ActiveDrivers.findOne(driverId);
@@ -112,8 +109,7 @@ Meteor.methods({
           Rides.update(ride._id, {$set: {status: Rides.states.COMPLETE_NOT_FOUND}});
         }
         ActiveDrivers.update(driverId, {
-          $pull: {rideIds: ride._id},
-          $inc: {passengers: -ride.passengers}
+          $pull: {rideIds: ride._id}
         });
       });
       ActiveDrivers.update(driver._id, {
@@ -141,10 +137,8 @@ var onDriverUpdate = function(driver){
 var assignRides = function(rideIds, driverId){
   var driver = ActiveDrivers.findOne(driverId);
   var rides = Rides.find({_id: {$in: rideIds}}).fetch();
-  var totalPassengers = 0;
   if(rides.length > 0){
     rides.forEach(function(ride){
-      totalPassengers += ride.passengers;
       Rides.update(ride._id, {
         $set: {
           driver: driver,
@@ -160,9 +154,6 @@ var assignRides = function(rideIds, driverId){
       },
       $push: {
         rideIds: {$each: rideIds}
-      },
-      $inc: {
-        passengers: totalPassengers
       }
     });
   }

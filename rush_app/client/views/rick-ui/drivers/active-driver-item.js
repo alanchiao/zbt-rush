@@ -90,10 +90,6 @@ Template.activeDriverItem.helpers({
   listRides: function(){
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
-  overfilled: function(){
-		var car = Cars.findOne(this.carId);
-    return (this.passengers > car.capacity) ? 'overfilled' : '';
-  },
   textable: function(){
 		var phone = Drivers.findOne(this.driverId).phone;
     var parsedNumber = utils.parsePhoneNumber(phone);
@@ -111,6 +107,14 @@ Template.activeDriverItem.helpers({
 	driverPhone: function(){
 		return Drivers.findOne(this.driverId).phone;
 	},
+  driverPassengers: function(){
+    var rides = Rides.find({_id: {$in: this.rideIds}});
+    var totalPassengers = 0;
+    for (var i=0; i<rides.length; i++){
+      totalPassengers += rides[i].passengers;
+    }
+    return totalPassengers;
+  },
   unAssignedCars: function(){
     return Cars.find();
   },

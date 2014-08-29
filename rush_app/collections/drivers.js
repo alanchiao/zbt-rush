@@ -31,9 +31,7 @@ Meteor.methods({
 	* - isAssigned: if driver is 'assigned' to be active 
   **/
   driver: function(attributes){
-    var driver = _.defaults(_.extend(attributes, {
-			capacity: parseInt(attributes.capacity)
-    }), {
+    var driver = _.defaults(attributes, {
 			isAssigned:false	
 		});
 		var response = Drivers.validate(driver);
@@ -46,15 +44,5 @@ Meteor.methods({
 		var response = Drivers.validate(driver);
 		return response;
 	}
-	/**
-	deleteDriver: function(driverId){
-		var driver = Drivers.findOne(driverId);
-		Cars.update(this.carId, {$set: {driver:null}});
-		driver.rideIds.forEach(function(rideId){
-			Meteor.call("unAssignRide", driverId, rideId function(error){});
-		});
-		Drivers.remove(driverId);
-	}
-	**/
 });
 
