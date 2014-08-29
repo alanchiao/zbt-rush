@@ -1,3 +1,21 @@
+/**
+* Meteor Blaze bug with respect to contenteditable.
+* Refer to : https://github.com/meteor/meteor/issues/1964
+* Fix is below with .rendered
+**/
+
+Template.rideItem.rendered = function(){
+	var t = this;
+	this.contentAutorun = Deps.autorun(function(){
+		var ride = Rides.findOne(t.data._id);
+		if(ride){
+			t.findAll('[data-input=true]').forEach(function(field){
+				field.innerHTML = ride[$(field).attr('name')];
+			});
+		}
+	});
+};
+
 Template.rideItem.events({
   'click [data-js=ride]': function(e){
     if (!this.driver && !this.editing) {
@@ -41,6 +59,7 @@ Template.rideItem.events({
   'submit form': function(e){
     e.preventDefault();
     var rideDetails  = formUtils.formToJson(e.target);
+		console.log(rideDetails);
 		Meteor.call('editRide', this._id, rideDetails, function(error, response){
 			if(response.isInputValid === true){
         jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');

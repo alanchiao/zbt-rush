@@ -1,3 +1,21 @@
+/**
+* Meteor Blaze bug with respect to contenteditable.
+* Refer to : https://github.com/meteor/meteor/issues/1964
+* Fix is below with .rendered
+**/
+
+Template.carItem.rendered = function(){
+	var t = this;
+	this.contentAutorun = Deps.autorun(function(){
+		var car =  Cars.findOne(t.data._id);
+		if(car){
+			t.findAll('[data-input=true]').forEach(function(field){
+				field.innerHTML = car[$(field).attr('name')];
+			});
+		}
+	});
+};
+
 Template.carItem.events({
   'click [data-js=delete]':function(e){
     if(confirm("Are you sure you want to delete " + this.name + "? Any driver using the car will become inactive and corresponding rides will be unassigned")){
