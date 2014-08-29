@@ -8,7 +8,7 @@ Template.rideItem.rendered = function(){
 	var t = this;
 	this.contentAutorun = Deps.autorun(function(){
 		var ride = Rides.findOne(t.data._id);
-		if(ride){
+		if(ride && ride.editing !== true){
 			t.findAll('[data-input=true]').forEach(function(field){
 				field.innerHTML = ride[$(field).attr('name')];
 			});

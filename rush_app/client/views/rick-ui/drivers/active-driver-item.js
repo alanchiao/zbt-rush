@@ -2,8 +2,8 @@ Template.activeDriverItem.rendered = function(){
 	var t = this;
 	this.contentAutorun = Deps.autorun(function(){
 		var driver = ActiveDrivers.findOne(t.data._id);
-		if(driver){
-			t.findAll('[data-input=true]').forEach(function(field){
+		if(driver && driver.editing !== true){
+			t.find('[name=comments]').forEach(function(field){
 				field.innerHTML = driver[$(field).attr('name')];
 			});
 		}
