@@ -71,6 +71,10 @@ Template.activeDriverItem.events({
 
   		var driver = Drivers.findOne(this.driverId);
       var parsedNumber = utils.parsePhoneNumber(driver.phone);
+			if (parsedNumber.length !== 12){
+				alert('number has wrong format');
+				return;
+			}
       $(e.target).text('Texting...');
       var text = 'Your rides have been updated.\n' + 'http://' + window.location.host + '/drivers/' + this.driverId;
       Meteor.call('sendText', text, parsedNumber, function(error, id){
@@ -91,9 +95,12 @@ Template.activeDriverItem.helpers({
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
   textable: function(){
+		return true;
+		/**
 		var phone = Drivers.findOne(this.driverId).phone;
     var parsedNumber = utils.parsePhoneNumber(phone);
     return libFixtures.usableNumbers.indexOf(parsedNumber) !== -1;
+		**/
   },
 	carCapacity: function(){
 		return Cars.findOne(this.carId).capacity;
