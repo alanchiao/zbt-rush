@@ -1,0 +1,23 @@
+<template name="carForm">
+  <div class="generic-form col-xs-12 generic-full-wrapper" data-js="car-form">
+    <h4> Add a Car </h4>
+    <form>
+      <div class="input-row row">
+        <div class="col-xs-4">
+          <input name="name" class="form-control ui-form-element" type="text" placeholder="* Name" data-input="true"/>
+        </div>
+        <div class="col-xs-8">
+          <input name="description" class="form-control ui-form-element" type="text" placeholder="Physical Description" data-input="true"/>
+        </div>
+      </div>
+      <div class="input-row row">
+        <div class="col-xs-3">
+          <input name="capacity" class="form-control ui-form-element" type="text" placeholder="* Capacity" data-input="true"/>
+        </div>
+        <div class="col-xs-9">
+          <input type="submit" class="submit-form btn btn-success" value="Add Car"/>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>

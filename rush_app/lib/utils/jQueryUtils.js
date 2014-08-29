@@ -6,15 +6,35 @@ jQueryUtils = function(){
   * what element contains the additional information to display or hide. That target
   * element has [data-js={identifier}].
   **/
-  function toggleDrawer(handle, drawer){
-    if(drawer.is(':hidden')){
-        drawer.slideDown('fast');
-        handle.removeClass('glyphicon-chevron-down');
-        handle.addClass('glyphicon-chevron-up');
+  function toggleDrawer(handle, drawer, show){
+    if(show !== undefined){
+      if(show){
+        this.showDrawer(handle, drawer);
+      } else {
+        this.hideDrawer(handle, drawer);
+      }
     } else {
-        drawer.slideUp('fast');
-        handle.removeClass('glyphicon-chevron-up');
-        handle.addClass('glyphicon-chevron-down');
+      if(drawer.is(':hidden')){
+        this.showDrawer(handle, drawer);
+      } else {
+        this.hideDrawer(handle, drawer);
+      }
+    }
+  }
+
+  function showDrawer(handle, drawer){
+    if(drawer.is(':hidden')){
+      drawer.slideDown('fast');
+      handle.removeClass('glyphicon-chevron-down');
+      handle.addClass('glyphicon-chevron-up');
+    }
+  }
+
+  function hideDrawer(handle, drawer){
+    if(!drawer.is(':hidden')){
+      drawer.slideUp('fast');
+      handle.removeClass('glyphicon-chevron-up');
+      handle.addClass('glyphicon-chevron-down');
     }
   }
 
@@ -32,6 +52,8 @@ jQueryUtils = function(){
 
   return {
     toggleDrawer: toggleDrawer,
+    showDrawer: showDrawer,
+    hideDrawer: hideDrawer,
     flash: flash
   }
 }();

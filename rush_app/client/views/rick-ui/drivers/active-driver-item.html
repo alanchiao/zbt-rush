@@ -1,0 +1,47 @@
+<template name="activeDriverItem">
+  <div class="driver status-{{status}} col-sm-12" data-js="driver">
+    <div class="short-info row">
+      <div class="rider-info col-sm-4">{{driverName}} ({{driverPassengers}}/{{carCapacity}} full)
+      </div>
+      <div class="phone col-sm-3">
+        <span>{{driverPhone}}</span>
+        <span>
+          {{#if textable}}
+            <a data-js="text">Text</a>
+          {{/if}}
+        </span>
+      </div>
+      <div class="carName col-sm-3">{{carName}}</div>
+      <div class="driver-buttons col-sm-2 btn-group">
+        <span class="expand-button glyphicon glyphicon-chevron-down" data-js="handle"></span>
+        <span class="remove-button glyphicon glyphicon-remove" data-js="delete"></span>
+      </div>
+    </div>
+    <div class="additional-info row" data-js="additional-info">
+      <div class="extra-info col-sm-12">
+        <div class="instruction-wrapper {{editingClass}} row">
+          <form>
+            <div class="col-xs-11">
+              <span class="instruction-label">Instructions when complete: </span>
+                <span name="instruction" class="instruction" data-input="true" contentEditable={{editing}} data-default="_">{{instruction}}</span>
+            </div>
+            <div class="col-xs-1">
+              {{#if editing}}
+                <button type="submit" class="no-style-button">
+                  <span class="edit-button glyphicon glyphicon-check" data-js="edit"></span>
+                </button>
+              {{else}}
+                <span class="glyphicon glyphicon-edit" data-js="edit"></span>
+              {{/if}}
+            </div>
+          </form>
+        </div>
+      </div>    
+      <div class="ride-container col-sm-12">
+        {{#each listRides}}
+          {{> rideItem}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

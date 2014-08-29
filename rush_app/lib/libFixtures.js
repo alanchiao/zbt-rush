@@ -41,15 +41,19 @@ libFixtures = function(){
 	 
   //for development purposes - equivalent to cmd: meteor reset.
   that.reset = function(){
-    Rides.find().forEach(function(ride){
-        Rides.remove(ride._id);
-    });
-    Drivers.find().forEach(function(driver){
-        Drivers.remove(driver._id);
-    });
+		ActiveDrivers.find().forEach(function(activeDriver){
+			ActiveDrivers.remove(activeDriver._id);
+		});
     Cars.find().forEach(function(car){
         Cars.remove(car._id);
     });
+		Drivers.find().forEach(function(driver){
+        Drivers.remove(driver._id);
+    });
+		Rides.find().forEach(function(ride){
+        Rides.remove(ride._id);
+    });
+		/**
     SAMPLE_RIDES.forEach(function(ride){
         Meteor.call('ride', ride, function(error,id){
             if(error){
@@ -64,6 +68,7 @@ libFixtures = function(){
             }
         });
     });
+		**/
   }
 
   that.sampleRides = SAMPLE_RIDES;

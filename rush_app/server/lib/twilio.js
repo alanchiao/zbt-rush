@@ -7,13 +7,11 @@ var authToken = '40dd0dffd467036e0e053d1e1d2cb324';
 twilio = Twilio(accountSID, authToken);
 
 Meteor.methods({
-  sendText: function(driverId, urlHost, number){
-    console.log("--------TWILIO--------");
+  sendText: function(body, number){
     twilio.sendSms({
       to: number,
       from:'+15082831128',
-      body: 'Your rides have been updated.\n' +
-        'http://' + urlHost + '/drivers/' + driverId
+      body: body
     }, function(err, responseData){
       if(!err){}
     });
