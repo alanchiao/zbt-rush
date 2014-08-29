@@ -8,7 +8,7 @@ Template.carItem.rendered = function(){
 	var t = this;
 	this.contentAutorun = Deps.autorun(function(){
 		var car =  Cars.findOne(t.data._id);
-		if(car){
+		if(car && car.editing !== true){
 			t.findAll('[data-input=true]').forEach(function(field){
 				field.innerHTML = car[$(field).attr('name')];
 			});
