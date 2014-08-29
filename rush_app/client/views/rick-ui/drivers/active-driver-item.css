@@ -6,7 +6,7 @@
   margin-bottom: 5px;
 }
 
-.driver .comments-wrapper.editing {
+.driver .instruction-wrapper.editing {
   border: thin dashed #ff0000;
   background: url('images/stripe.png') repeat;
 }

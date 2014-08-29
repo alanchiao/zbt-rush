@@ -3,7 +3,7 @@ Template.activeDriverItem.rendered = function(){
 	this.contentAutorun = Deps.autorun(function(){
 		var driver = ActiveDrivers.findOne(t.data._id);
 		if(driver && driver.editing !== true){
-			t.find('[name=comments]').forEach(function(field){
+			t.findAll('[name="instruction"]').forEach(function(field){
 				field.innerHTML = driver[$(field).attr('name')];
 			});
 		}
@@ -50,7 +50,7 @@ Template.activeDriverItem.events({
   },
   'submit form': function(e){
     e.preventDefault();
-    var newDoneMessage = formUtils.formToJson(e.target).comments;
+    var newDoneMessage = formUtils.formToJson(e.target).instruction;
     Meteor.call("changeDoneMessage", this._id, newDoneMessage, function(error, response){
       jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
     });
@@ -110,9 +110,9 @@ Template.activeDriverItem.helpers({
   driverPassengers: function(){
     var rides = Rides.find({_id: {$in: this.rideIds}});
     var totalPassengers = 0;
-    for (var i=0; i<rides.length; i++){
-      totalPassengers += rides[i].passengers;
-    }
+    rides.forEach(function(ride){
+      totalPassengers += ride.passengers;
+    })
     return totalPassengers;
   },
   unAssignedCars: function(){

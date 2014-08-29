@@ -37,7 +37,7 @@ Meteor.methods({
 	*		  waiting: whenever driver has no rides assigned
 	*     unacked: whenever driver has rides and has his rides updated
 	*     acked: driver has rides and has notified that he has seen everything
-	* - instruction: what driver should do upon completion
+	* - comments: what driver should do upon completion
 	* - rideIds: ids of rides driver has currently
 	*
 	* Location related attributes: 
