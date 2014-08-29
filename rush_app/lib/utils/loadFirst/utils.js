@@ -7,7 +7,7 @@ utils = function(){
   function resetItem(form, options){
     $(form).find('[data-input=true]').each(function(){
       if (options && options.default) {
-        $(this).html($(this).html() || $(this).data('default') || '');
+        $(this).html($(this).html().replace("<br>", "").trim() || $(this).data('default') || '');
       } else {
         $(this).html(($(this).html() == '_') ? '' : $(this).html());
       }

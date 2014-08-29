@@ -1,7 +1,7 @@
 Template.driverItem.events({
   'click [data-js=delete]': function(e){
     e.stopPropagation();
-    if (confirm("Are you sure you want to delete " + this.name + "? Any assigned rides will be unassigned.")) {
+    if (confirm("Delete " + this.name + "? Any assigned rides will be put back in the queue.")) {
 			if(this.isAssigned === true){
 				var id = this._id;
 				var activeDriver = ActiveDrivers.findOne({driverId: id});

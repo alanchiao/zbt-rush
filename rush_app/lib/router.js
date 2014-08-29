@@ -6,7 +6,7 @@
 * GET  /create               : page for CRUD administration of cars
 * GET  /drivers/:id          : main page for active driver app usage - id is that of driver
 * GET  /drivers/json         : get json version of all active drivers
-* POST /drivers/:id/location : update driver location  - id is that of active driver 
+* POST /drivers/:id/location : update driver location  - id is that of active driver
 **/
 Router.configure({
   loadingTemplate:'loading',
@@ -19,13 +19,17 @@ Router.onBeforeAction(function(pause){
 	}
 }, {except:['driversJSON', 'driverLocation']});
 
+Router.onBeforeAction(function(){
+	this.render('loading')
+}, {except: ['driversJSON', 'driverLocation']});
+
 Router.map(function(){
   this.route('rick', {
 		path: '/',
 		waitOn: function(){
 			/**Must wait for rides model to be ready in order to retrieve the ride objects under
 			a driver that match the riders ids**/
-			return Meteor.subscribe('rides'); 
+			return Meteor.subscribe('rides');
 		}
 	});
 	//I hope that the id of an active driver is never 'json'
@@ -65,18 +69,12 @@ Router.map(function(){
 		action: function(){
 			var data = this.request.body;
 			var accuracy;
-			if("accuracy" in data){
-				accuracy = data.accuracy;
-			}
-			else {
-				accuracy = null;
-			}
-
+			accuracy = data.accuracy || null;
 			ActiveDrivers.update(this.params._id, {
 				$set: {
 					lastLongitude: data.longitude,
 					lastLatitude: data.latitude,
-					lastPingTime: utils.getCurrentTime(),
+					lastPingTime: data.pingtime,
 					lastAccuracy: accuracy
 				}
 			});

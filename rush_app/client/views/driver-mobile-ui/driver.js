@@ -12,17 +12,21 @@ Template.driver.helpers({
 
 if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.userAgent.match(/Android/i)){
 	var updateLocation = function(){
+    console.log('updating location');
 		navigator.geolocation.getCurrentPosition(function(position){
 			var latitude  =  position['coords']['latitude'];
 			var longitude =  position['coords']['longitude'];
+      var accuracy = position['coords']['accuracy'];
 			var hrefParts = window.location.href.split("/");
 			var activeDriverId = ActiveDrivers.findOne({driverId:hrefParts[hrefParts.length-1]})._id;
 			console.log(activeDriverId);
 			Meteor.http.call("POST", "http://" + window.location.host + '/drivers/' + activeDriverId + '/location',
-				{data: 
+				{data:
 				  {
 				  	longitude:longitude,
-						latitude:latitude		
+						latitude:latitude,
+            pingtime: utils.getCurrentTime(),
+            accuracy: accuracy
 				  }
 				},
 				function(error, result){}

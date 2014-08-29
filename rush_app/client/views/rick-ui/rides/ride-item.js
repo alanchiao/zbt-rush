@@ -38,7 +38,7 @@ Template.rideItem.events({
   },
   'click [data-js=delete]': function(e){
     e.stopPropagation();
-    if (confirm("Are you sure you want to delete " + this.name + "'s ride request?")) {
+    if (confirm("Delete " + this.name + "'s ride request?")) {
       Rides.remove(this._id);
     }
   },

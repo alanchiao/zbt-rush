@@ -2,8 +2,8 @@ Template.activeDriverItem.rendered = function(){
 	var t = this;
 	this.contentAutorun = Deps.autorun(function(){
 		var driver = ActiveDrivers.findOne(t.data._id);
-		if(driver){
-			t.find('[name=comments]').forEach(function(field){
+		if(driver && driver.editing !== true){
+			t.findAll('[name="instruction"]').forEach(function(field){
 				field.innerHTML = driver[$(field).attr('name')];
 			});
 		}
@@ -28,7 +28,7 @@ Template.activeDriverItem.events({
   'click [data-js=delete]': function(e){
     e.stopPropagation();
 		var driver = Drivers.findOne(this.driverId);
-    if (confirm("Are you sure you want to deactivate " + driver.name + "? If he or she has any rides, they will be unassigned.")) {
+    if (confirm("Deactivate " + driver.name + "? Any assigned rides will be put back in the queue.")) {
       Cars.update(this.carId, {$set: {isAssigned:false}});
       this.rideIds.forEach(function(rideId){
         Meteor.call("unAssignRide", this._id, rideId, function(error){});
@@ -36,6 +36,24 @@ Template.activeDriverItem.events({
 			Drivers.update(this.driverId, {$set: {isAssigned:false}});
       ActiveDrivers.remove(this._id);
     }
+  },
+  'click [data-js=edit]':function(e){
+    e.stopPropagation();
+    var item = $(e.target).closest('form').get(0);
+    if (this.editing) {
+      utils.resetItem(item);
+    } else {
+      utils.resetItem(item, {default: true});
+    }
+
+    ActiveDrivers.update(this._id, {$set:{editing: !this.editing}});
+  },
+  'submit form': function(e){
+    e.preventDefault();
+    var newDoneMessage = formUtils.formToJson(e.target).instruction;
+    Meteor.call("changeDoneMessage", this._id, newDoneMessage, function(error, response){
+      jQueryUtils.flash(e.currentTarget.parentNode, '#aaddff');
+    });
   },
   'click [data-js=handle]': function(e){
     e.stopPropagation();
@@ -72,10 +90,6 @@ Template.activeDriverItem.helpers({
   listRides: function(){
     return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
   },
-  overfilled: function(){
-		var car = Cars.findOne(this.carId);
-    return (this.passengers > car.capacity) ? 'overfilled' : '';
-  },
   textable: function(){
 		var phone = Drivers.findOne(this.driverId).phone;
     var parsedNumber = utils.parsePhoneNumber(phone);
@@ -93,8 +107,18 @@ Template.activeDriverItem.helpers({
 	driverPhone: function(){
 		return Drivers.findOne(this.driverId).phone;
 	},
+  driverPassengers: function(){
+    var rides = Rides.find({_id: {$in: this.rideIds}});
+    var totalPassengers = 0;
+    rides.forEach(function(ride){
+      totalPassengers += ride.passengers;
+    })
+    return totalPassengers;
+  },
   unAssignedCars: function(){
     return Cars.find();
+  },
+  editingClass: function(){
+    return this.editing && 'editing';
   }
-	
 });

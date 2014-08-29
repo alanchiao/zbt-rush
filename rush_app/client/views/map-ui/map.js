@@ -6,7 +6,6 @@ Template.map.rendered = function(){
 
     var carLayer = L.layerGroup([]).addTo(mapbox);
 
-
     function updateDrivers(){
       carLayer.clearLayers();
       ActiveDrivers.find().forEach(function(driver){
@@ -18,11 +17,28 @@ Template.map.rendered = function(){
           if (!isNaN(lat) && !isNaN(lon)) {
             // Determine color of dot based on last ping time
             var color = delta < 2 * 60 * 1000 ? 'green' : 'yellow';
-            var marker = L.circleMarker([lat, lon], {color: color, fill: true, fillOpacity: 1.0});
+            var marker = L.circleMarker(
+              [lat, lon],
+              {color: color, fill: true, fillOpacity: 1.0, radius: 5}
+            );
             var driv = Drivers.findOne({_id: driver.driverId});
             var car = Cars.findOne({_id: driver.carId});
             marker.bindPopup(driv.name + " " + car.name);
             carLayer.addLayer(marker);
+            if (driver.lastAccuracy > 100) {
+              // this is completely made up
+              // the inner circle has radius 5, and tolerates up to 100m of accuracy
+              // so scale so that the outer circle will have at most radius 50
+              // I don't even know what the units of radius are in
+              // Depending on your map scale (is that detectable)
+              // this may be a better solution https://www.mapbox.com/mapbox.js/api/v1.6.1/l-circle/
+              var accuracyRadius = Math.min(driver.lastAccuracy, 1000) / 1000 * 50;
+              var accuracyMarker = L.circleMarker(
+                [lat, lon],
+                {color: color, fill: true, fillOpacity: 0.3, radius: accuracyRadius
+              });
+              carLayer.addLayer(accuracyMarker);
+            }
           }
         }
       });

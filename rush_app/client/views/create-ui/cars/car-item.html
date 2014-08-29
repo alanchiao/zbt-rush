@@ -3,13 +3,13 @@
     <div class="short-info row">
       <form>
         <div class="col-xs-4">
-          <span name="name" data-input="true" contentEditable={{editing}}>{{name}} </span>
+          <span name="name" data-input="true" contentEditable={{editing}} data-default="_">{{name}} </span>
         </div>
         <div class="col-xs-4">
-          <span name="description" data-input="true" contentEditable={{editing}}>{{description}} </span>
+          <span name="description" data-input="true" contentEditable={{editing}} data-default="_">{{description}} </span>
         </div>
         <div class="col-xs-2">
-          <span name="capacity" data-input="true" contentEditable={{editing}}> {{capacity}} </span>
+          <span name="capacity" data-input="true" contentEditable={{editing}} data-default="_"> {{capacity}} </span>
         </div>
         <div class="car-buttons col-xs-2 btn-group">
           {{#if editing}}

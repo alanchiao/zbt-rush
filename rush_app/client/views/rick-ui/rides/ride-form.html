@@ -5,31 +5,31 @@
       <form>
         <div class="input-row row">
           <div class="col-md-4">
-            <input name="name" class="form-control" type="text" value="" placeholder="* Name" data-input="true" />
+            <input name="name" class="form-control ui-form-element" type="text" value="" placeholder="* Name" data-input="true" />
           </div>
           <div class="col-md-8">
-            <input name="time" class="form-control" type="datetime-local" value="{{currentTime}}" data-input="true" data-default="{{currentTime}}"/>
+            <input name="time" class="form-control ui-form-element" type="datetime-local" value="{{currentTime}}" data-input="true" data-default="{{currentTime}}"/>
           </div>
         </div>
         <div class="input-row row">
           <div class="col-md-6">
-            <input name="phone" class="form-control" type="text" value="" placeholder="* Phone" data-input="true" />
+            <input name="phone" class="form-control ui-form-element" type="text" value="" placeholder="* Phone" data-input="true" />
           </div>
           <div class="col-md-6">  
-            <input name="passengers" class="form-control" type="text" value="" placeholder="* Num. People" data-input="true"/>
+            <input name="passengers" class="form-control ui-form-element" type="text" value="" placeholder="* Number of People" data-input="true"/>
           </div>
         </div>
         <div class="input-row row">
           <div class="col-md-6">  
-            <input name="pickup" class="form-control" type="text" value="" placeholder="* Pickup Loc." data-input="true"/>
+            <input name="pickup" class="form-control ui-form-element" type="text" value="" placeholder="* Pickup Location" data-input="true"/>
           </div>
           <div class="col-md-6">  
-            <input name="dropoff" class="form-control" type="text" value="" placeholder="Dropoff Loc." data-input="true"/>
+            <input name="dropoff" class="form-control ui-form-element" type="text" value="" placeholder="Dropoff Location" data-input="true"/>
           </div>
         </div>
         <div class="input-row row">
           <div class="col-md-8">
-            <textarea name="comments" class="form-control" value="" placeholder="Comments" data-input="true"></textarea>
+            <textarea name="comments" class="form-control ui-form-element" value="" placeholder="Comments" data-input="true"></textarea>
           </div>
           <div class="col-md-4">
             <input type="submit" class="submit-form btn btn-primary btn-block" id="add-ride" value="Queue Ride"/>
