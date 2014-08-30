@@ -24,13 +24,13 @@ Template.map.rendered = function(){
             var driv = Drivers.findOne({_id: driver.driverId});
             var car = Cars.findOne({_id: driver.carId});
 
-
 						var rides = Rides.find({_id: {$in: driver.rideIds}});
 						var totalPassengers = 0;
 						rides.forEach(function(ride){
 							totalPassengers += ride.passengers;
 						});
-						marker.bindPopup(driv.name + "\n\n" + totalPassengers + "/" + car.capacity);
+
+						marker.bindPopup(driv.name + '\n\n' + totalPassengers + "/" + car.capacity + '\n' +  driver.status);
             carLayer.addLayer(marker);
 						marker.openPopup();
             if (driver.lastAccuracy > 100) {
