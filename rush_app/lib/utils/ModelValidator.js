@@ -10,7 +10,7 @@ ModelValidator = function(data){
   }
   
   function checkPositiveNumber(attrName){
-    if(data[attrName] === "" || typeof data[attrName] !== 'number' || data[attrName] === NaN || data[attrName] <= 0){
+    if(data[attrName] === "" || typeof data[attrName] !== 'number' || data[attrName] <= 0){
       invalid.push(attrName);
     }
   }

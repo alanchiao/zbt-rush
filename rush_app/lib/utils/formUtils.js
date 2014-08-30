@@ -41,6 +41,7 @@ formUtils = function(){
 			this.resetForm(form);
 		}
 		else{
+			$(form).find('[data-input=true]').css('background-color', '#fff');
       response.invalid.forEach(function(fieldName){
         $(form).find('[name=' + fieldName + ']').first().css('background-color', '#ffdddd');
       });
