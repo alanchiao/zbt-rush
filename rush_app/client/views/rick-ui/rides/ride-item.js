@@ -9,9 +9,14 @@ Template.rideItem.rendered = function(){
 	this.contentAutorun = Deps.autorun(function(){
 		var ride = Rides.findOne(t.data._id);
 		if(ride && ride.editing !== true){
-			t.findAll('[data-input=true]').forEach(function(field){
-				field.innerHTML = ride[$(field).attr('name')];
-			});
+			var replace = function(){
+				t.findAll('[data-input=true]').forEach(function(field){
+					console.log(field);
+					field.innerHTML = ride[$(field).attr('name')];
+				});
+			}
+			replace();
+			setTimeout(replace, 8);	
 		}
 	});
 };
