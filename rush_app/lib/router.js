@@ -95,5 +95,11 @@ Router.map(function(){
 			return Meteor.subscribe('cars');
 		}
 	});
+	this.route('completed', {
+		path: '/completed',
+		waitOn: function() {
+			return Meteor.subscribe('rides');
+		}
+	});
 });
 
