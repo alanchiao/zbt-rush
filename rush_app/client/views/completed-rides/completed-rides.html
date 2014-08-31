@@ -1,0 +1,31 @@
+<template name="completed">
+  <div class="completed-container">
+    <a href="#" class="show-not-found">Show only rides that were not found</a>
+    <a href="#" class="rides-dump">Dump a list of all rides to email</a>
+    <span class="spinner">{{> spinner}}</span>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Time</th>
+          <th>Num. Passengers</th>
+          <th>Phone</th>
+          <th>Locations</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each completedRides}}
+          <tr class="{{statusClass}}">
+            <td>{{name}}</td>
+            <td>{{time}}</td>
+            <td>{{passengers}}</td>
+            <td>{{phone}}</td>
+            <td>{{pickup}} &rarr; {{dropoff}}</td>
+            <td>{{status}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

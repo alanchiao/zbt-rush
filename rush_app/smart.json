@@ -5,6 +5,7 @@
     "moment": {},
     "twilio-meteor": {},
     "jquery-ui": {},
-    "external-file-loader": {}
+    "external-file-loader": {},
+    "spin": {}
   }
 }

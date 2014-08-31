@@ -1,0 +1,12 @@
+.completed-container {
+  margin: 0 16px;
+}
+
+.rides-dump {
+  float: right;
+}
+
+.spinner {
+  float:right;
+  display: none;
+}
