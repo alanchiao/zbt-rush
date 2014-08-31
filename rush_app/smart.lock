@@ -7,7 +7,8 @@
       "moment": {},
       "twilio-meteor": {},
       "jquery-ui": {},
-      "external-file-loader": {}
+      "external-file-loader": {},
+      "spin": {}
     },
     "packages": {
       "iron-router": {
@@ -22,8 +23,8 @@
       },
       "moment": {
         "git": "https://github.com/acreeger/meteor-moment.git",
-        "tag": "v2.6.0",
-        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
+        "tag": "v2.8.1",
+        "commit": "722ea63783d594341023836b7d418ab2567dab8c"
       },
       "twilio-meteor": {
         "git": "https://github.com/andreioprisan/twilio-meteor.git",
@@ -39,6 +40,11 @@
         "git": "https://github.com/davidd8/meteor-external-file-loader.git",
         "tag": "v0.1.4",
         "commit": "352694a7cf906b8241161c2fd1435161c1d5409f"
+      },
+      "spin": {
+        "git": "https://github.com/SachaG/meteor-spin.git",
+        "tag": "v2.0.4",
+        "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

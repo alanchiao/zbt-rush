@@ -1,5 +1,9 @@
 Rides = new Meteor.Collection("rides");
 
+if (Meteor.isServer) {
+  // process.env.MAIL_URL="smtp://zbtatmit%40gmail.com:br0therhood@smtp.gmail.com:465/";
+}
+
 Rides.allow({
   insert: function(){
     return true;
@@ -29,7 +33,7 @@ Rides.validate = function(data){
 	validator.checkNonEmpty('pickup');
 	validator.checkPositiveNumber('passengers');
 	return validator.getResponse();
-}
+};
 
 Meteor.methods({
 	/**
@@ -45,15 +49,15 @@ Meteor.methods({
 	* - comments: string
 	* - driver: the driver that the ride belongs to, else undefined
 	* - status: enum: either unassigned, assigned, found, not_found, complete_found,
-	* 	  or complete_not_found. Unassigned/assigned are statuses that rick has control over. 
+	* 	  or complete_not_found. Unassigned/assigned are statuses that rick has control over.
 	* 	  He adds rides and assigns them. Found/not_found/found_complete, complete_unfound
-	*     are statuses that	the driver has control over. A ride is found and not_found if 
+	*     are statuses that	the driver has control over. A ride is found and not_found if
 	*		  they are the riders are actually found or not found.
-	*		  Once a driver has either found/not_found all the assigned rides, all the assigned 
+	*		  Once a driver has either found/not_found all the assigned rides, all the assigned
 	* 	  rides become complete when he pressed the complete-trip button.
 	*
 	* UI-Related attributes:
-	* - editing: boolean: currently being edited by someone (any user) on UI or not 
+	* - editing: boolean: currently being edited by someone (any user) on UI or not
 	* - selected: boolean: currently selected by someone (any user) on UI or not
 	*/
   ride: function(attributes){
@@ -71,7 +75,7 @@ Meteor.methods({
     }
     return response;
   },
-	
+
 	editRide: function(rideId, attributes){
 		var response = Rides.validate(attributes);
 		if(response.isInputValid === true){
@@ -86,10 +90,22 @@ Meteor.methods({
 			}
 
 			Rides.update(rideId, {$set: attributes}, {}, function(error){
-				if(error){throwError(error.reason)};
+				if(error){throwError(error.reason);}
 			});
 		}
-		return response;		
-	}
+		return response;
+	},
+
+  dumpRidesToEmail: function() {
+    if (Meteor.isServer) {
+      var rides = Rides.find({}).fetch();
+      Email.send({
+        from: 'zbt-rick@mit.edu',
+        to: 'zbt-rick@mit.edu',
+        subject: 'Rides database dump: ' + utils.getCurrentTime(),
+        text: JSON.stringify(rides)
+      });
+    }
+  }
 });
 
