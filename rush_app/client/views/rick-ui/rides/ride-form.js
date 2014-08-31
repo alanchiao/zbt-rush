@@ -14,6 +14,11 @@ Template.rideForm.events({
     var handle = $(e.target);
     var drawer = $('body').find('[data-js="ride-form"]');
     jQueryUtils.toggleDrawer(handle, drawer);
+  },
+  'click #current-time-button': function(e) {
+    e.preventDefault();
+    $('[data-js=ride-form] input[name=time]').val(utils.getCurrentTime());
+    $('[data-js=ride-form] input[name=phone]').focus();
   }
 });
 
@@ -21,4 +26,4 @@ Template.rideForm.helpers({
   currentTime: function(){
     return utils.getCurrentTime();
   }
-})
+});
