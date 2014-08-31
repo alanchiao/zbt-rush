@@ -20,7 +20,7 @@ Template.rideForm.events({
     $('[data-js=ride-form] input[name=time]').val(utils.getCurrentTime());
     $('[data-js=ride-form] input[name=phone]').focus();
   },
-  'keypress input': function(e) {
+  'keypress form input': function(e) {
     if (e.which === 13 || e.keyCode === 13) {
       e.preventDefault();
       $(e.target).parents('form').submit();
