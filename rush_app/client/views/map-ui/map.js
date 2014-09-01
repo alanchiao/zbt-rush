@@ -7,8 +7,6 @@ Template.map.rendered = function(){
     var carLayer = L.layerGroup([]).addTo(mapbox);
 
     function updateDrivers(){
-
-			var INSERT_AT_BOTTOM = false;
       carLayer.clearLayers();
 
       ActiveDrivers.find().forEach(function(driver){
@@ -52,7 +50,7 @@ Template.map.rendered = function(){
 							[lat, lon],
 							{color: color, fill: true, fillOpacity: 0.3, radius: accuracyRadius
 						});
-							carLayer.addLayer(accuracyMarker, INSERT_AT_BOTTOM);  
+							carLayer.addLayer(accuracyMarker);  
 						}
 					}
         }
