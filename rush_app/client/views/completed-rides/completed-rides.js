@@ -1,7 +1,9 @@
 Template.completed.helpers({
   completedRides: function() {
     return Rides.find({
-      status: { $in : [Rides.states.COMPLETE_FOUND, Rides.states.COMPLETE_NOT_FOUND]}
+      status: { $in : [Rides.states.COMPLETE_FOUND, Rides.states.COMPLETE_NOT_FOUND] },
+    }, {
+      sort: { 'time' : 1, 'name' : 1 }
     });
   },
 
