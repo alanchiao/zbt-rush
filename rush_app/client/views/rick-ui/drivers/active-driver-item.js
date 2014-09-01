@@ -80,7 +80,6 @@ Template.activeDriverItem.events({
       Meteor.call('sendText', text, parsedNumber, function(error, id){
         if(error){
           $(e.target).text('Failure!');
-          console.log(error);
         } else {
           $(e.target).text('Sent!');
           $(e.target).fadeOut();
@@ -92,7 +91,9 @@ Template.activeDriverItem.events({
 
 Template.activeDriverItem.helpers({
   listRides: function(){
-    return this.rideIds.map(function(rideId){return Rides.findOne(rideId)});
+		return Rides.find(
+		        {_id:{$in:this.rideIds}},
+						{sort:{'time':1, 'pickup':1}}).fetch();
   },
   textable: function(){
 		return true;
@@ -115,7 +116,7 @@ Template.activeDriverItem.helpers({
 		return Drivers.findOne(this.driverId).phone;
 	},
   driverPassengers: function(){
-    var rides = Rides.find({_id: {$in: this.rideIds}});
+    var rides = Rides.find({_id: {$in: this.rideIds},});
     var totalPassengers = 0;
     rides.forEach(function(ride){
       totalPassengers += ride.passengers;

@@ -26,7 +26,7 @@ if(window.location.pathname.match('/drivers/.*$') && navigator && !navigator.use
 				  	longitude:longitude,
 						latitude:latitude,
             pingtime: utils.getCurrentTime(),
-            accuracy: accuracy
+            accuracy: accuracy //10000 temp change
 				  }
 				},
 				function(error, result){}

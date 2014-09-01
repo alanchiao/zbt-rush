@@ -11,7 +11,6 @@ Template.rideItem.rendered = function(){
 		if(ride && ride.editing !== true){
 			var replace = function(){
 				t.findAll('[data-input=true]').forEach(function(field){
-					console.log(field);
 					field.innerHTML = ride[$(field).attr('name')];
 				});
 			}

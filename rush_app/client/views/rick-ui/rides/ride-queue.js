@@ -3,7 +3,7 @@ Template.rideQueue.helpers({
     return Rides.find({
       status: Rides.states.UNASSIGNED
     }, {
-      sort: ['time']
+      sort: {'time':1, 'name':1}
     });
   }
 });

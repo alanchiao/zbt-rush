@@ -9,8 +9,9 @@ Template.activeDriverForm.events({
       Meteor.call('activeDriver', activeDriver, function(error, id){
         Cars.update(activeDriver.carId, {$set:{isAssigned: true}});
 				Drivers.update(activeDriver.driverId, {$set:{isAssigned: true}});
+				var car = Cars.findOne(activeDriver.carId);
 
-        var text = 'Rick has selected you to drive! You should be receiving another text shortly with a link to your assigned rides.';
+        var text = 'Rick has selected you to drive in ' + car.name + '. You should be receiving another text shortly with a link to your assigned rides.';
         var parsedNumber = utils.parsePhoneNumber(Drivers.findOne(activeDriver.driverId).phone);
         Meteor.call('sendText', text, parsedNumber);
         if (error){
