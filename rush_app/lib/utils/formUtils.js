@@ -28,6 +28,7 @@ formUtils = function(){
       $(this).val($(this).data('default') || '');
       $(this).css('background-color', '#fff');
     });
+    $(form).find('.label.clickable').removeClass('label-danger');
   }
 
 	/**

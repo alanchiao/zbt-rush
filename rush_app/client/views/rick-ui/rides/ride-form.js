@@ -4,6 +4,9 @@ Template.rideForm.events({
   'submit form': function(e){
     e.preventDefault();
     var ride = formUtils.formToJson(e.target);
+    if ($(e.target).find('.xrush').hasClass('label-danger')) {
+      ride.xrush = true;
+    }
 		Meteor.call('ride', ride, function(error, response){
 			if(error){alert(error.reason)};
 			formUtils.onResponse(response, e.target);
@@ -25,6 +28,9 @@ Template.rideForm.events({
       e.preventDefault();
       $(e.target).parents('form').submit();
     }
+  },
+  'click .clickable.xrush': function(e) {
+    $(e.target).toggleClass('label-danger');
   }
 });
 
