@@ -24,6 +24,7 @@ formUtils = function(){
 
   function resetForm(form){
     $(form).find('[name="name"]').focus();
+    $(form).find('input[name=time]').data('default', utils.getCurrentTime());
     $(form).find('[data-input=true]').each(function(){
       $(this).val($(this).data('default') || '');
       $(this).css('background-color', '#fff');
