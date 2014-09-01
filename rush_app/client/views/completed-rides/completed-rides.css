@@ -2,6 +2,10 @@
   margin: 0 16px;
 }
 
+.completed-filters input {
+  margin-right: 4px;
+}
+
 .rides-dump {
   float: right;
 }
@@ -9,4 +13,8 @@
 .spinner {
   float:right;
   display: none;
+}
+
+td .label {
+  margin-left: 4px;
 }

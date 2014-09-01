@@ -11,12 +11,11 @@ Template.rideItem.rendered = function(){
 		if(ride && ride.editing !== true){
 			var replace = function(){
 				t.findAll('[data-input=true]').forEach(function(field){
-					console.log(field);
 					field.innerHTML = ride[$(field).attr('name')];
 				});
 			}
 			replace();
-			setTimeout(replace, 8);	
+			setTimeout(replace, 8);
 		}
 	});
 };
@@ -38,7 +37,7 @@ Template.rideItem.events({
     var textButton = $(e.target).parents('[data-js="driver"]').find('[data-js="text"]');
     textButton.text('Text');
     textButton.show();
-    
+
     Meteor.call("unAssignRide", this.driver._id, this._id, function(error){});
   },
   'click [data-js=delete]': function(e){
@@ -58,7 +57,7 @@ Template.rideItem.events({
     } else {
       utils.resetItem(item, {default: true});
     }
-    
+
     Rides.update(this._id, {$set:{editing: !this.editing}});
   },
   'submit form': function(e){

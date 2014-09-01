@@ -1,11 +1,22 @@
 <template name="completed">
   <div class="completed-container">
-    <a href="#" class="show-not-found">Show only rides that were not found</a>
-    <a href="#" class="rides-dump">Dump a list of all rides to email</a>
+    <div>
+      <a href="#" class="show-all">Show all completed rides</a>
+      <a href="#" class="rides-dump">Dump a list of all rides to email</a>
+    </div>
+    <div class="completed-filters">
+      <span>Only show: </span>
+      <label>
+        <input type="checkbox" data-show="not-found"/>Not-found rides
+      </label>
+      <label>
+        <input type="checkbox" data-show="xrush" />Potential cross-rush
+      </label>
+    </div>
     <span class="spinner">{{> spinner}}</span>
     <table class="table">
       <thead>
-        <tr>
+        <tr class="header">
           <th>Name</th>
           <th>Time</th>
           <th>Num. Passengers</th>
@@ -17,7 +28,12 @@
       <tbody>
         {{#each completedRides}}
           <tr class="{{statusClass}}">
-            <td>{{name}}</td>
+            <td>
+              {{name}}
+              {{#if xrush}}
+                <span class="label label-danger">xrush</span>
+              {{/if}}
+            </td>
             <td>{{time}}</td>
             <td>{{passengers}}</td>
             <td>{{phone}}</td>

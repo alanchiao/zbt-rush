@@ -1,25 +1,52 @@
 Template.completed.helpers({
   completedRides: function() {
     return Rides.find({
-      status: { $in : [Rides.states.COMPLETE_FOUND, Rides.states.COMPLETE_NOT_FOUND]}
+      status: { $in : [Rides.states.COMPLETE_FOUND, Rides.states.COMPLETE_NOT_FOUND] },
+    }, {
+      sort: { 'time' : 1, 'name' : 1 }
     });
   },
 
   statusClass: function() {
-    return ((this.status === Rides.states.COMPLETE_NOT_FOUND) && 'not-found danger') ||
-      ((this.status === Rides.states.COMPLETE_FOUND) && 'found');
+    var classes = [];
+    if (this.status === Rides.states.COMPLETE_NOT_FOUND) {
+      classes.push('not-found');
+      classes.push('danger');
+    }
+    if (this.status === Rides.states.COMPLETE_FOUND) {
+      classes.push('found');
+    }
+    if (this.xrush) {
+      classes.push('xrush');
+    }
+    return classes.join(' ');
   }
 });
 
 Template.completed.events({
-  'click a.show-not-found': function(e) {
-    $(e.target).text('Show all completed rides').removeClass('show-not-found').addClass('show-all');
-    $('tr.found').hide();
+  'click a.show-all': function(e) {
+    $('tr').show();
+    $('.completed-filters input[type=checkbox]').prop('checked', false);
   },
 
-  'click a.show-all': function(e) {
-    $(e.target).text('Show only rides that were not found').removeClass('show-all').addClass('show-not-found');
-    $('tr.found').show();
+  'click .completed-filters input[type=checkbox]': function(e) {
+    $('tr').show();
+    var showClasses = $('.completed-filters')
+      .find('input[type=checkbox]')
+      .filter(function(index, item) { return $(item).prop('checked'); })
+      .map(function(index, item) { return $(item).data('show'); })
+      .toArray();
+
+    if (showClasses.length) {
+      $('tr:not(.header').each(function() {
+        var elt = this;
+        if (!showClasses.every(function(classname) {
+          return $(elt).hasClass(classname);
+        })) {
+          $(elt).hide();
+        }
+      });
+    }
   },
 
   'click a.rides-dump': function(e) {
